@@ -1,0 +1,9 @@
+[
+  {
+    "model": "tierlist.user",
+    "fields": {
+      "name": "@test",
+      "email": "test@test.com"
+    }
+  },
+]
