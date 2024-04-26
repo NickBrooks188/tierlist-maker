@@ -47,5 +47,25 @@
       "name": "Squirtle",
       "list_id": 1
     }
+  },
+  {
+    "model": "tierlist.listpublished",
+    "pk": 3,
+    "fields": {
+      "owner_id": 1,
+      "name": "First list",
+      "description": "Where I think the starters belong",
+      "template_id": 1,
+      "s_tier": [
+        1
+      ],
+      "a_tier": [
+        2
+      ],
+      "c_tier": [
+        3
+      ],
+      "public": true
+    }
   }
 ]
