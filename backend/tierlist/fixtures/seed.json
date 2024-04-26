@@ -1,0 +1,51 @@
+[
+  {
+    "model": "tierlist.user",
+    "pk": 1,
+    "fields": {
+      "password": "test",
+      "email": "test@test.com"
+    }
+  },
+  {
+    "model": "tierlist.user",
+    "pk": 2,
+    "fields": {
+      "password": "test",
+      "email": "test2@test.com"
+    }
+  },
+  {
+    "model": "tierlist.listtemplate",
+    "pk": 1,
+    "fields": {
+      "name": "Starter Pokemon",
+      "description": "Tier list for all starter Pokemon!",
+      "owner_id": 1
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 1,
+    "fields": {
+      "name": "Bulbasaur",
+      "list_id": 1
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 2,
+    "fields": {
+      "name": "Charmander",
+      "list_id": 1
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 3,
+    "fields": {
+      "name": "Squirtle",
+      "list_id": 1
+    }
+  }
+]

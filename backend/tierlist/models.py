@@ -7,6 +7,9 @@ class User(models.Model):
     password = models.CharField(max_length=64, null=False)
     image_url = models.TextField()
 
+    def __str__(self):
+        return self.email
+
 class ListPublished(models.Model):
     name = models.TextField(null=False)
     description = models.CharField(max_length=256)
@@ -25,7 +28,13 @@ class ListTemplate(models.Model):
     owner_id = models.ForeignKey(User, on_delete=models.CASCADE)
     public = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.name
+
 class Card(models.Model):
     name = models.TextField(null=False)
     image_url = models.TextField()
     list_id = models.ForeignKey(ListTemplate, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
