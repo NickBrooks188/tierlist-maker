@@ -57,18 +57,31 @@ def get_published_list_by_id(request, list_id):
     # list_with_cards['list']['cards'] = cards_dict
     return HttpResponse(json.dumps(list_return))
 
-    # create list template
-    
-    # create published list
+# create list template
 
-    # create card
+# create published list
 
-    # delete list template
+# create card
 
-    # delete published list
+# delete list template
 
-    # delete card
+# delete published list
 
-    # update published list
+# delete card
 
-    # update list template
+# update published list
+
+# update list template
+
+# signup
+def sign_up(request):
+    if request.method != 'POST':
+        return HttpResponse(status=400)
+    body = json.loads(request.body.decode('utf-8'))
+    email = body.get("email")
+    password = body.get("password")
+    image_url = body.get("image_url")
+    print(email)
+    return HttpResponse(status=200)
+
+# login
