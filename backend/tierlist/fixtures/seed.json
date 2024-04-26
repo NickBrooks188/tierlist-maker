@@ -50,7 +50,7 @@
   },
   {
     "model": "tierlist.listpublished",
-    "pk": 3,
+    "pk": 1,
     "fields": {
       "owner_id": 1,
       "name": "First list",
