@@ -3,6 +3,25 @@ from django.core import serializers
 from django.http import Http404, HttpResponseNotAllowed, HttpResponse
 from .models import Card, User, ListPublished, ListTemplate
 import json
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status, permissions, serializers
+
+
+class CardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Card
+        fields = ["id", "name", "image_url"]
+
+class ListTemplateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ListTemplate
+        fields = ["id", "name", "description", "public", "owner"]
+
+class ListPublishedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ListPublished
+        fields = ["id", "name", "description", "public", "s_tier", "a_tier", "b_tier", "c_tier", "d_tier", "f_tier", "owner", "template"]
 
 # Create your views here.
 def get_list_template_by_id(request, template_id):
@@ -57,24 +76,9 @@ def get_published_list_by_id(request, list_id):
     # list_with_cards['list']['cards'] = cards_dict
     return HttpResponse(json.dumps(list_return))
 
-# create list template
-
-# create published list
-
-# create card
-
-# delete list template
-
-# delete published list
-
-# delete card
-
-# update published list
-
-# update list template
-
 # signup
 def sign_up(request):
+    print(request)
     if request.method != 'POST':
         return HttpResponse(status=400)
     body = json.loads(request.body.decode('utf-8'))
@@ -85,3 +89,24 @@ def sign_up(request):
     return HttpResponse(status=200)
 
 # login
+
+# ALL ENDPOINTS
+
+# GET /templates
+# POST /templates
+
+# DELETE /templates/<template_ID>
+# PUT /published/<template_ID>
+
+# GET /published
+# POST /published
+
+# DELETE /published/<template_ID>
+# PUT /published/<template_ID>
+
+# POST /templates/<template_ID>/cards
+
+# DELETE /templates/<template_ID>/cards/<card_ID>
+
+# POST /signup
+# POST /login
