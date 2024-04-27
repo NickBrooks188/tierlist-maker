@@ -92,11 +92,44 @@ def sign_up(request):
 
 # ALL ENDPOINTS
 
+class TemplatesAll(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
 # GET /templates
+    def get(self, request, *args, **kwargs):
+        templates = ListTemplate.objects.filter(user = request.user.id)
+        serializer = ListTemplateSerializer(templates, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 # POST /templates
+    def post(self, request, *args, **kwargs):
+        data = {
+            'name': request.data.get('name'), 
+            'description': request.data.get('description'),
+            'public': request.data.get('public'), 
+            'owner': request.user.id
+        }
+        serializer = ListTemplateSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # DELETE /templates/<template_ID>
-# PUT /published/<template_ID>
+# PUT /templates/<template_ID>
+class TemplatesOne(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, list_id, *args, **kwargs):
+        template = ListTemplate.objects.get(id=list_id)
+        if not template:
+            return Response(
+                {"res": "Template does not exists"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        serializer = ListTemplateSerializer(template)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 # GET /published
 # POST /published
