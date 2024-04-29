@@ -9,3 +9,4 @@ urlpatterns = [
     path('published/<list_id>/', views.get_published_list_by_id, name='get_published_list_by_id'),
     path('signup/', views.sign_up, name='sign_up')
 ]
+
