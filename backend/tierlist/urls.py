@@ -12,6 +12,6 @@ urlpatterns = [
     path('templates/<int:list_id>/cards/<int:card_id>/', views.CardsOne.as_view()),
     path('signup/', views.UserSignup.as_view(), name='signup'),
     path('login/', views.UserLogin.as_view(), name='login'),
-    path('login/', views.UserLogout.as_view(), name='logout'),
+    path('logout/', views.UserLogout.as_view(), name='logout'),
 ]
 
