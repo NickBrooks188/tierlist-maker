@@ -66,21 +66,25 @@ class TemplatesOne(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, list_id, *args, **kwargs):
-        template = ListTemplate.objects.get(id=list_id)
-        if not template:
+        template = None
+        try:
+            template = ListTemplate.objects.get(id=list_id)
+        except:
             return Response(
-                {"res": "Template does not exists"},
+                {"message": "Template does not exist"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         serializer = ListTemplateSerializer(template)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
-# PUT /templates/<template_ID>
+# PUT /templates/<list_id>
     def put(self, request, list_id, *args, **kwargs):
-        template = ListTemplate.objects.get(id=list_id)
-        if not template:
+        template = None
+        try:
+            template = ListTemplate.objects.get(id=list_id)
+        except:
             return Response(
-                {"res": "Template does not exists"},
+                {"message": "Template does not exist"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         data = {
@@ -94,12 +98,14 @@ class TemplatesOne(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-# DELETE /templates/<template_ID>
+# DELETE /templates/<list_id>
     def delete(self, request, list_id, *args, **kwargs):
-        template = ListTemplate.objects.get(id=list_id)
-        if not template:
+        template = None
+        try:
+            template = ListTemplate.objects.get(id=list_id)
+        except:
             return Response(
-                {"res": "Template does not exists"},
+                {"message": "Template does not exist"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         template.delete()
@@ -136,10 +142,12 @@ class PublishedOne(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, list_id, *args, **kwargs):
-        published = ListPublished.objects.get(id=list_id)
-        if not published:
+        published = None
+        try:
+            published = ListTemplate.objects.get(id=list_id)
+        except:
             return Response(
-                {"res": "Published list does not exists"},
+                {"message": "Published list does not exist"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         serializer = ListPublishedSerializer(published)
@@ -147,10 +155,12 @@ class PublishedOne(APIView):
     
 # PUT /published/<list_ID>
     def put(self, request, list_id, *args, **kwargs):
-        published = ListPublished.objects.get(id=list_id)
-        if not published:
+        published = None
+        try:
+            published = ListTemplate.objects.get(id=list_id)
+        except:
             return Response(
-                {"res": "Published list does not exists"},
+                {"message": "Published list does not exist"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         data = {
@@ -166,10 +176,12 @@ class PublishedOne(APIView):
     
 # DELETE /published/<list_ID>
     def delete(self, request, list_id, *args, **kwargs):
-        published = ListPublished.objects.get(id=list_id)
-        if not published:
+        published = None
+        try:
+            published = ListTemplate.objects.get(id=list_id)
+        except:
             return Response(
-                {"res": "Published list does not exists"},
+                {"message": "Published list does not exist"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         published.delete()
@@ -179,10 +191,10 @@ class PublishedOne(APIView):
         ) 
 
 
-# POST /templates/<template_ID>/cards
-def CardsAll(APIView):
+class CardsAll(APIView):
     permission_classes = [permissions.IsAuthenticated]
     
+# POST /templates/<list_id>/cards
     def post(self, request, list_id, *args, **kwargs):
         data = {
             'name': request.data.get('name'), 
@@ -198,7 +210,24 @@ def CardsAll(APIView):
 
 
 
-# DELETE /templates/<template_ID>/cards/<card_ID>
+class CardsOne(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+# DELETE /templates/<list_ID>/cards/<card_ID>
+    def delete(self, request, list_id, card_id, *args, **kwargs):
+        card = None
+        try:
+            card = Card.objects.get(id=card_id)
+        except:
+            return Response(
+                {"message": "Card does not exist"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        card.delete()
+        return Response(
+            {"message": "Card deleted!"},
+            status=status.HTTP_200_OK
+        ) 
 
 # POST /signup
 # POST /login
