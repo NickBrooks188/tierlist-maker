@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.core import serializers
 from django.http import Http404, HttpResponseNotAllowed, HttpResponse
 from rest_framework.authentication import SessionAuthentication
-from django.contrib.auth import get_user_model, authenticate
+from django.contrib.auth import get_user_model, authenticate, login, logout
 from .models import Card, User, ListPublished, ListTemplate
 import json
 from rest_framework.views import APIView
@@ -271,7 +271,12 @@ class UserLogin(APIView):
     authentication_classes = [SessionAuthentication]
 
     def post(self, request):
-
+        serializer = UserLoginSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            user = serializer.check_user(request.data)
+            login(request, user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 class UserLogout(APIView):
     pass
