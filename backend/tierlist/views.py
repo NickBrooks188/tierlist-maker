@@ -67,12 +67,12 @@ class TemplatesAll(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
 # GET /templates
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         templates = ListTemplate.objects.filter(user = request.user.id)
         serializer = ListTemplateSerializer(templates, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 # POST /templates
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         data = {
             'name': request.data.get('name'), 
             'description': request.data.get('description'),
@@ -89,7 +89,7 @@ class TemplatesAll(APIView):
 class TemplatesOne(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def get(self, request, list_id, *args, **kwargs):
+    def get(self, request, list_id):
         template = None
         try:
             template = ListTemplate.objects.get(id=list_id)
@@ -102,7 +102,7 @@ class TemplatesOne(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 # PUT /templates/<list_id>
-    def put(self, request, list_id, *args, **kwargs):
+    def put(self, request, list_id):
         template = None
         try:
             template = ListTemplate.objects.get(id=list_id)
@@ -123,7 +123,7 @@ class TemplatesOne(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 # DELETE /templates/<list_id>
-    def delete(self, request, list_id, *args, **kwargs):
+    def delete(self, request, list_id):
         template = None
         try:
             template = ListTemplate.objects.get(id=list_id)
@@ -140,13 +140,13 @@ class TemplatesOne(APIView):
 
 class PublishedAll(APIView):
 # GET /published
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         published = ListPublished.objects.filter(user = request.user.id)
         serializer = ListTemplateSerializer(published, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 # POST /published
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         data = {
             'name': request.data.get('name'), 
             'description': request.data.get('description'),
@@ -178,7 +178,7 @@ class PublishedOne(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 # PUT /published/<list_ID>
-    def put(self, request, list_id, *args, **kwargs):
+    def put(self, request, list_id):
         published = None
         try:
             published = ListTemplate.objects.get(id=list_id)
@@ -199,7 +199,7 @@ class PublishedOne(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 # DELETE /published/<list_ID>
-    def delete(self, request, list_id, *args, **kwargs):
+    def delete(self, request, list_id):
         published = None
         try:
             published = ListTemplate.objects.get(id=list_id)
@@ -219,7 +219,7 @@ class CardsAll(APIView):
     permission_classes = [permissions.IsAuthenticated]
     
 # POST /templates/<list_id>/cards
-    def post(self, request, list_id, *args, **kwargs):
+    def post(self, request, list_id):
         data = {
             'name': request.data.get('name'), 
             'image_url': request.data.get('image_url'), 
@@ -238,7 +238,7 @@ class CardsOne(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
 # DELETE /templates/<list_ID>/cards/<card_ID>
-    def delete(self, request, list_id, card_id, *args, **kwargs):
+    def delete(self, request, list_id, card_id):
         card = None
         try:
             card = Card.objects.get(id=card_id)
@@ -269,6 +269,9 @@ class UserSignup(APIView):
 class UserLogin(APIView):
     permission_classes = [permissions.AllowAny]
     authentication_classes = [SessionAuthentication]
+
+    def post(self, request):
+
 
 class UserLogout(APIView):
     pass
