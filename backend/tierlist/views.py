@@ -1,11 +1,15 @@
 from django.shortcuts import render
 from django.core import serializers
 from django.http import Http404, HttpResponseNotAllowed, HttpResponse
+from rest_framework.authentication import SessionAuthentication
+from django.contrib.auth import get_user_model, authenticate
 from .models import Card, User, ListPublished, ListTemplate
 import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions, serializers
+
+UserModel = get_user_model()
 
 
 class CardSerializer(serializers.ModelSerializer):
@@ -23,6 +27,28 @@ class ListPublishedSerializer(serializers.ModelSerializer):
         model = ListPublished
         fields = ["id", "name", "description", "public", "s_tier", "a_tier", "b_tier", "c_tier", "d_tier", "f_tier", "owner", "template"]
 
+class UserSignupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserModel
+        fields = ["id", "email", "image_url"]
+    def create(self, data):
+        user_obj = UserModel.objects.create_user(email=data['email'], password=data['password'])
+        user_obj.save()
+        return user_obj
+
+class UserLoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserModel
+        fields = ["id", "email", "image_url"]
+
+    email = serializers.EmailField()
+    password = serializers.CharField()
+    def check_user(self, data):
+        user = authenticate(username=data['email'], password=data['password'])
+        if not user:
+            raise ValueError('User not found')
+        return user
+
 # signup
 def sign_up(request):
     print(request)
@@ -34,8 +60,6 @@ def sign_up(request):
     image_url = body.get("image_url")
     print(email)
     return HttpResponse(status=200)
-
-# login
 
 # ALL ENDPOINTS
 
@@ -230,4 +254,21 @@ class CardsOne(APIView):
         ) 
 
 # POST /signup
+class UserSignup(APIView):
+    permission_classes = [permissions.AllowAny]
+    def post(self, request):
+        serializer = UserLoginSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            user = serializer.create(request.data)
+            if user:
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
 # POST /login
+class UserLogin(APIView):
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = [SessionAuthentication]
+
+class UserLogout(APIView):
+    pass
