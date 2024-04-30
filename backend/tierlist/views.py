@@ -279,4 +279,7 @@ class UserLogin(APIView):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 class UserLogout(APIView):
-    pass
+    permission_classes = (permissions.AllowAny)
+    def post(self, request):
+        logout(request)
+        return Response(status=status.HTTP_200_OK)
