@@ -115,8 +115,6 @@ class TemplatesAll(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# DELETE /templates/<template_ID>
-# PUT /templates/<template_ID>
 class TemplatesOne(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
@@ -129,6 +127,40 @@ class TemplatesOne(APIView):
             )
         serializer = ListTemplateSerializer(template)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+# PUT /templates/<template_ID>
+    def put(self, request, list_id, *args, **kwargs):
+        template = ListTemplate.objects.get(id=list_id)
+        if not template:
+            return Response(
+                {"res": "Template does not exists"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        data = {
+            'name': request.data.get('name'),
+            'description': request.data.get('description'),
+            'public': request.data.get('public')
+        }
+        serializer = ListTemplateSerializer(instance = template, data=data, partial = True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+# DELETE /templates/<template_ID>
+    def delete(self, request, list_id, *args, **kwargs):
+        template = ListTemplate.objects.get(id=list_id)
+        if not template:
+            return Response(
+                {"res": "Template does not exists"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        template.delete()
+        return Response(
+            {"message": "Template deleted!"},
+            status=status.HTTP_200_OK
+        ) 
+
 
 
 # GET /published
