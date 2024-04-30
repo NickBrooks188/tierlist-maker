@@ -132,10 +132,71 @@ class PublishedAll(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# DELETE /published/<template_ID>
-# PUT /published/<template_ID>
+class PublishedOne(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, list_id, *args, **kwargs):
+        published = ListPublished.objects.get(id=list_id)
+        if not published:
+            return Response(
+                {"res": "Published list does not exists"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        serializer = ListPublishedSerializer(published)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+# PUT /published/<list_ID>
+    def put(self, request, list_id, *args, **kwargs):
+        published = ListPublished.objects.get(id=list_id)
+        if not published:
+            return Response(
+                {"res": "Published list does not exists"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        data = {
+            'name': request.data.get('name'),
+            'description': request.data.get('description'),
+            'public': request.data.get('public')
+        }
+        serializer = ListPublishedSerializer(instance = published, data=data, partial = True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+# DELETE /published/<list_ID>
+    def delete(self, request, list_id, *args, **kwargs):
+        published = ListPublished.objects.get(id=list_id)
+        if not published:
+            return Response(
+                {"res": "Published list does not exists"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        published.delete()
+        return Response(
+            {"message": "Published list deleted!"},
+            status=status.HTTP_200_OK
+        ) 
+
 
 # POST /templates/<template_ID>/cards
+def CardsAll(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def post(self, request, list_id, *args, **kwargs):
+        data = {
+            'name': request.data.get('name'), 
+            'image_url': request.data.get('image_url'), 
+            'list': request.data.get('list_id')
+        }
+        serializer = CardSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 # DELETE /templates/<template_ID>/cards/<card_ID>
 
