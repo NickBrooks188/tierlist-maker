@@ -18,9 +18,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     # id created automatically
     email = models.EmailField(max_length=40, null=False, unique=True)
     # password = models.CharField(max_length=64, null=False)
-    image_url = models.TextField()
+    image_url = models.TextField(default='')
     USERNAME_FIELD = 'email'
-    # REQUIRED_FIELDS = ['pa']
     objects = AppUserManager()
 
     def __str__(self):

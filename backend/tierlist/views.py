@@ -11,7 +11,6 @@ from rest_framework import status, permissions, serializers
 
 UserModel = get_user_model()
 
-
 class CardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Card
@@ -29,9 +28,9 @@ class ListPublishedSerializer(serializers.ModelSerializer):
 
 class UserSignupSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserModel
-        fields = ["id", "email", "image_url"]
+        fields = ["id", "email", "image_url", "password"]
     def create(self, data):
+        user_obj = None
         user_obj = UserModel.objects.create_user(email=data['email'], password=data['password'])
         user_obj.save()
         return user_obj
@@ -39,27 +38,21 @@ class UserSignupSerializer(serializers.ModelSerializer):
 class UserLoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
-        fields = ["id", "email", "image_url"]
+        fields = ["id", "email", "image_url", "password"]
 
     email = serializers.EmailField()
     password = serializers.CharField()
     def check_user(self, data):
+        print('~~~~~~', data['email'])
+        test1 = UserModel.objects.create_user(email='f@b.com', password='password')
+        test1.save()
+        test2 = authenticate(username='f@b.com', password='password')
         user = authenticate(username=data['email'], password=data['password'])
+        print(test2)
+        print(user)
         if not user:
             raise ValueError('User not found')
         return user
-
-# signup
-def sign_up(request):
-    print(request)
-    if request.method != 'POST':
-        return HttpResponse(status=400)
-    body = json.loads(request.body.decode('utf-8'))
-    email = body.get("email")
-    password = body.get("password")
-    image_url = body.get("image_url")
-    print(email)
-    return HttpResponse(status=200)
 
 # ALL ENDPOINTS
 
@@ -251,7 +244,7 @@ class CardsOne(APIView):
         return Response(
             {"message": "Card deleted!"},
             status=status.HTTP_200_OK
-        ) 
+        )
 
 # POST /signup
 class UserSignup(APIView):
@@ -259,11 +252,17 @@ class UserSignup(APIView):
     def post(self, request):
         serializer = UserLoginSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            user = serializer.create(request.data)
+            user = None
+            try:
+                user = serializer.create(request.data)
+            except Exception as e:
+                return Response(
+            {"message": str(e)},
+            status=status.HTTP_400_BAD_REQUEST
+        )
             if user:
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
-
 
 # POST /login
 class UserLogin(APIView):
@@ -278,6 +277,7 @@ class UserLogin(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
+# POST /logout
 class UserLogout(APIView):
     permission_classes = (permissions.AllowAny)
     def post(self, request):
