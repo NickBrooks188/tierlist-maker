@@ -3,7 +3,7 @@
     "model": "tierlist.user",
     "pk": 1,
     "fields": {
-      "password": "test",
+      "password": "pbkdf2_sha256$600000$AndulKWxRCpoxXHL7ZdKCC$CNxAfwn9Y606xcehpDs9Q2XxtbbwYQ4WbzK7Lzt4liA=",
       "email": "test@test.com"
     }
   },
@@ -11,7 +11,7 @@
     "model": "tierlist.user",
     "pk": 2,
     "fields": {
-      "password": "test",
+      "password": "pbkdf2_sha256$600000$AndulKWxRCpoxXHL7ZdKCC$CNxAfwn9Y606xcehpDs9Q2XxtbbwYQ4WbzK7Lzt4liA=",
       "email": "test2@test.com"
     }
   },

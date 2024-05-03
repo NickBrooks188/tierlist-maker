@@ -44,11 +44,11 @@ class UserLoginSerializer(serializers.ModelSerializer):
     email = serializers.EmailField()
     password = serializers.CharField()
     def check_user(self, data):
-        test1 = UserModel.objects.create_user(email='f@b.com', password='password')
-        test1.save()
-        test2 = authenticate(username='f@b.com', password='password')
+        # test1 = UserModel.objects.create_user(email='b@b.com', password='test')
+        # test1.save()
+        # test2 = authenticate(username='f@b.com', password='password')
         user = authenticate(username=data['email'], password=data['password'])
-        print(test2)
+        # print(test2)
         print(user)
         if not user:
             raise ValueError('User not found')
