@@ -95,3 +95,80 @@ a {
     color-scheme: dark;
   }
 }
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.button-dark {
+  background-color: black;
+  border-radius: 8px;
+  height: 50px;
+  /* padding: 0 35px 0 35px; */
+  width: 140px;
+  color: white;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  transition: all 0.2s;
+  box-sizing: border-box;
+  margin: 10px;
+}
+
+.button-dark>svg {
+  height: 16px;
+}
+
+.button-dark:hover {
+  background-color: #333;
+}
+
+.button-dark:active {
+  background-color: #555;
+}
+
+.button-light {
+  background-color: white;
+  border-radius: 8px;
+  height: 50px;
+  /* padding: 25px; */
+  width: 140px;
+  color: black;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  transition: all 0.2s;
+  box-sizing: border-box;
+  border: 1px solid #EBEBEB;
+  margin: 10px;
+}
+
+.button-light>svg {
+  height: 16px;
+}
+
+.button-light:hover {
+  background-color: #F3F3F3;
+}
+
+.button-light:active {
+  background-color: #E3E3E3;
+}
+
+.logo {
+  margin: 20px;
+}
+
+.asterisk {
+  color: #FF544D;
+  margin-left: 3px;
+}
