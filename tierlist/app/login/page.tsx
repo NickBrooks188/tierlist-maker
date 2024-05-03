@@ -19,7 +19,6 @@ export default function Page() {
     useEffect(() => {
         dispatch(testFunction())
     }, [])
-    console.log('~~~~~~`', test)
 
     useEffect(() => {
         document.title = 'Tier Forge: Log in'

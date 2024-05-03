@@ -17,9 +17,10 @@ class CardSerializer(serializers.ModelSerializer):
         fields = ["id", "name", "image_url"]
 
 class ListTemplateSerializer(serializers.ModelSerializer):
+    cards = serializers.StringRelatedField(many=True)
     class Meta:
         model = ListTemplate
-        fields = ["id", "name", "description", "public", "owner"]
+        fields = ["id", "name", "description", "public", "owner", "cards"]
 
 class ListPublishedSerializer(serializers.ModelSerializer):
     class Meta:
@@ -43,7 +44,6 @@ class UserLoginSerializer(serializers.ModelSerializer):
     email = serializers.EmailField()
     password = serializers.CharField()
     def check_user(self, data):
-        print('~~~~~~', data['email'])
         test1 = UserModel.objects.create_user(email='f@b.com', password='password')
         test1.save()
         test2 = authenticate(username='f@b.com', password='password')
@@ -82,7 +82,9 @@ class TemplatesAll(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class TemplatesOne(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
+
 
     def get(self, request, list_id):
         template = None
@@ -136,8 +138,8 @@ class TemplatesOne(APIView):
 class PublishedAll(APIView):
 # GET /published
     def get(self, request):
-        published = ListPublished.objects.filter(user = request.user.id)
-        serializer = ListTemplateSerializer(published, many=True)
+        published = ListPublished.objects.filter()
+        serializer = ListPublishedSerializer(published, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 # POST /published
@@ -158,12 +160,14 @@ class PublishedAll(APIView):
 
 
 class PublishedOne(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
-    def get(self, request, list_id, *args, **kwargs):
+
+    def get(self, request, list_id):
         published = None
         try:
-            published = ListTemplate.objects.get(id=list_id)
+            published = ListPublished.objects.get(id=list_id)
         except:
             return Response(
                 {"message": "Published list does not exist"},
@@ -176,7 +180,7 @@ class PublishedOne(APIView):
     def put(self, request, list_id):
         published = None
         try:
-            published = ListTemplate.objects.get(id=list_id)
+            published = ListPublished.objects.get(id=list_id)
         except:
             return Response(
                 {"message": "Published list does not exist"},
@@ -197,7 +201,7 @@ class PublishedOne(APIView):
     def delete(self, request, list_id):
         published = None
         try:
-            published = ListTemplate.objects.get(id=list_id)
+            published = ListPublished.objects.get(id=list_id)
         except:
             return Response(
                 {"message": "Published list does not exist"},

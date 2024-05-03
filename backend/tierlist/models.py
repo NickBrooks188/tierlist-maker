@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+import json
 
 
 class AppUserManager(BaseUserManager):
@@ -38,7 +39,7 @@ class ListPublished(models.Model):
     name = models.TextField(null=False)
     description = models.CharField(max_length=256)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    template = models.ForeignKey(ListTemplate, on_delete=models.CASCADE)
+    template = models.ForeignKey(ListTemplate, related_name="published_lists", on_delete=models.CASCADE, default=1)
     public = models.BooleanField(default=False)
     s_tier = models.TextField(default='[]')
     a_tier = models.TextField(default='[]')
@@ -51,7 +52,7 @@ class ListPublished(models.Model):
 class Card(models.Model):
     name = models.TextField(null=False)
     image_url = models.TextField()
-    list_id = models.ForeignKey(ListTemplate, on_delete=models.CASCADE)
+    list = models.ForeignKey(ListTemplate, related_name='cards', on_delete=models.CASCADE, default=1)
 
     def __str__(self):
-        return self.name
+        return json.dumps([self.id, self.name, self.image_url])

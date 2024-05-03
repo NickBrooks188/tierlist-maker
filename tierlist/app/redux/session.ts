@@ -12,7 +12,7 @@ export const sessionSlice = createSlice({
             state.sessionState = action.payload;
         },
         testFunction: async () => {
-            const res = await fetch(`http://localhost:8000/api/templates/`, {
+            const res = await fetch(`http://localhost:8000/api/published/`, {
                 method: "GET"
             })
             const data = await res.json()
