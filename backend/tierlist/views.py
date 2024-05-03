@@ -57,7 +57,9 @@ class UserLoginSerializer(serializers.ModelSerializer):
 # ALL ENDPOINTS
 
 class TemplatesAll(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
+
 
 # GET /templates
     def get(self, request):
