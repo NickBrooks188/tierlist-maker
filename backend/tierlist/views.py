@@ -61,7 +61,7 @@ class TemplatesAll(APIView):
 
 # GET /templates
     def get(self, request):
-        templates = ListTemplate.objects.filter(user = request.user.id)
+        templates = ListTemplate.objects.filter()
         serializer = ListTemplateSerializer(templates, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 # POST /templates

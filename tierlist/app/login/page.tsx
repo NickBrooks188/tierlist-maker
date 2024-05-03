@@ -16,8 +16,9 @@ export default function Page() {
     const test = useSelector((state) => state)
 
     const dispatch = useDispatch()
-    dispatch(setSessionState(true))
-    dispatch(testFunction())
+    useEffect(() => {
+        dispatch(testFunction())
+    }, [])
     console.log('~~~~~~`', test)
 
     useEffect(() => {
