@@ -44,12 +44,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
     email = serializers.EmailField()
     password = serializers.CharField()
     def check_user(self, data):
-        # test1 = UserModel.objects.create_user(email='b@b.com', password='test')
-        # test1.save()
-        # test2 = authenticate(username='f@b.com', password='password')
         user = authenticate(username=data['email'], password=data['password'])
-        # print(test2)
-        print(user)
         if not user:
             raise ValueError('User not found')
         return user
@@ -57,8 +52,8 @@ class UserLoginSerializer(serializers.ModelSerializer):
 # ALL ENDPOINTS
 
 class TemplatesAll(APIView):
-    # permission_classes = [permissions.IsAuthenticated]
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.AllowAny]
 
 
 # GET /templates
@@ -82,8 +77,8 @@ class TemplatesAll(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class TemplatesOne(APIView):
-    # permission_classes = [permissions.IsAuthenticated]
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.AllowAny]
 
 
     def get(self, request, list_id):
@@ -160,8 +155,8 @@ class PublishedAll(APIView):
 
 
 class PublishedOne(APIView):
-    # permission_classes = [permissions.IsAuthenticated]
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.AllowAny]
 
 
     def get(self, request, list_id):
