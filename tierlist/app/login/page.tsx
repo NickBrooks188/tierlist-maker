@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "@/app/page.module.css";
 
 
@@ -10,6 +10,18 @@ export default function Page() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [disabled, setDisabled] = useState(true)
+
+    useEffect(() => {
+        document.title = 'Tier Forge: Log in'
+    }, [])
+
+    useEffect(() => {
+        if (email && password) {
+            setDisabled(false)
+        } else {
+            setDisabled(true)
+        }
+    }, [email, password])
 
     return (
         <main className='main'>
@@ -21,7 +33,7 @@ export default function Page() {
                     className="logo"
                 />
             </Link>
-            <form onSubmit={console.log('here')}>
+            <form onSubmit={(e) => console.log('here')}>
                 <label>
                     Email
                     <input
@@ -42,7 +54,7 @@ export default function Page() {
                     />
                 </label>
                 {/* <p>{errors.password}</p> */}
-                <button type="submit" disabled={disabled} >Sign Up</button>
+                <button type="submit" disabled={disabled} className="button-dark">Log In</button>
             </form>
         </main>
     )
