@@ -3,6 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import styles from "@/app/page.module.css";
+import { useSelector } from "react-redux";
+import { setSessionState, testFunction } from "@/app/redux/session";
+import { useDispatch } from "react-redux";
 
 
 export default function Page() {
@@ -10,6 +13,12 @@ export default function Page() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [disabled, setDisabled] = useState(true)
+    const test = useSelector((state) => state)
+
+    const dispatch = useDispatch()
+    dispatch(setSessionState(true))
+    dispatch(testFunction())
+    console.log('~~~~~~`', test)
 
     useEffect(() => {
         document.title = 'Tier Forge: Log in'
