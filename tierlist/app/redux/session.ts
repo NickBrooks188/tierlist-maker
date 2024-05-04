@@ -11,6 +11,17 @@ let test: { [key: string]: string } = {
 // TODO: replace any
 const initialState: any = {};
 
+export const thunkAuthenticate = () => async (dispatch: any) => {
+    const response = await fetch("http://localhost:8000/api/authenticate/");
+    if (response.ok) {
+        const data = await response.json();
+        if (data.errors) {
+            return;
+        }
+        dispatch(sessionSlice.actions.setUser(data));
+    }
+};
+
 export const thunkLogin = (credentials: object) => async (dispatch: any) => {
     const response = await fetch("http://localhost:8000/api/login/", {
         method: "POST",

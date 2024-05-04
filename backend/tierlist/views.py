@@ -27,6 +27,11 @@ class ListPublishedSerializer(serializers.ModelSerializer):
         model = ListPublished
         fields = ["id", "name", "description", "public", "s_tier", "a_tier", "b_tier", "c_tier", "d_tier", "f_tier", "owner", "template"]
 
+class UserSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = UserModel
+		fields = ["id", "email", "image_url"]
+
 class UserSignupSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ["id", "email", "image_url", "password"]
@@ -286,3 +291,13 @@ class UserLogout(APIView):
     def post(self, request):
         logout(request)
         return Response(status=status.HTTP_200_OK)
+    
+# GET /user
+class UserAuthenticate(APIView):
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = [SessionAuthentication]
+    def get(self, request):
+        print('88888888888', request.user)
+        # serializer = UserSerializer(request.user)
+        # serializer = UserSerializer(1)
+        return Response({"message": "anonymous user"}, status=status.HTTP_200_OK)
