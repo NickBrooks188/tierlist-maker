@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import styles from "@/app/page.module.css";
-import { thunkLogin, setUser } from "@/app/redux/session";
+import { thunkLogin, thunkAuthenticate } from "@/app/redux/session";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { useRouter } from 'next/navigation'
 
@@ -44,7 +44,8 @@ export default function Page() {
         if (serverResponse.message) {
             setErrors(serverResponse.message)
         } else {
-            router.push('/main')
+            const data = await dispatch(thunkAuthenticate())
+            console.log('88888', data)
         }
     }
 

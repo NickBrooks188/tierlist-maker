@@ -19,6 +19,7 @@ export const thunkAuthenticate = () => async (dispatch: any) => {
             return;
         }
         dispatch(sessionSlice.actions.setUser(data));
+        return data
     }
 };
 
