@@ -3,22 +3,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import styles from "@/app/page.module.css";
-import { useSelector } from "react-redux";
-import { setSessionState, testFunction } from "@/app/redux/session";
-import { useDispatch } from "react-redux";
+import { thunkLogin, setUser } from "@/app/redux/session";
+import { useAppDispatch, useAppSelector } from "../redux/store";
+import { useRouter } from 'next/navigation'
 
 
 export default function Page() {
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState('');
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [disabled, setDisabled] = useState(true)
-    const test = useSelector((state) => state)
+    const test = useAppSelector((state) => state);
+    const router = useRouter();
 
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(testFunction())
-    }, [])
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
         document.title = 'Tier Forge: Log in'
@@ -32,6 +30,24 @@ export default function Page() {
         }
     }, [email, password])
 
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        const credentials = {
+            email,
+            password
+        }
+
+        const serverResponse: { [key: string]: string } = await dispatch(thunkLogin(credentials))
+        console.log(serverResponse)
+        if (serverResponse.message) {
+            setErrors(serverResponse.message)
+        } else {
+            router.push('/main')
+        }
+    }
+
     return (
         <main className='main'>
             <Link href={'/'}>
@@ -42,7 +58,7 @@ export default function Page() {
                     className="logo"
                 />
             </Link>
-            <form onSubmit={(e) => console.log('here')}>
+            <form onSubmit={(e) => handleSubmit(e)}>
                 <label>
                     Email
                     <input
@@ -52,7 +68,6 @@ export default function Page() {
                         required
                     />
                 </label>
-                {/* <p>{errors.email}</p> */}
                 <label>
                     Password
                     <input
@@ -62,7 +77,7 @@ export default function Page() {
                         required
                     />
                 </label>
-                {/* <p>{errors.password}</p> */}
+                {(errors) && <p>{errors}</p>}
                 <button type="submit" disabled={disabled} className="button-dark">Log In</button>
             </form>
         </main>

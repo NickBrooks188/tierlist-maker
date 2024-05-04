@@ -45,8 +45,6 @@ class UserLoginSerializer(serializers.ModelSerializer):
     password = serializers.CharField()
     def check_user(self, data):
         user = authenticate(username=data['email'], password=data['password'])
-        if not user:
-            raise ValueError('User not found')
         return user
 
 # ALL ENDPOINTS
@@ -272,11 +270,15 @@ class UserLogin(APIView):
 
     def post(self, request):
         serializer = UserLoginSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            user = serializer.check_user(request.data)
-            login(request, user)
+        if serializer.is_valid(raise_exception=False):
+            try:
+                user = serializer.check_user(request.data)
+                login(request, user)
+            except:
+                return Response({"message": "Email or password is incorrect"}, status=status.HTTP_400_BAD_REQUEST)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        return Response({"message": "Email or password is incorrect"}, status=status.HTTP_400_BAD_REQUEST)
 
 # POST /logout
 class UserLogout(APIView):
