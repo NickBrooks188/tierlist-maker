@@ -50,7 +50,7 @@ export default function Page() {
     }
 
     const logout = async () => {
-        const serverResponse: { [key: string]: string } = await dispatch(thunkAuthenticate('369b90c8bdd87bf9cb4e9f6db6012f117ba3fe32'))
+        const serverResponse: { [key: string]: string } = await dispatch(thunkAuthenticate(''))
         console.log('logout: ', serverResponse)
     }
 
