@@ -11,8 +11,11 @@ let test: { [key: string]: string } = {
 // TODO: replace any
 const initialState: any = {};
 
-export const thunkAuthenticate = () => async (dispatch: any) => {
-    const response = await fetch("http://localhost:8000/api/authenticate/");
+export const thunkAuthenticate = (token: string) => async (dispatch: any) => {
+    const response = await fetch("http://localhost:8000/api/authenticate/", {
+        method: "GET",
+        headers: { "Authorization": `Token ${token}` }
+    });
     if (response.ok) {
         const data = await response.json();
         if (data.errors) {
@@ -43,7 +46,7 @@ export const thunkLogin = (credentials: object) => async (dispatch: any) => {
 };
 
 export const thunkSignup = (user: object) => async (dispatch: any) => {
-    const response = await fetch("/api/auth/signup", {
+    const response = await fetch("http://localhost:8000/api/signup/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user)
@@ -59,6 +62,20 @@ export const thunkSignup = (user: object) => async (dispatch: any) => {
         return { server: "Something went wrong. Please try again" }
     }
 };
+
+export const thunkLogout = () => async (dispatch: any) => {
+    const response = await fetch("http://localhost:8000/api/logout/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+    });
+    if (response.ok) {
+        const data = await response.json();
+        if (data.errors) {
+            return;
+        }
+        return data
+    }
+}
 
 export const sessionSlice = createSlice({
     name: "session",

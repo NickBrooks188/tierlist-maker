@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import styles from "@/app/page.module.css";
-import { thunkLogin, thunkAuthenticate } from "@/app/redux/session";
+import { thunkLogin, thunkAuthenticate, thunkLogout } from "@/app/redux/session";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { useRouter } from 'next/navigation'
 
@@ -41,12 +41,17 @@ export default function Page() {
 
         const serverResponse: { [key: string]: string } = await dispatch(thunkLogin(credentials))
         console.log(serverResponse)
-        if (serverResponse.message) {
-            setErrors(serverResponse.message)
+        if (serverResponse.token) {
+            localStorage.setItem('token', serverResponse.token)
+            router.push('/main')
         } else {
-            const data = await dispatch(thunkAuthenticate())
-            console.log('88888', data)
+            setErrors(serverResponse.email)
         }
+    }
+
+    const logout = async () => {
+        const serverResponse: { [key: string]: string } = await dispatch(thunkAuthenticate('369b90c8bdd87bf9cb4e9f6db6012f117ba3fe32'))
+        console.log('logout: ', serverResponse)
     }
 
     return (
@@ -81,6 +86,7 @@ export default function Page() {
                 {(errors) && <p>{errors}</p>}
                 <button type="submit" disabled={disabled} className="button-dark">Log In</button>
             </form>
+            <button onClick={logout}>Logout</button>
         </main>
     )
 }

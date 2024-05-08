@@ -1,13 +1,16 @@
 from django.shortcuts import render
 from django.core import serializers
 from django.http import Http404, HttpResponseNotAllowed, HttpResponse
-from rest_framework.authentication import SessionAuthentication
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from django.contrib.auth import get_user_model, authenticate, login, logout
 from .models import Card, User, ListPublished, ListTemplate
 import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions, serializers
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.models import Token
+
 
 UserModel = get_user_model()
 
@@ -269,7 +272,7 @@ class UserSignup(APIView):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 # POST /login
-class UserLogin(APIView):
+class UserLogin(ObtainAuthToken):
     permission_classes = [permissions.AllowAny]
     authentication_classes = [SessionAuthentication]
 
@@ -280,27 +283,32 @@ class UserLogin(APIView):
         if serializer.is_valid(raise_exception=True):
             try:
                 user = serializer.check_user(data)
-                login(request, user)
-                print("LOGGED IN USER", user)
+                token, created = Token.objects.get_or_create(user=user)
             except:
-                return Response({"message": "Email or password is incorrect"}, status=status.HTTP_400_BAD_REQUEST)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-
-        return Response({"message": "Email or password is incorrect"}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"email": "Email or password is incorrect"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'token': token.key,
+            'user_id': user.pk,
+            'email': user.email,
+            'image_url': user.image_url}, status=status.HTTP_200_OK)
+        return Response({"email": "Email or password is incorrect"}, status=status.HTTP_400_BAD_REQUEST)
 
 # POST /logout
 class UserLogout(APIView):
-    permission_classes = (permissions.AllowAny)
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+
     def post(self, request):
+        print(request.user)
         logout(request)
         return Response(status=status.HTTP_200_OK)
-    
+
 # GET /user
 class UserAuthenticate(APIView):
     permission_classes = [permissions.AllowAny]
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
     def get(self, request):
-        print('88888888888', request.user)
-        # serializer = UserSerializer(request.user)
-        # serializer = UserSerializer(1)
-        return Response({"message": "anonymous user"}, status=status.HTTP_200_OK)
+        print(request.user)
+        return Response({'token': request.auth.key,
+            'user_id': request.user.pk,
+            'email': request.user.email,
+            'image_url': request.user.image_url}, status=status.HTTP_200_OK)
