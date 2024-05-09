@@ -256,19 +256,26 @@ class CardsOne(APIView):
 # POST /signup
 class UserSignup(APIView):
     permission_classes = [permissions.AllowAny]
+    authentication_classes = [SessionAuthentication]
+
     def post(self, request):
         serializer = UserLoginSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             user = None
             try:
                 user = serializer.create(request.data)
+                token, created = Token.objects.get_or_create(user=user)
+                print('999999', token.key)
             except Exception as e:
                 return Response(
-            {"message": str(e)},
-            status=status.HTTP_400_BAD_REQUEST
-        )
+                    {"message": str(e)},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
             if user:
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
+                return Response({'token': token.key,
+            'user_id': user.pk,
+            'email': user.email,
+            'image_url': user.image_url}, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 # POST /login
