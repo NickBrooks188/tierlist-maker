@@ -265,7 +265,6 @@ class UserSignup(APIView):
             try:
                 user = serializer.create(request.data)
                 token, created = Token.objects.get_or_create(user=user)
-                print('999999', token.key)
             except Exception as e:
                 return Response(
                     {"message": str(e)},
