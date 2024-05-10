@@ -22,6 +22,21 @@ export default function Page() {
     }, [])
 
     return (
-        <div>Main page</div>
+        <>
+            <div className='templates-wrapper'>
+                {templates && Object.values(templates).map((template: any) => (
+                    <div key={`template-${template.id}`}>
+                        {template.name}
+                    </div>
+                ))}
+            </div>
+            <div className='published-wrapper'>
+                {published && Object.values(published).map((published_list: any) => (
+                    <div key={`template-${published_list.id}`}>
+                        {published_list.name}
+                    </div>
+                ))}
+            </div>
+        </>
     )
 }

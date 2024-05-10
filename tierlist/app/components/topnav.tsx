@@ -7,13 +7,11 @@ export default function TopNav() {
 
             <Link href={'/'}>
                 <Image src='https://jello-bucket.s3.us-west-1.amazonaws.com/TierForgeLogo.svg'
-                    width={183}
-                    height={100}
+                    width={46}
+                    height={25}
                     alt="Tier Forge logo"
                 />
             </Link>
         </div>
-
     )
-
 }

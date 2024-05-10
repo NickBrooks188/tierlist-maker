@@ -21,7 +21,8 @@
     "fields": {
       "name": "Starter Pokemon",
       "description": "Tier list for all starter Pokemon!",
-      "owner_id": 1
+      "owner_id": 1,
+      "background_image_url": "https://miro.medium.com/v2/resize:fit:1024/1*wTrE_RK3p2AQ3MBkAJpAjw.jpeg"
     }
   },
   {
@@ -30,7 +31,8 @@
     "fields": {
       "name": "Star Wars Movies",
       "description": "Tier list for all Star Wars films!",
-      "owner_id": 1
+      "owner_id": 1,
+      "background_image_url": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/07/best-order-to-watch-star-wars-featured-image.jpg"
     }
   },
   {
