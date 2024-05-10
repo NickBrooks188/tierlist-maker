@@ -16,6 +16,7 @@ export default function TopNav() {
             <div className={styles.topnavbar_rhs}>
                 <button className="button-dark">Create template</button>
                 <button className="button-light">Create list</button>
+                <button className={styles.profile_button}></button>
             </div>
         </div>
     )

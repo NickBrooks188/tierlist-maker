@@ -14,8 +14,20 @@
     align-items: center;
     justify-content: space-between;
     height: 60px;
+    gap: 15px;
 }
 
 .topnavbar_rhs>button {
     height: 40px;
+    /* width: auto; */
+}
+
+.profile_button {
+    height: 40px;
+    width: 40px;
+    background-color: var(--blue);
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    box-sizing: border-box;
 }
