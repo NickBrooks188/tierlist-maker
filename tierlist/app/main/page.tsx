@@ -26,7 +26,7 @@ export default function Page() {
     }, [])
 
     return (
-        <>
+        <> Templates
             <div className={styles.templates_wrapper}>
                 {templates && Object.values(templates).map((template: any) => (
                     <TemplateTile key={`template-${template.id}`}
@@ -36,6 +36,7 @@ export default function Page() {
                     />
                 ))}
             </div>
+            Published lists
             <div className={styles.published_wrapper}>
                 {published && Object.values(published).map((published_list: any) => (
                     <PublishedTile
