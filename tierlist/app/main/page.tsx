@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { thunkGetAllTemplates, thunkGetAllPublished } from "@/app/redux/alllists";
 import TemplateTile from "@/app/components/TemplateTile/templatetile";
 import PublishedTile from "@/app/components/PublishedTile/publshedtile";
+import styles from "./Main.module.css"
 
 export default function Page() {
     const templates = useAppSelector(state => state.allLists.templates)
@@ -26,7 +27,7 @@ export default function Page() {
 
     return (
         <>
-            <div className='templates-wrapper'>
+            <div className={styles.templates_wrapper}>
                 {templates && Object.values(templates).map((template: any) => (
                     <TemplateTile key={`template-${template.id}`}
                         image_url={template.background_image_url}
@@ -35,7 +36,7 @@ export default function Page() {
                     />
                 ))}
             </div>
-            <div className='published-wrapper'>
+            <div className={styles.published_wrapper}>
                 {published && Object.values(published).map((published_list: any) => (
                     <PublishedTile
                         key={`published-${published_list.id}`}

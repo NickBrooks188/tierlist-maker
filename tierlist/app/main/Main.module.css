@@ -1,0 +1,13 @@
+.templates_wrapper {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    padding: 20px;
+}
+
+.published_wrapper {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    padding: 20px;
+}
