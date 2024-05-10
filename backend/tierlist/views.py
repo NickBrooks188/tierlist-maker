@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from rest_framework import status, permissions, serializers
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
+from django.contrib.auth.hashers import make_password
 
 
 UserModel = get_user_model()
@@ -37,6 +38,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class UserSignupSerializer(serializers.ModelSerializer):
     class Meta:
+        model = UserModel
         fields = ["id", "email", "image_url", "password"]
     def create(self, data):
         user_obj = None
@@ -58,8 +60,9 @@ class UserLoginSerializer(serializers.ModelSerializer):
 # ALL ENDPOINTS
 
 class TemplatesAll(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-    # permission_classes = [permissions.AllowAny]
+    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = [SessionAuthentication]
 
 
 # GET /templates
@@ -85,6 +88,7 @@ class TemplatesAll(APIView):
 class TemplatesOne(APIView):
     permission_classes = [permissions.IsAuthenticated]
     # permission_classes = [permissions.AllowAny]
+    authentication_classes = [SessionAuthentication]
 
 
     def get(self, request, list_id):
@@ -137,6 +141,8 @@ class TemplatesOne(APIView):
         ) 
 
 class PublishedAll(APIView):
+    authentication_classes = [SessionAuthentication]
+    permission_classes = [permissions.AllowAny]
 # GET /published
     def get(self, request):
         published = ListPublished.objects.filter()
@@ -259,7 +265,7 @@ class UserSignup(APIView):
     authentication_classes = [SessionAuthentication]
 
     def post(self, request):
-        serializer = UserLoginSerializer(data=request.data)
+        serializer = UserSignupSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             user = None
             try:

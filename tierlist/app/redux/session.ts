@@ -3,11 +3,6 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface Credentials { [key: string]: string; }
 
-let test: { [key: string]: string } = {
-    email: 'test',
-    password: 'test'
-}
-
 // TODO: replace any
 const initialState: any = {};
 

@@ -25,6 +25,15 @@
     }
   },
   {
+    "model": "tierlist.listtemplate",
+    "pk": 2,
+    "fields": {
+      "name": "Star Wars Movies",
+      "description": "Tier list for all Star Wars films!",
+      "owner_id": 1
+    }
+  },
+  {
     "model": "tierlist.card",
     "pk": 1,
     "fields": {
@@ -46,6 +55,94 @@
     "fields": {
       "name": "Squirtle",
       "list_id": 1
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 4,
+    "fields": {
+      "name": "Episode I - The Phantom Menace",
+      "list_id": 2
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 5,
+    "fields": {
+      "name": "Episode II - The Attack of the Clones",
+      "list_id": 2
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 6,
+    "fields": {
+      "name": "Episode III - Revenge of the Sith",
+      "list_id": 2
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 7,
+    "fields": {
+      "name": "Episode IV - A New Hope",
+      "list_id": 2
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 8,
+    "fields": {
+      "name": "Episode V - The Empire Strikes Back",
+      "list_id": 2
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 9,
+    "fields": {
+      "name": "Episode VI - Return of the Jedi",
+      "list_id": 2
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 10,
+    "fields": {
+      "name": "Episode VII - The Force Awakens",
+      "list_id": 2
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 11,
+    "fields": {
+      "name": "Episode VIII - The Last Jedi",
+      "list_id": 2
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 12,
+    "fields": {
+      "name": "Episode IX - The Rise of Skywalker",
+      "list_id": 2
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 13,
+    "fields": {
+      "name": "Rogue One",
+      "list_id": 2
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 14,
+    "fields": {
+      "name": "Solo",
+      "list_id": 2
     }
   },
   {
