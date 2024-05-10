@@ -21,8 +21,6 @@ export default function PublishedTile({ name, description, s_tier, a_tier, b_tie
     const dLength = (d_tier.length / maxLength) * 136 + 20
     const fLength = (f_tier.length / maxLength) * 136 + 20
 
-    console.log(sLength, aLength, bLength, cLength, dLength, fLength)
-
     return (
         <div className={styles.published_tile} >
             <div className={styles.published_tile_preview}>
@@ -32,13 +30,10 @@ export default function PublishedTile({ name, description, s_tier, a_tier, b_tie
                 <div className={styles.c_preview} style={{ "width": cLength }} />
                 <div className={styles.d_preview} style={{ "width": dLength }} />
                 <div className={styles.f_preview} style={{ "width": fLength }} />
-
-
             </div>
             <div className={styles.published_tile_text}>{name}
                 <div className={styles.published_tile_description}>{description}</div>
             </div>
-
         </div >
     )
 }
