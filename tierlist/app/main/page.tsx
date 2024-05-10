@@ -4,7 +4,9 @@ import { useEffect } from "react";
 import { thunkGetAllTemplates, thunkGetAllPublished } from "@/app/redux/alllists";
 
 export default function Page() {
-    const test = useAppSelector(state => state)
+    const templates = useAppSelector(state => state.allLists.templates)
+    const published = useAppSelector(state => state.allLists.published)
+
 
     const dispatch = useAppDispatch()
     useEffect(() => {
@@ -12,16 +14,12 @@ export default function Page() {
         const fetchAsync = async () => {
             const templateData: any = await dispatch(thunkGetAllTemplates())
             const publishedData: any = await dispatch(thunkGetAllPublished())
-
-            console.log(templateData, publishedData)
-
         }
 
         fetchAsync()
 
 
     }, [])
-    console.log(test)
 
     return (
         <div>Main page</div>
