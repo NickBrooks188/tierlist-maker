@@ -45,6 +45,8 @@
   --yellow-light: #fbf1ce;
   --orange-light: #f9e5cb;
   --red-light: #fad2cf;
+  --gray-light: #FAFAFA;
+  --gray-med: #EAEAEA;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -125,7 +127,7 @@ a {
   /* padding: 0 35px 0 35px; */
   width: 140px;
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,7 +157,7 @@ a {
   /* padding: 25px; */
   width: 140px;
   color: black;
-  font-size: 16px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;

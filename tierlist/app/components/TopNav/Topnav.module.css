@@ -1,0 +1,21 @@
+.topnavbar {
+    height: 60px;
+    background-color: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--gray-med);
+    box-sizing: border-box;
+    padding: 17px;
+}
+
+.topnavbar_rhs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+}
+
+.topnavbar_rhs>button {
+    height: 40px;
+}

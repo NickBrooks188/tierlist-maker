@@ -1,5 +1,5 @@
 'use client'
-import TopNav from '@/app/components/topnav';
+import TopNav from '@/app/components/TopNav/topnav';
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/redux/store";
 import { thunkAuthenticate } from "@/app/redux/session";
