@@ -32,6 +32,19 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
+
+  --purple: #aa67ce;
+  --blue: #0168d6;
+  --green: #24c238;
+  --yellow: #f5c733;
+  --orange: #f59933;
+  --red: #ff544d;
+  --purple-light: #e6d7f1;
+  --blue-light: #c1d6f3;
+  --green-light: #d6f0d5;
+  --yellow-light: #fbf1ce;
+  --orange-light: #f9e5cb;
+  --red-light: #fad2cf;
 }
 
 @media (prefers-color-scheme: dark) {
