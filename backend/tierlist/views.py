@@ -24,7 +24,7 @@ class ListTemplateSerializer(serializers.ModelSerializer):
     cards = serializers.StringRelatedField(many=True)
     class Meta:
         model = ListTemplate
-        fields = ["id", "name", "description", "public", "owner", "cards"]
+        fields = ["id", "name", "description", "public", "owner", "cards", "background_image_url"]
 
 class ListPublishedSerializer(serializers.ModelSerializer):
     class Meta:

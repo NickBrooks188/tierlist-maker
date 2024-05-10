@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+
+    images: {
+        domains: ['jello-bucket.s3.us-west-1.amazonaws.com']
+    }
+};
 
 export default nextConfig;
