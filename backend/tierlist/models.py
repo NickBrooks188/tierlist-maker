@@ -30,7 +30,7 @@ class ListTemplate(models.Model):
     name = models.TextField(null=False)
     description = models.CharField(max_length=256)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    background_image_url = models.TextField(default = '', nnull=True, blank=True)
+    background_image_url = models.TextField(default = '', null=True, blank=True)
     public = models.BooleanField(default=False)
 
     def __str__(self):
