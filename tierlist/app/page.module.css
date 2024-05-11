@@ -200,6 +200,13 @@
   }
 }
 
+.title_divider {
+  width: 100%;
+  border: 1px dashed var(--gray-med);
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
   .grid {

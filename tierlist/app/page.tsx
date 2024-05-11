@@ -15,6 +15,7 @@ export default function Home() {
           className='logo'
         />
       </Link>
+      <div className={styles.title_divider} />
       <Link href='/login'><div className="button-dark"><FontAwesomeIcon icon={faRightToBracket} /> Log in</div></Link>
       <Link href='/signup'><div className="button-light"><FontAwesomeIcon icon={faSquarePlus} />Sign up</div></Link>
     </main>

@@ -16,6 +16,12 @@
     align-items: flex-start;
     justify-content: flex-start;
     gap: 8px;
+    transition: all 0.2s
+}
+
+.template_tile:hover {
+    box-shadow: 2px 4px 12px #00000024;
+    background-image: linear-gradient(0turn, red, blue);
 }
 
 .template_tile_description {

@@ -1,7 +1,7 @@
 .published_tile {
     height: 280px;
     width: 200px;
-    border: 1px solid var(--gray-med);
+    border: none;
     cursor: pointer;
     align-items: flex-end;
     justify-content: center;
@@ -16,6 +16,17 @@
     align-items: flex-start;
     justify-content: flex-start;
     gap: 8px;
+    margin: 4px;
+    transition: all 0.2s;
+    box-shadow: 2px 4px 12px #00000014;
+}
+
+.published_tile:hover {
+    width: 208px;
+    height: 288px;
+    margin: 0px;
+    padding: 24px;
+    box-shadow: 2px 4px 12px #00000024;
 }
 
 .published_tile_preview {

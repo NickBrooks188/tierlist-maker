@@ -10,7 +10,7 @@ interface TemplateTileProps {
 export default function TemplateTile({ image_url, name, description }: TemplateTileProps) {
     return (
         <div className={styles.template_tile} style={{
-            "backgroundImage": `linear-gradient(0turn, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url(${image_url})`,
+            "backgroundImage": `linear-gradient(0turn, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.75)), url(${image_url})`,
             'backgroundSize': `cover`
         }}>
             {name}
