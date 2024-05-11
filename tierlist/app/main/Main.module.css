@@ -1,13 +1,33 @@
+.main_wrapper {
+    max-width: 1000px;
+    padding: 40px 20px 40px 20px;
+    margin: auto;
+}
+
 .templates_wrapper {
     display: flex;
     width: 100%;
     gap: 20px;
-    padding: 20px;
 }
 
 .published_wrapper {
     display: flex;
     width: 100%;
     gap: 20px;
-    padding: 20px;
+}
+
+.main_header {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.divider {
+    border-bottom: 1px solid var(--gray-med);
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }

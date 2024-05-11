@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from "../redux/store"
 import { useEffect } from "react";
 import { thunkGetAllTemplates, thunkGetAllPublished } from "@/app/redux/alllists";
 import TemplateTile from "@/app/components/TemplateTile/templatetile";
-import PublishedTile from "@/app/components/PublishedTile/publshedtile";
+import PublishedTile from "@/app/components/PublishedTile/publishedtile";
 import styles from "./Main.module.css"
 
 export default function Page() {
@@ -26,7 +26,8 @@ export default function Page() {
     }, [])
 
     return (
-        <> Templates
+        <div className={styles.main_wrapper}>
+            <div className={styles.main_header}>Templates</div>
             <div className={styles.templates_wrapper}>
                 {templates && Object.values(templates).map((template: any) => (
                     <TemplateTile key={`template-${template.id}`}
@@ -36,7 +37,8 @@ export default function Page() {
                     />
                 ))}
             </div>
-            Published lists
+            <div className={styles.divider} />
+            <div className={styles.main_header}>Published Lists</div>
             <div className={styles.published_wrapper}>
                 {published && Object.values(published).map((published_list: any) => (
                     <PublishedTile
@@ -52,6 +54,6 @@ export default function Page() {
                     />
                 ))}
             </div>
-        </>
+        </div>
     )
 }

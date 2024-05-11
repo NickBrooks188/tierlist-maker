@@ -136,6 +136,7 @@ a {
   box-sizing: border-box;
   margin: 10px 0 10px 0;
   cursor: pointer;
+  border: none;
 }
 
 .button-dark>svg {

@@ -1,5 +1,5 @@
 .published_tile {
-    height: 300px;
+    height: 280px;
     width: 200px;
     border: 1px solid var(--gray-med);
     cursor: pointer;
@@ -19,7 +19,7 @@
 }
 
 .published_tile_preview {
-    height: 180px;
+    height: 170px;
     display: flex;
     flex-direction: column;
     gap: 8px
