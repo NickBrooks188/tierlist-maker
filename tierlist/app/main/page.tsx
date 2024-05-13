@@ -40,6 +40,16 @@ export default function Page() {
             <div className={styles.divider} />
             <div className={styles.main_header}>Published Lists</div>
             <div className={styles.published_wrapper}>
+                <PublishedTile
+                    name={"Publish a tier list"}
+                    description={"Choose from existing templates"}
+                    s_tier={[-1]}
+                    a_tier={[]}
+                    b_tier={[]}
+                    c_tier={[]}
+                    d_tier={[]}
+                    f_tier={[]}
+                />
                 {published && Object.values(published).map((published_list: any) => (
                     <PublishedTile
                         key={`published-${published_list.id}`}
