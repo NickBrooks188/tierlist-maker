@@ -156,13 +156,38 @@
       "description": "Where I think the starters belong",
       "template_id": 1,
       "s_tier": [
-        1
+        1,
+        10,
+        11,
+        12
       ],
       "a_tier": [
-        2
+        2,
+        13,
+        14
+      ],
+      "b_tier": [
+        4,
+        15,
+        16,
+        17,
+        18,
+        19
       ],
       "c_tier": [
-        3
+        3,
+        20,
+        21,
+        22
+      ],
+      "d_tier": [
+        5,
+        9
+      ],
+      "f_tier": [
+        6,
+        7,
+        8
       ],
       "public": true
     }

@@ -29,6 +29,10 @@
     box-shadow: 2px 4px 12px #00000024;
 }
 
+.published_tile:active {
+    box-shadow: 2px 4px 12px #00000034;
+}
+
 .published_tile_preview {
     height: 170px;
     display: flex;
