@@ -22,7 +22,7 @@
       "name": "Starter Pokemon",
       "description": "Gens 1-9",
       "owner_id": 1,
-      "background_image_url": "https://jello-bucket.s3.us-west-1.amazonaws.com/StarterPokemon.jpeg"
+      "background_image_url": "https://tierforge.s3.us-west-1.amazonaws.com/StarterPokemon.jpeg"
     }
   },
   {
@@ -32,7 +32,7 @@
       "name": "Star Wars Movies",
       "description": "Episodes I through IX, Rogue One + Solo",
       "owner_id": 1,
-      "background_image_url": "https://jello-bucket.s3.us-west-1.amazonaws.com/StarWarsBackground.avif"
+      "background_image_url": "https://tierforge.s3.us-west-1.amazonaws.com/StarWarsBackground.avif"
     }
   },
   {
