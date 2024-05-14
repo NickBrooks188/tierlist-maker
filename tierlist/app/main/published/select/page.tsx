@@ -4,12 +4,14 @@ import TemplateTile from '@/app/components/TemplateTile/templatetile'
 import { useAppSelector, useAppDispatch } from '@/app/redux/store'
 import { useEffect, useState } from 'react'
 import { thunkGetAllTemplates } from '@/app/redux/alllists'
+import { useRouter } from 'next/navigation';
 
 export default function Select() {
 
     const templates = useAppSelector(state => state.allLists.templates)
     const [selection, setSelection] = useState(-1)
     const [disabled, setDisabled] = useState(true)
+    const router = useRouter()
 
 
     const dispatch = useAppDispatch()
@@ -26,6 +28,10 @@ export default function Select() {
     const handleSelect = (templateId: number) => {
         setSelection(templateId)
         setDisabled(false)
+    }
+
+    const create = () => {
+        router.push(`/main/published/create/${selection}`)
     }
 
     return (
@@ -50,7 +56,7 @@ export default function Select() {
                     </div>
                 ))}
             </div>
-            <button disabled={disabled}>Use this template</button>
+            <button disabled={disabled} onClick={create}>Use this template</button>
         </div>
     )
 }
