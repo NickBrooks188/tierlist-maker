@@ -29,8 +29,14 @@ export default function Page() {
         <div className={styles.main_wrapper}>
             <div className={styles.main_header}>Templates</div>
             <div className={styles.templates_wrapper}>
+                <TemplateTile
+                    image_url={'create'}
+                    name={"Create your own"}
+                    description={"Build your own tier list template"}
+                />
                 {templates && Object.values(templates).map((template: any) => (
-                    <TemplateTile key={`template-${template.id}`}
+                    <TemplateTile
+                        key={`template-${template.id}`}
                         image_url={template.background_image_url}
                         name={template.name}
                         description={template.description}
