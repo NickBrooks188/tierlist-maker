@@ -1,5 +1,5 @@
 .template_tile {
-    height: 144px;
+    min-height: 144px;
     width: 270px;
     border: 1px solid var(--gray-med);
     cursor: pointer;
@@ -28,4 +28,9 @@
     font-weight: 400;
     font-size: 14px;
     width: 100%;
+}
+
+.selected_template {
+    border: 4px solid var(--blue);
+    margin: -4px;
 }

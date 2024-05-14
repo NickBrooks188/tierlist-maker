@@ -33,6 +33,7 @@ export default function Page() {
                     image_url={'create'}
                     name={"Create your own"}
                     description={"Build your own tier list template"}
+                    selected={false}
                 />
                 {templates && Object.values(templates).map((template: any) => (
                     <TemplateTile
@@ -40,6 +41,7 @@ export default function Page() {
                         image_url={template.background_image_url}
                         name={template.name}
                         description={template.description}
+                        selected={false}
                     />
                 ))}
             </div>
