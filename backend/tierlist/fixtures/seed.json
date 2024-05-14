@@ -40,7 +40,8 @@
     "pk": 1,
     "fields": {
       "name": "Bulbasaur",
-      "list_id": 1
+      "list_id": 1,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Bulbasaur.png"
     }
   },
   {
@@ -48,7 +49,8 @@
     "pk": 2,
     "fields": {
       "name": "Charmander",
-      "list_id": 1
+      "list_id": 1,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Charmander.png"
     }
   },
   {
@@ -56,7 +58,8 @@
     "pk": 3,
     "fields": {
       "name": "Squirtle",
-      "list_id": 1
+      "list_id": 1,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Squirtle.png"
     }
   },
   {
@@ -65,7 +68,7 @@
     "fields": {
       "name": "Chikorita",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Chikorita.png"
     }
   },
   {
@@ -74,7 +77,7 @@
     "fields": {
       "name": "Cyndaquil",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Cyndaquil.png"
     }
   },
   {
@@ -83,7 +86,7 @@
     "fields": {
       "name": "Totodile",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Totodile.png"
     }
   },
   {
@@ -92,7 +95,7 @@
     "fields": {
       "name": "Treecko",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Treecko.png"
     }
   },
   {
@@ -101,7 +104,7 @@
     "fields": {
       "name": "Torchic",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Torchic.png"
     }
   },
   {
@@ -110,7 +113,7 @@
     "fields": {
       "name": "Mudkip",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Mudkip.png"
     }
   },
   {
@@ -119,7 +122,7 @@
     "fields": {
       "name": "Turtwig",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Turtwig.png"
     }
   },
   {
@@ -128,7 +131,7 @@
     "fields": {
       "name": "Chimchar",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Chimchar.png"
     }
   },
   {
@@ -137,7 +140,7 @@
     "fields": {
       "name": "Piplup",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Piplup.png"
     }
   },
   {
@@ -146,7 +149,7 @@
     "fields": {
       "name": "Snivy",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Snivy.png"
     }
   },
   {
@@ -155,7 +158,7 @@
     "fields": {
       "name": "Tepig",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Tepig.png"
     }
   },
   {
@@ -164,7 +167,7 @@
     "fields": {
       "name": "Oshawott",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Oshawott.png"
     }
   },
   {
@@ -173,7 +176,7 @@
     "fields": {
       "name": "Chespin",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Chespin.png"
     }
   },
   {
@@ -182,7 +185,7 @@
     "fields": {
       "name": "Fennekin",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Fennekin.png"
     }
   },
   {
@@ -191,16 +194,16 @@
     "fields": {
       "name": "Froakie",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Froakie.png"
     }
   },
   {
     "model": "tierlist.card",
     "pk": 19,
     "fields": {
-      "name": "Rufflet",
+      "name": "Rowlet",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Rowlet.png"
     }
   },
   {
@@ -209,7 +212,7 @@
     "fields": {
       "name": "Litten",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Litten.png"
     }
   },
   {
@@ -218,16 +221,16 @@
     "fields": {
       "name": "Popplio",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Popplio.png"
     }
   },
   {
     "model": "tierlist.card",
     "pk": 22,
     "fields": {
-      "name": "Grookie",
+      "name": "Grookey",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Grookey.png"
     }
   },
   {
@@ -236,7 +239,7 @@
     "fields": {
       "name": "Scorbunny",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Scorbunny.png"
     }
   },
   {
@@ -245,7 +248,7 @@
     "fields": {
       "name": "Sobble",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Sobble.png"
     }
   },
   {
@@ -254,7 +257,7 @@
     "fields": {
       "name": "Sprigatito",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Sprigatito.png"
     }
   },
   {
@@ -263,7 +266,7 @@
     "fields": {
       "name": "Fuecoco",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Fuecoco.png"
     }
   },
   {
@@ -272,7 +275,7 @@
     "fields": {
       "name": "Quaxly",
       "list_id": 1,
-      "image_url": ""
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Quaxly.png"
     }
   },
   {
