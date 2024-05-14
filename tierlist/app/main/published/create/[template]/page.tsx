@@ -1,5 +1,5 @@
 'use client';
-// import styles from './Select.module.css'
+import styles from './Create.module.css'
 import { useAppSelector, useAppDispatch } from '@/app/redux/store'
 import { useEffect, useState } from 'react'
 import { thunkGetAllTemplates } from '@/app/redux/alllists'
@@ -46,16 +46,35 @@ export default function Create() {
 
 
     return (
-        <div >
-            Create page
-            {template?.cards && Object.values(template.cards).map((card: any) => (
+        <>
+            <div className={styles.tiers}>
+                <div className={styles.s_header}>S</div>
+                <div className={styles.tier_divider} />
+                <div className={styles.a_header}>A</div>
+                <div className={styles.tier_divider} />
 
-                <CardTile
-                    key={`card ${card[0]}`}
-                    name={card[1]}
-                    image_url={card[2]}
-                />
-            ))}
-        </div>
+                <div className={styles.b_header}>B</div>
+                <div className={styles.tier_divider} />
+                <div className={styles.c_header}>C</div>
+                <div className={styles.tier_divider} />
+                <div className={styles.d_header}>D</div>
+                <div className={styles.tier_divider} />
+                <div className={styles.f_header}>F</div>
+
+            </div>
+
+            <div className={styles.untiered}>
+                Untiered
+                {template?.cards && Object.values(template.cards).map((card: any) => (
+
+                    <CardTile
+                        key={`card ${card[0]}`}
+                        name={card[1]}
+                        image_url={card[2]}
+                    />
+                ))}
+            </div>
+
+        </>
     )
 }
