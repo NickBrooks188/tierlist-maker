@@ -1,6 +1,6 @@
 .cardtile {
     border: 1px solid var(--gray-med);
-    width: 80px;
+    min-width: 80px;
     height: 80px;
     font-size: 14px;
     border-radius: 8px;
