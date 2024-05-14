@@ -63,13 +63,229 @@
     "model": "tierlist.card",
     "pk": 4,
     "fields": {
+      "name": "Chikorita",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 5,
+    "fields": {
+      "name": "Cyndaquil",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 6,
+    "fields": {
+      "name": "Totodile",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 7,
+    "fields": {
+      "name": "Treecko",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 8,
+    "fields": {
+      "name": "Torchic",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 9,
+    "fields": {
+      "name": "Mudkip",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 10,
+    "fields": {
+      "name": "Turtwig",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 11,
+    "fields": {
+      "name": "Chimchar",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 12,
+    "fields": {
+      "name": "Piplup",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 13,
+    "fields": {
+      "name": "Snivy",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 14,
+    "fields": {
+      "name": "Tepig",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 15,
+    "fields": {
+      "name": "Oshawott",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 16,
+    "fields": {
+      "name": "Chespin",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 17,
+    "fields": {
+      "name": "Fennekin",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 18,
+    "fields": {
+      "name": "Froakie",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 19,
+    "fields": {
+      "name": "Rufflet",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 20,
+    "fields": {
+      "name": "Litten",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 21,
+    "fields": {
+      "name": "Popplio",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 22,
+    "fields": {
+      "name": "Grookie",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 23,
+    "fields": {
+      "name": "Scorbunny",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 24,
+    "fields": {
+      "name": "Sobble",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 25,
+    "fields": {
+      "name": "Sprigatito",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 26,
+    "fields": {
+      "name": "Fuecoco",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 27,
+    "fields": {
+      "name": "Quaxly",
+      "list_id": 1,
+      "image_url": ""
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 28,
+    "fields": {
       "name": "Episode I - The Phantom Menace",
       "list_id": 2
     }
   },
   {
     "model": "tierlist.card",
-    "pk": 5,
+    "pk": 29,
     "fields": {
       "name": "Episode II - The Attack of the Clones",
       "list_id": 2
@@ -77,7 +293,7 @@
   },
   {
     "model": "tierlist.card",
-    "pk": 6,
+    "pk": 30,
     "fields": {
       "name": "Episode III - Revenge of the Sith",
       "list_id": 2
@@ -85,7 +301,7 @@
   },
   {
     "model": "tierlist.card",
-    "pk": 7,
+    "pk": 31,
     "fields": {
       "name": "Episode IV - A New Hope",
       "list_id": 2
@@ -93,7 +309,7 @@
   },
   {
     "model": "tierlist.card",
-    "pk": 8,
+    "pk": 32,
     "fields": {
       "name": "Episode V - The Empire Strikes Back",
       "list_id": 2
@@ -101,7 +317,7 @@
   },
   {
     "model": "tierlist.card",
-    "pk": 9,
+    "pk": 33,
     "fields": {
       "name": "Episode VI - Return of the Jedi",
       "list_id": 2
@@ -109,7 +325,7 @@
   },
   {
     "model": "tierlist.card",
-    "pk": 10,
+    "pk": 34,
     "fields": {
       "name": "Episode VII - The Force Awakens",
       "list_id": 2
@@ -117,7 +333,7 @@
   },
   {
     "model": "tierlist.card",
-    "pk": 11,
+    "pk": 35,
     "fields": {
       "name": "Episode VIII - The Last Jedi",
       "list_id": 2
