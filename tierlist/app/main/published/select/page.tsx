@@ -21,7 +21,6 @@ export default function Select() {
 
         fetchAsync()
 
-
     }, [])
 
     const handleSelect = (templateId: number) => {
