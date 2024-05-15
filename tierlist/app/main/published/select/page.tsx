@@ -4,11 +4,13 @@ import TemplateTile from '@/app/components/TemplateTile/templatetile'
 import { useAppSelector, useAppDispatch } from '@/app/redux/store'
 import { useEffect, useState } from 'react'
 import { thunkGetAllTemplates } from '@/app/redux/alllists'
+import { thunkCreatePublished } from '@/app/redux/onelist';
 import { useRouter } from 'next/navigation';
 
 export default function Select() {
 
     const templates = useAppSelector(state => state.allLists.templates)
+    const sessionUser = useAppSelector(state => state.session.user)
     const [selection, setSelection] = useState(-1)
     const [disabled, setDisabled] = useState(true)
     const router = useRouter()
@@ -30,8 +32,20 @@ export default function Select() {
         setDisabled(false)
     }
 
-    const create = () => {
-        router.push(`/main/published/create/${selection}`)
+    const create = async () => {
+        const templateData = {
+            name: "Untitled",
+            template: selection,
+            owner: sessionUser.id,
+            public: true
+        }
+
+        const serverData = await dispatch(thunkCreatePublished(templateData))
+        if (!serverData.error) {
+            router.push(`/main/published/create/${serverData.id}`)
+        } else {
+            console.error(serverData)
+        }
     }
 
     return (

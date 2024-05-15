@@ -4,6 +4,7 @@ import { persistReducer } from "redux-persist";
 import { sessionReducer } from "@/app/redux/session";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 import { allListsReducer } from "./alllists";
+import { oneListReducer } from "./onelist";
 
 const createNoopStorage = () => {
     return {
@@ -34,7 +35,8 @@ const persistedReducer = persistReducer(authPersistConfig, sessionReducer);
 
 const rootReducer = combineReducers({
     session: persistedReducer,
-    allLists: allListsReducer
+    allLists: allListsReducer,
+    list: oneListReducer
 });
 
 export const store = configureStore({

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { thunkGetAllTemplates } from '@/app/redux/alllists'
 import { useParams } from 'next/navigation';
 import CardTile from '@/app/components/CardTile/cardtile';
+import { thunkGetOnePublished } from '@/app/redux/onelist';
 
 interface Template {
     id: number,
@@ -19,25 +20,26 @@ interface Template {
 export default function Create() {
 
     const templates = useAppSelector(state => state.allLists.templates)
+    const published = useAppSelector(state => state.list.published)
     const [template, setTemplate] = useState<Template>()
     const [disabled, setDisabled] = useState(true)
     const params = useParams()
+    const dispatch = useAppDispatch()
 
 
     useEffect(() => {
-        const templateId = Number(params.template)
-        if (templates) {
-            setTemplate(templates[templateId])
+        if (templates && published) {
+            setTemplate(templates[published.template])
         }
         console.log(template)
     }, [params, templates])
 
 
-    const dispatch = useAppDispatch()
     useEffect(() => {
 
         const fetchAsync = async () => {
-            const templateData: any = await dispatch(thunkGetAllTemplates())
+            const publishedData: any = await dispatch(thunkGetOnePublished(Number(params.published)))
+            const templatesData: any = await dispatch(thunkGetAllTemplates())
         }
 
         fetchAsync()
