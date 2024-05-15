@@ -11,7 +11,7 @@ export const thunkGetAllTemplates = () => async (dispatch: any) => {
         if (data.errors) {
             return;
         }
-        dispatch(sessionSlice.actions.setTemplates(data));
+        dispatch(listsSlice.actions.setTemplates(data));
         return data
     }
 };
@@ -23,14 +23,14 @@ export const thunkGetAllPublished = () => async (dispatch: any) => {
         if (data.errors) {
             return;
         }
-        dispatch(sessionSlice.actions.setPublished(data));
+        dispatch(listsSlice.actions.setPublished(data));
         return data
     }
 };
 
 
-export const sessionSlice = createSlice({
-    name: "session",
+export const listsSlice = createSlice({
+    name: "lists",
     initialState,
     reducers: {
         setTemplates: (state, action: PayloadAction) => {
@@ -64,5 +64,5 @@ export const sessionSlice = createSlice({
     },
 });
 
-export const { setTemplates, setPublished } = sessionSlice.actions;
-export const allListsReducer = sessionSlice.reducer;
+export const { setTemplates, setPublished } = listsSlice.actions;
+export const allListsReducer = listsSlice.reducer;
