@@ -40,10 +40,10 @@ export const listsSlice = createSlice({
                 let cardsTemp: { [key: number]: object } = {}
                 for (let card of list.cards) {
                     const cardArr = JSON.parse(card)
-                    cardsTemp[cardArr[0]] = cardArr
+                    cardsTemp[Number(cardArr[0])] = cardArr
                 }
                 list.cards = cardsTemp
-                state.templates[list.id] = list
+                state.templates[Number(list.id)] = list
 
             }
         },
@@ -57,7 +57,7 @@ export const listsSlice = createSlice({
                 list.c_tier = JSON.parse(list.c_tier)
                 list.d_tier = JSON.parse(list.d_tier)
                 list.f_tier = JSON.parse(list.f_tier)
-                state.published[list.id] = list
+                state.published[Number(list.id)] = list
 
             }
         }

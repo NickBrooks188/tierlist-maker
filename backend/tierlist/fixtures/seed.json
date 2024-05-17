@@ -344,7 +344,7 @@
   },
   {
     "model": "tierlist.card",
-    "pk": 12,
+    "pk": 36,
     "fields": {
       "name": "Episode IX - The Rise of Skywalker",
       "list_id": 2
@@ -352,7 +352,7 @@
   },
   {
     "model": "tierlist.card",
-    "pk": 13,
+    "pk": 37,
     "fields": {
       "name": "Rogue One",
       "list_id": 2
@@ -360,7 +360,7 @@
   },
   {
     "model": "tierlist.card",
-    "pk": 14,
+    "pk": 38,
     "fields": {
       "name": "Solo",
       "list_id": 2

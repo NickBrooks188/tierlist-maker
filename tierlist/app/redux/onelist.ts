@@ -44,7 +44,7 @@ export const listSlice = createSlice({
             let cardsTemp: { [key: number]: object } = {}
             for (let card of list.cards) {
                 const cardArr = JSON.parse(card)
-                cardsTemp[cardArr[0]] = cardArr
+                cardsTemp[Number(cardArr[0])] = cardArr
             }
             list.cards = cardsTemp
             state.templates = list

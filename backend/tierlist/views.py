@@ -167,7 +167,9 @@ class PublishedAll(APIView):
 
 
 class PublishedOne(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = [SessionAuthentication]
+
     # permission_classes = [permissions.AllowAny]
 
 

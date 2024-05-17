@@ -9,6 +9,13 @@
     margin-top: 10px;
 }
 
+.tier {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
 .tier_divider {
     width: 100%;
     border-bottom: 1px solid var(--gray-med);
@@ -71,4 +78,6 @@
     gap: 10px;
     justify-content: flex-start;
     align-items: flex-start;
+    width: 100%;
+    flex-wrap: wrap;
 }
