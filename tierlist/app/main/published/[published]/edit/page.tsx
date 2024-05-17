@@ -1,5 +1,5 @@
 'use client';
-import styles from './Create.module.css'
+import styles from './Edit.module.css'
 import { useAppSelector, useAppDispatch } from '@/app/redux/store'
 import { useEffect, useState } from 'react'
 import { thunkGetAllTemplates } from '@/app/redux/alllists'
@@ -17,7 +17,7 @@ interface Template {
     cards: []
 }
 
-export default function Create() {
+export default function Edit() {
 
     const templates = useAppSelector(state => state.allLists.templates)
     const published = useAppSelector(state => state.list.published)

@@ -42,7 +42,7 @@ export default function Select() {
 
         const serverData = await dispatch(thunkCreatePublished(templateData))
         if (!serverData.error) {
-            router.push(`/main/published/create/${serverData.id}`)
+            router.push(`/main/published/${serverData.id}/edit`)
         } else {
             console.error(serverData)
         }
