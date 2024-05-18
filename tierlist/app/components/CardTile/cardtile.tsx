@@ -16,14 +16,15 @@ export default function CardTile({ name, image_url }: CardTileProps) {
 
     return (
 
-        <div className={styles.cardtile}>
-            {name}
-            <Image
-                src={image_url}
-                alt={name}
-                width={40}
-                height={40}
-            />
+        <div className={styles.card_tile}>
+            <div className={styles.card_image}
+                style={{
+                    "backgroundImage": `url(${image_url})`,
+                    'backgroundSize': `cover`
+                }}
+            >
+            </div>
+            <div className={styles.card_name}>{name}</div>
         </div>
     )
 }
