@@ -28,9 +28,9 @@
     justify-content: flex-start;
     align-items: center;
     gap: 0px;
-    min-width: 200px;
     min-height: 80px;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .tier_divider {
