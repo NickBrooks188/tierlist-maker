@@ -6,7 +6,7 @@ import { thunkGetAllTemplates } from '@/app/redux/alllists'
 import { useParams } from 'next/navigation';
 import CardTile from '@/app/components/CardTile/cardtile';
 import { thunkGetOnePublished } from '@/app/redux/onelist';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 
 interface Template {
     id: number,
@@ -17,7 +17,6 @@ interface Template {
     public: boolean,
     cards: []
 }
-
 
 export default function Edit() {
 
@@ -33,7 +32,7 @@ export default function Edit() {
     const [dTier, setDTier] = useState<[]>([])
     const [fTier, setFTier] = useState<[]>([])
     const [untiered, setUntiered] = useState<any>([])
-    const tiers: any = [['s', sTier], ['a', aTier], ['b', bTier], ['c', cTier], ['d', dTier], ['f', fTier]]
+    const tiers: any = [['s', sTier, setSTier], ['a', aTier, setATier], ['b', bTier, setBTier], ['c', cTier, setCTier], ['d', dTier, setDTier], ['f', fTier, setFTier]]
 
     const params = useParams()
     const dispatch = useAppDispatch()
@@ -67,7 +66,6 @@ export default function Edit() {
             for (let card of published.f_tier) untiered_temp.delete(card)
             const untiered_array = Array.from(untiered_temp)
             setUntiered(untiered_array)
-            console.log(untiered_temp, untiered)
         }
     }, [published, template])
 
@@ -83,10 +81,35 @@ export default function Edit() {
 
     }, [])
 
-    const onDragEnd = (result: object) => {
+    const onDragEnd = (result: DropResult) => {
         console.log(result)
-    }
+        const { destination, source } = result
 
+        if (!destination) {
+            return
+        }
+
+        if (destination.droppableId === source.droppableId) {
+            if (destination.index === source.index) return
+            const tierId = destination.droppableId
+            if (tierId === 'untiered') {
+                const order = [...untiered]
+                const cardId = order[source.index]
+                order.splice(source.index, 1)
+                order.splice(destination.index, 0, cardId)
+                setUntiered(order)
+            } else {
+                const order = [...tiers[Number(tierId)][1]]
+                const setOrder = tiers[Number(tierId)][2]
+                const cardId = order[source.index]
+                order.splice(source.index, 1)
+                order.splice(destination.index, 0, cardId)
+                setOrder(order)
+            }
+        } else {
+
+        }
+    }
 
     return (
         <>
@@ -95,16 +118,16 @@ export default function Edit() {
             >
                 <div className={styles.tiers}>
 
-                    {tiers.map((tier: string) => (
-                        <>
-                            <Droppable droppableId={`${tier[0]}-tier`} direction='horizontal' key={tier[0]}>
+                    {tiers.map((tier: any, tierIndex: number) => (
+                        <div className={styles.tier_wrapper} key={tier[0]}>
+                            <Droppable droppableId={String(tierIndex)} direction='horizontal'>
                                 {provided => (
                                     <div className={styles.tier} {...provided.droppableProps} ref={provided.innerRef}>
                                         <div className={styles[`${tier[0]}_header`]}>{tier[0].toUpperCase()}</div>
-                                        {(tier[1].length && template?.cards) && tier[1].map((card: never) => (
+                                        {(tier[1].length && template?.cards) && tier[1].map((card: never, cardIndex: number) => (
                                             <Draggable
-                                                draggableId={`card${card}`}
-                                                index={tier[1].indexOf(card)}
+                                                draggableId={`${card}`}
+                                                index={cardIndex}
                                                 key={`card ${template?.cards[card][0]}`}
                                             >
                                                 {(provided, snapshot) => (
@@ -124,20 +147,36 @@ export default function Edit() {
                                 )}
                             </Droppable>
                             <div className={styles.tier_divider} />
-                        </>
+                        </div>
 
                     ))}
 
-                    <div className={styles.untiered}>
-                        Untiered
-                        {(untiered.length && template?.cards) && untiered.map((card: number) => (
-                            <CardTile
-                                key={`card S ${template?.cards[card][0]}`}
-                                name={template?.cards[card][1] || ''}
-                                image_url={template?.cards[card][2] || ''}
-                            />
-                        ))}
-                    </div>
+                    <Droppable droppableId='untiered' direction='horizontal'>
+                        {provided => (
+                            <div className={styles.tier} {...provided.droppableProps} ref={provided.innerRef}>
+                                Untiered
+                                {(untiered.length && template?.cards) && untiered.map((card: never) => (
+                                    <Draggable
+                                        draggableId={`card${card}`}
+                                        index={untiered.indexOf(card)}
+                                        key={`card ${template?.cards[card][0]}`}
+                                    >
+                                        {(provided, snapshot) => (
+                                            <div  {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}
+                                            >
+                                                <CardTile
+                                                    name={template?.cards[card][1] || ''}
+                                                    image_url={template?.cards[card][2] || ''}
+                                                />
+                                            </div>
+                                        )
+                                        }
+                                    </Draggable >
+                                ))}
+                                {provided.placeholder}
+                            </div>
+                        )}
+                    </Droppable>
                 </div>
             </DragDropContext>
         </>

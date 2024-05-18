@@ -9,11 +9,18 @@
     margin-top: 10px;
 }
 
+.tier_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .tier {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 10px;
+    gap: 0px;
 }
 
 .tier_divider {
