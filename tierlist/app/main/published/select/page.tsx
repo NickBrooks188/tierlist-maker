@@ -35,7 +35,7 @@ export default function Select() {
     const create = async () => {
         const templateData = {
             name: "Untitled",
-            template: selection,
+            template_id: selection,
             owner: sessionUser.id,
             public: true
         }

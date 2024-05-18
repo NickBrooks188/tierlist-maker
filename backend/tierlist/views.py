@@ -141,7 +141,7 @@ class TemplatesOne(APIView):
         ) 
 
 class PublishedAll(APIView):
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
     permission_classes = [permissions.AllowAny]
 # GET /published
     def get(self, request):
@@ -153,22 +153,22 @@ class PublishedAll(APIView):
     def post(self, request):
         data = {
             'name': request.data.get('name'), 
-            'description': request.data.get('description'),
             'public': request.data.get('public'), 
             'owner': request.user.id,
             'template': request.data.get('template_id')
         }
-        serializer = ListPublishedSerializer(data=data)
+        print(data)
+        serializer = ListPublishedSerializer(data=data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+        print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class PublishedOne(APIView):
     permission_classes = [permissions.AllowAny]
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
 
     # permission_classes = [permissions.AllowAny]
 
@@ -210,7 +210,6 @@ class PublishedOne(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
-        print("THIS WAS THE PROBLEM")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 # DELETE /published/<list_ID>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import styles from "./Topnav.module.css";
 
 export default function TopNav() {
+
     return (
         <div className={styles.topnavbar}>
 
@@ -15,7 +16,9 @@ export default function TopNav() {
             </Link>
             <div className={styles.topnavbar_rhs}>
                 <button className="button-dark">Create template</button>
-                <button className="button-light">Create list</button>
+                <Link href='/main/published/select'>
+                    <button className="button-light">Create list</button>
+                </Link>
                 <button className={styles.profile_button}></button>
             </div>
         </div>
