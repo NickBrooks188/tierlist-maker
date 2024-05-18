@@ -5,7 +5,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 const initialState: any = {};
 
 export const thunkGetOnePublished = (listId: number) => async (dispatch: any) => {
-    const response = await fetch(`http://localhost:8000/api/published/${listId}`);
+    const response = await fetch(`http://localhost:8000/api/published/${listId}/`);
     if (response.ok) {
         const data = await response.json();
         if (data.errors) {
@@ -18,11 +18,29 @@ export const thunkGetOnePublished = (listId: number) => async (dispatch: any) =>
 
 export const thunkCreatePublished = (published: any) => async (dispatch: any) => {
     const token: string = localStorage.getItem('token') || ''
-    const response = await fetch("http://localhost:8000/api/published/", {
+    const response = await fetch(`http://localhost:8000/api/published/`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": `Token ${token}` },
         body: JSON.stringify(published)
-    }); if (response.ok) {
+    })
+    if (response.ok) {
+        const data = await response.json();
+        if (data.errors) {
+            return;
+        }
+        dispatch(listSlice.actions.setPublished(data));
+        return data
+    }
+};
+
+export const thunkUpdatePublished = (published: any) => async (dispatch: any) => {
+    const token: string = localStorage.getItem('token') || ''
+    const response = await fetch(`http://localhost:8000/api/published/${published.id}/`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", "Authorization": `Token ${token}` },
+        body: JSON.stringify(published)
+    });
+    if (response.ok) {
         const data = await response.json();
         if (data.errors) {
             return;

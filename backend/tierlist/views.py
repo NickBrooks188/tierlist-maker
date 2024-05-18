@@ -198,12 +198,19 @@ class PublishedOne(APIView):
         data = {
             'name': request.data.get('name'),
             'description': request.data.get('description'),
-            'public': request.data.get('public')
+            's_tier': json.dumps(request.data.get('s_tier')),
+            'a_tier': json.dumps(request.data.get('a_tier')),
+            'b_tier': json.dumps(request.data.get('b_tier')),
+            'c_tier': json.dumps(request.data.get('c_tier')),
+            'd_tier': json.dumps(request.data.get('d_tier')),
+            'f_tier': json.dumps(request.data.get('f_tier'))
         }
+        print(type(data['s_tier']))
         serializer = ListPublishedSerializer(instance = published, data=data, partial = True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
+        print("THIS WAS THE PROBLEM")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 # DELETE /published/<list_ID>

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { thunkGetAllTemplates } from '@/app/redux/alllists'
 import { useParams } from 'next/navigation';
 import CardTile from '@/app/components/CardTile/cardtile';
-import { thunkGetOnePublished } from '@/app/redux/onelist';
+import { thunkGetOnePublished, thunkUpdatePublished } from '@/app/redux/onelist';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 
 interface Template {
@@ -113,8 +113,21 @@ export default function Edit() {
         }
     }
 
-    const saveChanges = () => {
-
+    const saveChanges = async () => {
+        const publishedPut = {
+            id: published.id,
+            name: published.name,
+            description: published.description,
+            s_tier: sTier,
+            a_tier: aTier,
+            b_tier: bTier,
+            c_tier: cTier,
+            d_tier: dTier,
+            f_tier: fTier
+        }
+        console.log(publishedPut)
+        const serverData = await dispatch(thunkUpdatePublished(publishedPut))
+        console.log(serverData)
     }
 
     return (
@@ -161,6 +174,7 @@ export default function Edit() {
 
                 </div>
             </DragDropContext>
+            <button onClick={saveChanges}>Save</button>
         </>
     )
 }
