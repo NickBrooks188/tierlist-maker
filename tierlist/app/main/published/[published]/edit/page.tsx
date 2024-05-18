@@ -6,6 +6,7 @@ import { thunkGetAllTemplates } from '@/app/redux/alllists'
 import { useParams } from 'next/navigation';
 import CardTile from '@/app/components/CardTile/cardtile';
 import { thunkGetOnePublished } from '@/app/redux/onelist';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 interface Template {
     id: number,
@@ -16,6 +17,7 @@ interface Template {
     public: boolean,
     cards: []
 }
+
 
 export default function Edit() {
 
@@ -30,8 +32,8 @@ export default function Edit() {
     const [cTier, setCTier] = useState<[]>([])
     const [dTier, setDTier] = useState<[]>([])
     const [fTier, setFTier] = useState<[]>([])
-    const [untiered, setUntiered] = useState<[]>([])
-
+    const [untiered, setUntiered] = useState<any>([])
+    const tiers: any = [['s', sTier], ['a', aTier], ['b', bTier], ['c', cTier], ['d', dTier], ['f', fTier]]
 
     const params = useParams()
     const dispatch = useAppDispatch()
@@ -81,88 +83,63 @@ export default function Edit() {
 
     }, [])
 
+    const onDragEnd = (result: object) => {
+        console.log(result)
+    }
+
 
     return (
         <>
-            <div className={styles.tiers}>
-                <div className={styles.tier}>
-                    <div className={styles.s_header}>S</div>
-                    {(sTier.length && template?.cards) && sTier.map((card: number) => (
-                        <CardTile
-                            key={`card S ${template?.cards[card][0]}`}
-                            name={template?.cards[card][1] || ''}
-                            image_url={template?.cards[card][2] || ''}
-                        />
-                    ))}
-                </div>
-                <div className={styles.tier_divider} />
-                <div className={styles.tier}>
-                    <div className={styles.a_header}>A</div>
-                    {(aTier.length && template?.cards) && aTier.map((card: number) => (
-                        <CardTile
-                            key={`card S ${template?.cards[card][0]}`}
-                            name={template?.cards[card][1] || ''}
-                            image_url={template?.cards[card][2] || ''}
-                        />
-                    ))}
-                </div>
-                <div className={styles.tier_divider} />
-                <div className={styles.tier}>
-                    <div className={styles.b_header}>B</div>
-                    {(bTier.length && template?.cards) && bTier.map((card: number) => (
-                        <CardTile
-                            key={`card S ${template?.cards[card][0]}`}
-                            name={template?.cards[card][1] || ''}
-                            image_url={template?.cards[card][2] || ''}
-                        />
-                    ))}
-                </div>
-                <div className={styles.tier_divider} />
-                <div className={styles.tier}>
-                    <div className={styles.c_header}>C</div>
-                    {(cTier.length && template?.cards) && cTier.map((card: number) => (
-                        <CardTile
-                            key={`card S ${template?.cards[card][0]}`}
-                            name={template?.cards[card][1] || ''}
-                            image_url={template?.cards[card][2] || ''}
-                        />
-                    ))}
-                </div>
-                <div className={styles.tier_divider} />
-                <div className={styles.tier}>
-                    <div className={styles.d_header}>D</div>
-                    {(dTier.length && template?.cards) && dTier.map((card: number) => (
-                        <CardTile
-                            key={`card S ${template?.cards[card][0]}`}
-                            name={template?.cards[card][1] || ''}
-                            image_url={template?.cards[card][2] || ''}
-                        />
-                    ))}
-                </div>
-                <div className={styles.tier_divider} />
-                <div className={styles.tier}>
-                    <div className={styles.f_header}>F</div>
-                    {(fTier.length && template?.cards) && fTier.map((card: number) => (
-                        <CardTile
-                            key={`card S ${template?.cards[card][0]}`}
-                            name={template?.cards[card][1] || ''}
-                            image_url={template?.cards[card][2] || ''}
-                        />
-                    ))}
-                </div>
-            </div>
+            <DragDropContext
+                onDragEnd={onDragEnd}
+            >
+                <div className={styles.tiers}>
 
-            <div className={styles.untiered}>
-                Untiered
-                {(untiered.length && template?.cards) && untiered.map((card: number) => (
-                    <CardTile
-                        key={`card S ${template?.cards[card][0]}`}
-                        name={template?.cards[card][1] || ''}
-                        image_url={template?.cards[card][2] || ''}
-                    />
-                ))}
-            </div>
+                    {tiers.map((tier: string) => (
+                        <>
+                            <Droppable droppableId={`${tier[0]}-tier`} direction='horizontal' key={tier[0]}>
+                                {provided => (
+                                    <div className={styles.tier} {...provided.droppableProps} ref={provided.innerRef}>
+                                        <div className={styles[`${tier[0]}_header`]}>{tier[0].toUpperCase()}</div>
+                                        {(tier[1].length && template?.cards) && tier[1].map((card: never) => (
+                                            <Draggable
+                                                draggableId={`card${card}`}
+                                                index={tier[1].indexOf(card)}
+                                                key={`card ${template?.cards[card][0]}`}
+                                            >
+                                                {(provided, snapshot) => (
+                                                    <div  {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}
+                                                    >
+                                                        <CardTile
+                                                            name={template?.cards[card][1] || ''}
+                                                            image_url={template?.cards[card][2] || ''}
+                                                        />
+                                                    </div>
+                                                )
+                                                }
+                                            </Draggable >
+                                        ))}
+                                        {provided.placeholder}
+                                    </div>
+                                )}
+                            </Droppable>
+                            <div className={styles.tier_divider} />
+                        </>
 
+                    ))}
+
+                    <div className={styles.untiered}>
+                        Untiered
+                        {(untiered.length && template?.cards) && untiered.map((card: number) => (
+                            <CardTile
+                                key={`card S ${template?.cards[card][0]}`}
+                                name={template?.cards[card][1] || ''}
+                                image_url={template?.cards[card][2] || ''}
+                            />
+                        ))}
+                    </div>
+                </div>
+            </DragDropContext>
         </>
     )
 }
