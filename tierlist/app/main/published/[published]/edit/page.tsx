@@ -113,6 +113,10 @@ export default function Edit() {
         }
     }
 
+    const saveChanges = () => {
+
+    }
+
     return (
         <>
             <DragDropContext
