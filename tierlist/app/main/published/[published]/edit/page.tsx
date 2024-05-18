@@ -32,7 +32,7 @@ export default function Edit() {
     const [dTier, setDTier] = useState<[]>([])
     const [fTier, setFTier] = useState<[]>([])
     const [untiered, setUntiered] = useState<any>([])
-    const tiers: any = [['s', sTier, setSTier], ['a', aTier, setATier], ['b', bTier, setBTier], ['c', cTier, setCTier], ['d', dTier, setDTier], ['f', fTier, setFTier]]
+    const tiers: any = [['s', sTier, setSTier], ['a', aTier, setATier], ['b', bTier, setBTier], ['c', cTier, setCTier], ['d', dTier, setDTier], ['f', fTier, setFTier], ['untiered', untiered, setUntiered]]
 
     const params = useParams()
     const dispatch = useAppDispatch()
@@ -92,22 +92,24 @@ export default function Edit() {
         if (destination.droppableId === source.droppableId) {
             if (destination.index === source.index) return
             const tierId = destination.droppableId
-            if (tierId === 'untiered') {
-                const order = [...untiered]
-                const cardId = order[source.index]
-                order.splice(source.index, 1)
-                order.splice(destination.index, 0, cardId)
-                setUntiered(order)
-            } else {
-                const order = [...tiers[Number(tierId)][1]]
-                const setOrder = tiers[Number(tierId)][2]
-                const cardId = order[source.index]
-                order.splice(source.index, 1)
-                order.splice(destination.index, 0, cardId)
-                setOrder(order)
-            }
+            const order = [...tiers[Number(tierId)][1]]
+            const setOrder = tiers[Number(tierId)][2]
+            const cardId = order[source.index]
+            order.splice(source.index, 1)
+            order.splice(destination.index, 0, cardId)
+            setOrder(order)
         } else {
-
+            const sourceTierId = source.droppableId
+            const destTierId = destination.droppableId
+            const sourceOrder = [...tiers[Number(sourceTierId)][1]]
+            const setSourceOrder = tiers[Number(sourceTierId)][2]
+            const destOrder = [...tiers[Number(destTierId)][1]]
+            const setDestOrder = tiers[Number(destTierId)][2]
+            const cardId = sourceOrder[source.index]
+            sourceOrder.splice(source.index, 1)
+            destOrder.splice(destination.index, 0, cardId)
+            setSourceOrder(sourceOrder)
+            setDestOrder(destOrder)
         }
     }
 
@@ -120,63 +122,39 @@ export default function Edit() {
 
                     {tiers.map((tier: any, tierIndex: number) => (
                         <div className={styles.tier_wrapper} key={tier[0]}>
-                            <Droppable droppableId={String(tierIndex)} direction='horizontal'>
-                                {provided => (
-                                    <div className={styles.tier} {...provided.droppableProps} ref={provided.innerRef}>
-                                        <div className={styles[`${tier[0]}_header`]}>{tier[0].toUpperCase()}</div>
-                                        {(tier[1].length && template?.cards) && tier[1].map((card: never, cardIndex: number) => (
-                                            <Draggable
-                                                draggableId={`${card}`}
-                                                index={cardIndex}
-                                                key={`card ${template?.cards[card][0]}`}
-                                            >
-                                                {(provided, snapshot) => (
-                                                    <div  {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}
-                                                    >
-                                                        <CardTile
-                                                            name={template?.cards[card][1] || ''}
-                                                            image_url={template?.cards[card][2] || ''}
-                                                        />
-                                                    </div>
-                                                )
-                                                }
-                                            </Draggable >
-                                        ))}
-                                        {provided.placeholder}
-                                    </div>
-                                )}
-                            </Droppable>
-                            <div className={styles.tier_divider} />
+                            <div className={styles.tier_and_letter}>
+                                <div className={styles[`${tier[0]}_header`]}>{tier[0].toUpperCase()}</div>
+                                <Droppable droppableId={String(tierIndex)} direction='horizontal'>
+                                    {provided => (
+                                        <div className={styles.tier} {...provided.droppableProps} ref={provided.innerRef}>
+                                            {(tier[1][0] && template?.cards) && tier[1].map((card: never, cardIndex: number) => (
+                                                <Draggable
+                                                    draggableId={`${card}`}
+                                                    index={cardIndex}
+                                                    key={`card ${template?.cards[card][0]}`}
+                                                >
+                                                    {(provided, snapshot) => (
+                                                        <div  {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}
+                                                        >
+                                                            <CardTile
+                                                                name={template?.cards[card][1] || ''}
+                                                                image_url={template?.cards[card][2] || ''}
+                                                            />
+                                                        </div>
+                                                    )
+                                                    }
+                                                </Draggable >
+                                            ))}
+                                            {provided.placeholder}
+                                        </div>
+                                    )}
+                                </Droppable>
+                            </div>
+                            {(tierIndex != 6) && (<div className={styles.tier_divider} />)}
                         </div>
 
                     ))}
 
-                    <Droppable droppableId='untiered' direction='horizontal'>
-                        {provided => (
-                            <div className={styles.tier} {...provided.droppableProps} ref={provided.innerRef}>
-                                Untiered
-                                {(untiered.length && template?.cards) && untiered.map((card: never) => (
-                                    <Draggable
-                                        draggableId={`card${card}`}
-                                        index={untiered.indexOf(card)}
-                                        key={`card ${template?.cards[card][0]}`}
-                                    >
-                                        {(provided, snapshot) => (
-                                            <div  {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}
-                                            >
-                                                <CardTile
-                                                    name={template?.cards[card][1] || ''}
-                                                    image_url={template?.cards[card][2] || ''}
-                                                />
-                                            </div>
-                                        )
-                                        }
-                                    </Draggable >
-                                ))}
-                                {provided.placeholder}
-                            </div>
-                        )}
-                    </Droppable>
                 </div>
             </DragDropContext>
         </>

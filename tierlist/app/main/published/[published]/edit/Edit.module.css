@@ -9,6 +9,13 @@
     margin-top: 10px;
 }
 
+.tier_and_letter {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .tier_wrapper {
     width: 100%;
     display: flex;
@@ -21,6 +28,9 @@
     justify-content: flex-start;
     align-items: center;
     gap: 0px;
+    min-width: 200px;
+    min-height: 80px;
+    flex-wrap: wrap;
 }
 
 .tier_divider {
@@ -34,8 +44,8 @@
 .c_header,
 .d_header,
 .f_header {
-    height: 70px;
-    width: 70px;
+    min-height: 70px;
+    min-width: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
