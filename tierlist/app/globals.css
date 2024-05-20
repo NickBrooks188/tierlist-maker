@@ -47,6 +47,7 @@
   --red-light: #fad2cf;
   --gray-light: #FAFAFA;
   --gray-med: #EAEAEA;
+  --gray-dark: #545455;
 }
 
 @media (prefers-color-scheme: dark) {

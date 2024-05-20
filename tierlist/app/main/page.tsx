@@ -5,6 +5,9 @@ import { thunkGetAllTemplates, thunkGetAllPublished } from "@/app/redux/alllists
 import TemplateTile from "@/app/components/TemplateTile/templatetile";
 import PublishedTile from "@/app/components/PublishedTile/publishedtile";
 import styles from "./Main.module.css"
+import Link from "next/link";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Page() {
     const templates = useAppSelector(state => state.allLists.templates)
@@ -22,6 +25,16 @@ export default function Page() {
 
         fetchAsync()
     }, [])
+
+    const publishedScrollRight = () => {
+        if (document.getElementById('published')) {
+            document.getElementById('published').scrollBy({
+                left: 144,
+                top: 0,
+                behavior: 'smooth'
+            })
+        }
+    }
 
     return (
         <div className={styles.main_wrapper}>
@@ -45,17 +58,19 @@ export default function Page() {
             </div>
             <div className={styles.divider} />
             <div className={styles.main_header}>Published Lists</div>
-            <div className={styles.published_wrapper}>
-                <PublishedTile
-                    name={"Publish a tier list"}
-                    description={"Choose from existing templates"}
-                    s_tier={[-1]}
-                    a_tier={[]}
-                    b_tier={[]}
-                    c_tier={[]}
-                    d_tier={[]}
-                    f_tier={[]}
-                />
+            <div className={styles.published_wrapper} id='published'>
+                <Link href='/main/select'>
+                    <PublishedTile
+                        name={"Publish a tier list"}
+                        description={"Choose from existing templates"}
+                        s_tier={[-1]}
+                        a_tier={[]}
+                        b_tier={[]}
+                        c_tier={[]}
+                        d_tier={[]}
+                        f_tier={[]}
+                    />
+                </Link>
                 {published && Object.values(published).map((published_list: any) => (
                     <PublishedTile
                         key={`published-${published_list.id}`}
@@ -69,6 +84,7 @@ export default function Page() {
                         f_tier={published_list.f_tier}
                     />
                 ))}
+                <div className={styles.more} onClick={publishedScrollRight}><FontAwesomeIcon icon={faAngleRight} /></div>
             </div>
         </div>
     )

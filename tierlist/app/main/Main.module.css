@@ -14,6 +14,10 @@
     display: flex;
     width: 100%;
     gap: 16px;
+    overflow-x: hidden;
+    overflow-y: visible;
+    padding-bottom: 15px;
+    transition: all 0.5s;
 }
 
 .main_header {
@@ -30,4 +34,26 @@
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+.more {
+    background-color: var(--gray-med);
+    color: var(--gray-dark);
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 90%;
+    transition: all 0.3s;
+    font-size: 24px;
+    position: absolute;
+    margin-top: 100px;
+    margin-left: 900px;
+}
+
+.more:hover {
+    opacity: 70%;
 }

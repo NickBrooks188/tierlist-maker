@@ -1,6 +1,6 @@
 .published_tile {
     height: 280px;
-    width: 200px;
+    min-width: 200px;
     border: none;
     cursor: pointer;
     align-items: flex-end;
@@ -22,7 +22,7 @@
 }
 
 .published_tile:hover {
-    width: 208px;
+    min-width: 208px;
     height: 288px;
     margin: 0px;
     padding: 24px;
