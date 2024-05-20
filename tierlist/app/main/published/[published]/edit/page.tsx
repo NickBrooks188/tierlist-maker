@@ -7,6 +7,8 @@ import { useParams } from 'next/navigation';
 import CardTile from '@/app/components/CardTile/cardtile';
 import { thunkGetOnePublished, thunkUpdatePublished } from '@/app/redux/onelist';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
+import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Template {
     id: number,
@@ -174,7 +176,7 @@ export default function Edit() {
 
                 </div>
             </DragDropContext>
-            <button onClick={saveChanges}>Save</button>
+            <button onClick={saveChanges} className="button-dark"><FontAwesomeIcon icon={faFloppyDisk} /> Save</button>
         </>
     )
 }

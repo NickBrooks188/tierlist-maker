@@ -70,7 +70,7 @@ export default function Select() {
                     </div>
                 ))}
             </div>
-            <button disabled={disabled} onClick={create}>Use this template</button>
+            <button disabled={disabled} onClick={create} className="button-dark">Use this template</button>
         </div>
     )
 }
