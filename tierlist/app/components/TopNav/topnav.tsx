@@ -7,7 +7,7 @@ export default function TopNav() {
     return (
         <div className={styles.topnavbar}>
 
-            <Link href={'/'}>
+            <Link href={'/main'}>
                 <Image src='https://tierforge.s3.us-west-1.amazonaws.com/TierForgeLogo.svg'
                     width={46}
                     height={25}

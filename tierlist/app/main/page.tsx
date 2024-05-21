@@ -6,7 +6,7 @@ import TemplateTile from "@/app/components/TemplateTile/templatetile";
 import PublishedTile from "@/app/components/PublishedTile/publishedtile";
 import styles from "./Main.module.css"
 import Link from "next/link";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Page() {
@@ -30,7 +30,18 @@ export default function Page() {
         const publishedList = document.getElementById('published')
         if (publishedList) {
             publishedList.scrollBy({
-                left: 144,
+                left: 210,
+                top: 0,
+                behavior: 'smooth'
+            })
+        }
+    }
+
+    const publishedScrollLeft = () => {
+        const publishedList = document.getElementById('published')
+        if (publishedList) {
+            publishedList.scrollBy({
+                left: -210,
                 top: 0,
                 behavior: 'smooth'
             })
@@ -60,7 +71,7 @@ export default function Page() {
             <div className={styles.divider} />
             <div className={styles.main_header}>Published Lists</div>
             <div className={styles.published_wrapper} id='published'>
-                <Link href='/main/select'>
+                <Link href='/main/published/select'>
                     <PublishedTile
                         name={"Publish a tier list"}
                         description={"Choose from existing templates"}
@@ -73,19 +84,22 @@ export default function Page() {
                     />
                 </Link>
                 {published && Object.values(published).map((published_list: any) => (
-                    <PublishedTile
-                        key={`published-${published_list.id}`}
-                        name={published_list.name}
-                        description={published_list.description}
-                        s_tier={published_list.s_tier}
-                        a_tier={published_list.a_tier}
-                        b_tier={published_list.b_tier}
-                        c_tier={published_list.c_tier}
-                        d_tier={published_list.d_tier}
-                        f_tier={published_list.f_tier}
-                    />
+                    <Link href={`/main/published/${published_list.id}/edit`} key={`published-${published_list.id}`}>
+                        <PublishedTile
+                            name={published_list.name}
+                            description={published_list.description}
+                            s_tier={published_list.s_tier}
+                            a_tier={published_list.a_tier}
+                            b_tier={published_list.b_tier}
+                            c_tier={published_list.c_tier}
+                            d_tier={published_list.d_tier}
+                            f_tier={published_list.f_tier}
+                        />
+                    </Link>
                 ))}
-                <div className={styles.more} onClick={publishedScrollRight}><FontAwesomeIcon icon={faAngleRight} /></div>
+                <div className={styles.next} onClick={publishedScrollRight}><FontAwesomeIcon icon={faAngleRight} /></div>
+                <div className={styles.prev} onClick={publishedScrollLeft}><FontAwesomeIcon icon={faAngleLeft} /></div>
+
             </div>
         </div>
     )
