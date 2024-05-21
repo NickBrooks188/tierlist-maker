@@ -27,8 +27,9 @@ export default function Page() {
     }, [])
 
     const publishedScrollRight = () => {
-        if (document.getElementById('published')) {
-            document.getElementById('published').scrollBy({
+        const publishedList = document.getElementById('published')
+        if (publishedList) {
+            publishedList.scrollBy({
                 left: 144,
                 top: 0,
                 behavior: 'smooth'
