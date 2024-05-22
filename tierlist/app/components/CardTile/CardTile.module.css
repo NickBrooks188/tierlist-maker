@@ -13,7 +13,7 @@
 }
 
 .card_image {
-    height: 57px;
+    height: 100%;
     width: 100%;
     background-color: #83898B;
     background-position-y: center;
@@ -23,7 +23,6 @@
     background-color: #e9e9eb;
     font-weight: 500;
     font-size: 10px;
-    height: 33px;
     width: 100%;
     box-sizing: border-box;
     padding: 5px;
