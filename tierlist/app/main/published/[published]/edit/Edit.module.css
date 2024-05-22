@@ -5,7 +5,7 @@
     flex-direction: column;
     width: 1000px;
     margin: auto;
-    gap: 10px;
+    gap: 0px;
     margin-top: 10px;
 }
 
@@ -20,7 +20,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0px;
 }
 
 .tier {
@@ -36,6 +36,8 @@
 .tier_divider {
     width: 100%;
     border-bottom: 1px solid var(--gray-med);
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .s_header,
@@ -43,7 +45,8 @@
 .b_header,
 .c_header,
 .d_header,
-.f_header {
+.f_header,
+.untiered_header {
     min-height: 70px;
     min-width: 70px;
     display: flex;

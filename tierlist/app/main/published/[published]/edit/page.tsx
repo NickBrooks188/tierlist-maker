@@ -34,7 +34,7 @@ export default function Edit() {
     const [dTier, setDTier] = useState<[]>([])
     const [fTier, setFTier] = useState<[]>([])
     const [untiered, setUntiered] = useState<any>([])
-    const tiers: any = [['s', sTier, setSTier], ['a', aTier, setATier], ['b', bTier, setBTier], ['c', cTier, setCTier], ['d', dTier, setDTier], ['f', fTier, setFTier], ['untiered', untiered, setUntiered]]
+    const tiers: any = [['s', sTier, setSTier], ['a', aTier, setATier], ['b', bTier, setBTier], ['c', cTier, setCTier], ['d', dTier, setDTier], ['f', fTier, setFTier], ['Untiered', untiered, setUntiered]]
 
     const params = useParams()
     const dispatch = useAppDispatch()
@@ -138,11 +138,10 @@ export default function Edit() {
                 onDragEnd={onDragEnd}
             >
                 <div className={styles.tiers}>
-
                     {tiers.map((tier: any, tierIndex: number) => (
                         <div className={styles.tier_wrapper} key={tier[0]}>
                             <div className={styles.tier_and_letter}>
-                                <div className={styles[`${tier[0]}_header`]}>{tier[0].toUpperCase()}</div>
+                                <div className={styles[`${tier[0]}_header`]}>{tier[0][0].toUpperCase() + tier[0].slice(1)}</div>
                                 <Droppable droppableId={String(tierIndex)} direction='horizontal'>
                                     {provided => (
                                         <div className={styles.tier} {...provided.droppableProps} ref={provided.innerRef}>
@@ -171,9 +170,7 @@ export default function Edit() {
                             </div>
                             {(tierIndex != 6) && (<div className={styles.tier_divider} />)}
                         </div>
-
                     ))}
-
                 </div>
             </DragDropContext>
             <button onClick={saveChanges} className="button-dark"><FontAwesomeIcon icon={faFloppyDisk} /> Save</button>
