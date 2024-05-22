@@ -54,7 +54,6 @@ export default function Page() {
         }
     }
 
-
     return (
         <div className={styles.main_wrapper}>
             <div className={styles.main_header}>Templates</div>
