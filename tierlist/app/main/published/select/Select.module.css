@@ -1,9 +1,19 @@
 .template_selection {
     width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px
+}
+
+.form_wrapper {
+    width: 100%;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    gap: 20px;
+    width: 300px;
 }
 
 .templates_wrapper {
@@ -13,7 +23,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 15px;
-    padding: 40px 0 40px 0;
+    padding: 20px 0 20px 0;
     max-height: 75vh;
     overflow-y: auto;
     margin-bottom: 20px;

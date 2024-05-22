@@ -28,7 +28,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class ListTemplate(models.Model):
     name = models.TextField(null=False)
-    description = models.CharField(max_length=256)
+    description = models.CharField(max_length=256, null=True, blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     background_image_url = models.TextField(default = '', null=True, blank=True)
     public = models.BooleanField(default=False)

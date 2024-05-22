@@ -13,6 +13,8 @@ export default function Select() {
     const sessionUser = useAppSelector(state => state.session.user)
     const [selection, setSelection] = useState(-1)
     const [disabled, setDisabled] = useState(true)
+    const [templateName, setTemplateName] = useState('')
+    const [templateDescription, setTemplateDescription] = useState('')
     const router = useRouter()
 
 
@@ -34,7 +36,8 @@ export default function Select() {
 
     const create = async () => {
         const templateData = {
-            name: "Untitled",
+            name: templateName,
+            description: templateDescription,
             template_id: selection,
             owner: sessionUser.id,
             public: true
@@ -51,6 +54,13 @@ export default function Select() {
     return (
         <div className={styles.template_selection}>
 
+            <form className={styles.form_wrapper}>
+                <label>List Name</label>
+                <input type="text" placeholder="Name" onChange={e => setTemplateName(e.target.value)} value={templateName} />
+                <label>List Description</label>
+                <input type="text" placeholder="Description" onChange={e => setTemplateDescription(e.target.value)} value={templateDescription} />
+
+            </form>
             <div className={styles.templates_wrapper}>
                 <TemplateTile
                     image_url={'create'}
