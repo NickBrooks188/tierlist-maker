@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react'
 import { thunkGetAllTemplates } from '@/app/redux/alllists'
 import { thunkCreatePublished } from '@/app/redux/onelist';
 import { useRouter } from 'next/navigation';
+import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Select() {
 
@@ -31,8 +33,25 @@ export default function Select() {
 
     const handleSelect = (templateId: number) => {
         setSelection(templateId)
-        setDisabled(false)
     }
+
+    const updateName = (name: string) => {
+        if (name.length < 25) {
+            setTemplateName(name)
+        }
+    }
+
+    const updateDescription = (description: string) => {
+        if (description.length < 45) {
+            setTemplateDescription(description)
+        }
+    }
+
+    useEffect(() => {
+        if (selection !== -1 && templateName.length) {
+            setDisabled(false)
+        }
+    }, [selection, templateName])
 
     const create = async () => {
         const templateData = {
@@ -56,9 +75,9 @@ export default function Select() {
 
             <form className={styles.form_wrapper}>
                 <label>List Name</label>
-                <input type="text" placeholder="Name" onChange={e => setTemplateName(e.target.value)} value={templateName} />
+                <input type="text" placeholder="Name" onChange={e => updateName(e.target.value)} value={templateName} />
                 <label>List Description</label>
-                <input type="text" placeholder="Description" onChange={e => setTemplateDescription(e.target.value)} value={templateDescription} />
+                <input type="text" placeholder="Description" onChange={e => updateDescription(e.target.value)} value={templateDescription} />
 
             </form>
             <div className={styles.templates_wrapper}>
@@ -80,7 +99,7 @@ export default function Select() {
                     </div>
                 ))}
             </div>
-            <button disabled={disabled} onClick={create} className="button-dark">Use this template</button>
+            <button disabled={disabled} onClick={create} className="button-dark">Use this template<FontAwesomeIcon icon={faCaretRight} /></button>
         </div>
     )
 }
