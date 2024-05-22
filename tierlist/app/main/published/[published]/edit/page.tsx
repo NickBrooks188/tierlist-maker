@@ -157,8 +157,7 @@ export default function Edit() {
                                                                 image_url={template?.cards[card][2] || ''}
                                                             />
                                                         </div>
-                                                    )
-                                                    }
+                                                    )}
                                                 </Draggable >
                                             ))}
                                             {provided.placeholder}

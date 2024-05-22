@@ -29,29 +29,36 @@ export default function Page() {
     const publishedScrollRight = () => {
         const publishedList = document.getElementById('published')
         if (publishedList) {
-            publishedList.scrollBy({
-                left: 210,
-                top: 0,
-                behavior: 'smooth'
-            })
+            publishedList.scrollBy({ left: 210, top: 0, behavior: 'smooth' })
         }
     }
 
     const publishedScrollLeft = () => {
         const publishedList = document.getElementById('published')
         if (publishedList) {
-            publishedList.scrollBy({
-                left: -210,
-                top: 0,
-                behavior: 'smooth'
-            })
+            publishedList.scrollBy({ left: -210, top: 0, behavior: 'smooth' })
         }
     }
+
+    const templateScrollRight = () => {
+        const publishedList = document.getElementById('templates')
+        if (publishedList) {
+            publishedList.scrollBy({ left: 210, top: 0, behavior: 'smooth' })
+        }
+    }
+
+    const templateScrollLeft = () => {
+        const publishedList = document.getElementById('templates')
+        if (publishedList) {
+            publishedList.scrollBy({ left: -210, top: 0, behavior: 'smooth' })
+        }
+    }
+
 
     return (
         <div className={styles.main_wrapper}>
             <div className={styles.main_header}>Templates</div>
-            <div className={styles.templates_wrapper}>
+            <div className={styles.templates_wrapper} id='templates'>
                 <TemplateTile
                     image_url={'create'}
                     name={"Create your own"}
@@ -67,6 +74,8 @@ export default function Page() {
                         selected={false}
                     />
                 ))}
+                <div className={styles.next_templates} onClick={templateScrollRight}><FontAwesomeIcon icon={faAngleRight} /></div>
+                <div className={styles.prev_templates} onClick={templateScrollLeft}><FontAwesomeIcon icon={faAngleLeft} /></div>
             </div>
             <div className={styles.divider} />
             <div className={styles.main_header}>Published Lists</div>
@@ -97,8 +106,8 @@ export default function Page() {
                         />
                     </Link>
                 ))}
-                <div className={styles.next} onClick={publishedScrollRight}><FontAwesomeIcon icon={faAngleRight} /></div>
-                <div className={styles.prev} onClick={publishedScrollLeft}><FontAwesomeIcon icon={faAngleLeft} /></div>
+                <div className={styles.next_published} onClick={publishedScrollRight}><FontAwesomeIcon icon={faAngleRight} /></div>
+                <div className={styles.prev_published} onClick={publishedScrollLeft}><FontAwesomeIcon icon={faAngleLeft} /></div>
 
             </div>
         </div>

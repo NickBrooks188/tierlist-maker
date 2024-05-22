@@ -10,6 +10,14 @@
     gap: 20px;
 }
 
+.templates_wrapper:hover .next_templates {
+    visibility: visible;
+}
+
+.templates_wrapper:hover .prev_templates {
+    visibility: visible;
+}
+
 .published_wrapper {
     display: flex;
     width: 100%;
@@ -18,6 +26,14 @@
     overflow-y: visible;
     padding-bottom: 15px;
     transition: all 0.5s;
+}
+
+.published_wrapper:hover .next_published {
+    visibility: visible;
+}
+
+.published_wrapper:hover .prev_published {
+    visibility: visible;
 }
 
 .main_header {
@@ -36,8 +52,10 @@
     margin-bottom: 30px;
 }
 
-.next,
-.prev {
+.next_templates,
+.prev_templates,
+.next_published,
+.prev_published {
     background-color: var(--gray-med);
     color: var(--gray-dark);
     width: 30px;
@@ -48,29 +66,43 @@
     justify-content: center;
     cursor: pointer;
     opacity: 50%;
-    transition: all 0.3s;
+    transition: all 0.2s;
     font-size: 16px;
     position: absolute;
-
+    visibility: hidden;
+    margin-top: 110px;
 }
 
-.next {
-    margin-top: 100px;
+.next_templates {
     margin-left: 910px;
+    margin-top: 55px;
 }
 
-.prev {
-    margin-top: 100px;
+.prev_templates {
+    margin-top: 55px;
     margin-left: 20px;
 }
 
-.next:hover,
-.prev:hover {
+.next_published {
+    margin-left: 910px;
+}
+
+.prev_published {
+    margin-left: 20px;
+}
+
+
+.next_templates:hover,
+.prev_templates:hover,
+.next_published:hover,
+.prev_published:hover {
     opacity: 70%;
 }
 
-.next:active,
-.prev:active {
+.next_templates:active,
+.prev_templates:active,
+.next_published:active,
+.prev_published:active {
     opacity: 90%;
     font-size: 18px;
 }
