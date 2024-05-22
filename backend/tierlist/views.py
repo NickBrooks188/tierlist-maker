@@ -155,7 +155,8 @@ class PublishedAll(APIView):
             'name': request.data.get('name'), 
             'public': request.data.get('public'), 
             'owner': request.user.id,
-            'template': request.data.get('template_id')
+            'template': request.data.get('template_id'),
+            'description': request.data.get('description')
         }
         print(data)
         serializer = ListPublishedSerializer(data=data, partial=True)

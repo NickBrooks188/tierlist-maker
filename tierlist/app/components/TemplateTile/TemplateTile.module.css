@@ -32,5 +32,4 @@
 
 .selected_template {
     border: 4px solid var(--blue);
-    margin: -4px;
 }
