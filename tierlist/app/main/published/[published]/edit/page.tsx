@@ -127,9 +127,7 @@ export default function Edit() {
             d_tier: dTier,
             f_tier: fTier
         }
-        console.log(publishedPut)
         const serverData = await dispatch(thunkUpdatePublished(publishedPut))
-        console.log(serverData)
     }
 
     return (
@@ -145,7 +143,7 @@ export default function Edit() {
                                 <Droppable droppableId={String(tierIndex)} direction='horizontal'>
                                     {provided => (
                                         <div className={styles.tier} {...provided.droppableProps} ref={provided.innerRef}>
-                                            {(tier[1][0] && template?.cards) && tier[1].map((card: never, cardIndex: number) => (
+                                            {(tier[1][0] && template?.cards && template.cards[tier[1][0]]) && tier[1].map((card: never, cardIndex: number) => (
                                                 <Draggable
                                                     draggableId={`${card}`}
                                                     index={cardIndex}
