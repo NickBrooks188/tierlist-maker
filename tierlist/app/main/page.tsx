@@ -12,9 +12,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function Page() {
     const templates = useAppSelector(state => state.allLists.templates)
     const published = useAppSelector(state => state.allLists.published)
-
-
     const dispatch = useAppDispatch()
+
     useEffect(() => {
 
         const fetchAsync = async () => {
