@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./CardTile.module.css";
+import styles from "./cardTile.module.css";
 import { useEffect, useState } from "react";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
