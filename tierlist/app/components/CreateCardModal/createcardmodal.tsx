@@ -7,15 +7,24 @@ import Image from "next/image";
 import { Draggable } from "react-beautiful-dnd";
 
 export default function CreateCardModal() {
+    const [name, setName] = useState<string>('')
+    const [image, setImage] = useState<File | null>(null)
 
-    const modalClick = (e) => {
+    const modalClick = (e: React.MouseEvent) => {
         e.stopPropagation()
     }
 
     return (
 
         <div className={styles.modal} onClick={modalClick}>
-            Card creation modal
+            <label>Name</label>
+            <input type='text' name='name' value={name} onChange={e => setName(e.target.value)}></input>
+            <label>Image</label>
+            <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)}
+            />
         </div>
     )
 }

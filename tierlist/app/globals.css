@@ -201,6 +201,21 @@ input[type='text'] {
   width: 100%;
 }
 
+textarea {
+  border: 1px solid #EBEBEB;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
+  margin: 10px 0 10px 0;
+  width: 100%;
+  min-height: 40px;
+  resize: vertical;
+}
+
+input[type='file'] {
+  margin: 10px 0 10px 0;
+}
+
 label {
   display: flex;
   justify-content: flex-start;
