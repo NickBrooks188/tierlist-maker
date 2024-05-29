@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CreateCardModal from "@/app/components/CreateCardModal/createcardmodal";
@@ -10,14 +10,29 @@ export default function Page() {
     const [description, setDescription] = useState<string>('')
     const [image, setImage] = useState<File | null>(null)
     const [openModal, setOpenModal] = useState<boolean>(false)
+    const [cards, setCards] = useState<any[]>([])
+    const [disabled, setDisabled] = useState<boolean>(true)
+
+    function addCard(name: string, url: string) {
+        setCards([...cards, { name, url }])
+    }
+
+    useEffect(() => {
+        if (name && description) {
+            setDisabled(false)
+        } else {
+            setDisabled(true)
+        }
+    }, [name, description])
+
     return (
         <>
             <form>
-                <label>Name</label>
+                <label>Template name</label>
                 <input type='text' name='name' value={name} onChange={e => setName(e.target.value)}></input>
-                <label>Description</label>
+                <label>Template description</label>
                 <textarea name='description' value={description} onChange={e => setDescription(e.target.value)}></textarea>
-                <label>Background Image</label>
+                <label>Template Background Image</label>
                 <input
                     type="file"
                     accept="image/*"
@@ -30,9 +45,11 @@ export default function Page() {
             {(openModal) &&
                 (
                     <div className={styles.modal_background} onClick={() => setOpenModal(false)} >
-                        <CreateCardModal />
+                        <CreateCardModal addCard={addCard} />
                     </div>
                 )}
+            <button className='button-dark' disabled={disabled}>Create tier list template</button>
+
         </>
     )
 }
