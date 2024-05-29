@@ -237,3 +237,20 @@ button:disabled:hover {
   color: #BEBEBE;
   cursor: not-allowed;
 }
+
+input::file-selector-button {
+  border: none;
+  background-color: #e0e0e0;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 3px;
+  width: 120px;
+}
+
+input::file-selector-button:hover {
+  background-color: #d6d6d6;
+}
+
+input::file-selector-button:active {
+  background-color: #ccc;
+}
