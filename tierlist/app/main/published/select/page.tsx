@@ -88,9 +88,8 @@ export default function Select() {
                     selected={false}
                 />
                 {templates && Object.values(templates).map((template: any) => (
-                    <div onClick={e => handleSelect(template.id)}>
+                    <div onClick={e => handleSelect(template.id)} key={`template-${template.id}`}>
                         <TemplateTile
-                            key={`template-${template.id}`}
                             image_url={template.background_image_url}
                             name={template.name}
                             description={template.description}
