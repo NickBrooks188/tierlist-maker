@@ -1,16 +1,24 @@
 import styles from "./createcardmodal.module.css";
 import { useEffect, useState } from "react";
+import { uploadImage } from "@/app/redux/onelist";
+import { useAppDispatch } from "@/app/redux/store";
 
 export default function CreateCardModal(addCard: any) {
     const [name, setName] = useState<string>('')
     const [image, setImage] = useState<File | null>(null)
 
+    const dispatch = useAppDispatch()
+
     const modalClick = (e: React.MouseEvent) => {
         e.stopPropagation()
     }
 
-    const handleAddCard = () => {
-        addCard(name, image)
+    const handleAddCard = async () => {
+        if (image) {
+            const imageData = await dispatch(uploadImage(image))
+        }
+
+        addCard(name, (image ? ImageData.url : null))
     }
 
     return (

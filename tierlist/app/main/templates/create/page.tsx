@@ -38,7 +38,6 @@ export default function Page() {
                     accept="image/*"
                     onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)}
                 />
-
             </form>
             <div></div>
             <button className='button-light' onClick={() => setOpenModal(true)}><FontAwesomeIcon icon={faPlus} />Add new card</button>
