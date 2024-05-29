@@ -28,28 +28,28 @@ export default function Page() {
     const publishedScrollRight = () => {
         const publishedList = document.getElementById('published')
         if (publishedList) {
-            publishedList.scrollBy({ left: 224, top: 0, behavior: 'smooth' })
+            publishedList.scrollBy({ left: 448, top: 0, behavior: 'smooth' })
         }
     }
 
     const publishedScrollLeft = () => {
         const publishedList = document.getElementById('published')
         if (publishedList) {
-            publishedList.scrollBy({ left: -224, top: 0, behavior: 'smooth' })
+            publishedList.scrollBy({ left: -448, top: 0, behavior: 'smooth' })
         }
     }
 
     const templateScrollRight = () => {
         const publishedList = document.getElementById('templates')
         if (publishedList) {
-            publishedList.scrollBy({ left: 224, top: 0, behavior: 'smooth' })
+            publishedList.scrollBy({ left: 448, top: 0, behavior: 'smooth' })
         }
     }
 
     const templateScrollLeft = () => {
         const publishedList = document.getElementById('templates')
         if (publishedList) {
-            publishedList.scrollBy({ left: -224, top: 0, behavior: 'smooth' })
+            publishedList.scrollBy({ left: -448, top: 0, behavior: 'smooth' })
         }
     }
 

@@ -38,7 +38,7 @@ class ListTemplate(models.Model):
     
 class ListPublished(models.Model):
     name = models.TextField(null=False)
-    description = models.CharField(max_length=256)
+    description = models.CharField(max_length=256, null=True, blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     template = models.ForeignKey(ListTemplate, related_name="published_lists", on_delete=models.CASCADE, default=1)
     public = models.BooleanField(default=False)
