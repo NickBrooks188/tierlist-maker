@@ -19,7 +19,7 @@ export default function CreateCardModal() {
         <div className={styles.modal} onClick={modalClick}>
             <label>Name</label>
             <input type='text' name='name' value={name} onChange={e => setName(e.target.value)}></input>
-            <label>Image</label>
+            <label>Image (optional)</label>
             <input
                 type="file"
                 accept="image/*"
