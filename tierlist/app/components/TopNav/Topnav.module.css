@@ -17,7 +17,8 @@
     gap: 15px;
 }
 
-.topnavbar_rhs>button {
+.topnavbar_rhs>button,
+.topnavbar_rhs>a>button {
     height: 40px;
 }
 
