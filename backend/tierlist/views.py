@@ -10,7 +10,10 @@ from rest_framework.response import Response
 from rest_framework import status, permissions, serializers
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
+from rest_framework.parsers import MultiPartParser, FileUploadParser
 from django.contrib.auth.hashers import make_password
+from .aws import (upload_file_to_s3, get_unique_filename, remove_file_from_s3, ALLOWED_EXTENSIONS)
+
 
 
 UserModel = get_user_model()
@@ -21,10 +24,17 @@ class CardSerializer(serializers.ModelSerializer):
         fields = ["id", "name", "image_url"]
 
 class ListTemplateSerializer(serializers.ModelSerializer):
-    cards = serializers.StringRelatedField(many=True)
+    cards = CardSerializer(many=True)
     class Meta:
         model = ListTemplate
         fields = ["id", "name", "description", "public", "owner", "cards", "background_image_url"]
+
+    def create(self, data):
+        cards_data = data.pop('cards')
+        template = ListTemplate.objects.create(**data)
+        for card_data in cards_data:
+            Card.objects.create(template=template, **card_data)
+        return template
 
 class ListPublishedSerializer(serializers.ModelSerializer):
     class Meta:
@@ -57,7 +67,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
         user = authenticate(username=data['email'], password=data['password'])
         return user
 
-# ALL ENDPOINTS
+
 
 class TemplatesAll(APIView):
     # permission_classes = [permissions.IsAuthenticated]
@@ -65,18 +75,20 @@ class TemplatesAll(APIView):
     authentication_classes = [SessionAuthentication]
 
 
-# GET /templates
+    # GET /templates
     def get(self, request):
         templates = ListTemplate.objects.filter()
         serializer = ListTemplateSerializer(templates, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-# POST /templates
+    
+    # POST /templates
     def post(self, request):
         data = {
             'name': request.data.get('name'), 
             'description': request.data.get('description'),
             'public': request.data.get('public'), 
-            'owner': request.user.id
+            'owner': request.user.id,
+            'cards': request.data.get('cards')
         }
         serializer = ListTemplateSerializer(data=data)
         if serializer.is_valid():
@@ -103,7 +115,7 @@ class TemplatesOne(APIView):
         serializer = ListTemplateSerializer(template)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
-# PUT /templates/<list_id>
+    # PUT /templates/<list_id>
     def put(self, request, list_id):
         template = None
         try:
@@ -124,7 +136,7 @@ class TemplatesOne(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-# DELETE /templates/<list_id>
+    # DELETE /templates/<list_id>
     def delete(self, request, list_id):
         template = None
         try:
@@ -143,13 +155,13 @@ class TemplatesOne(APIView):
 class PublishedAll(APIView):
     authentication_classes = [SessionAuthentication, TokenAuthentication]
     permission_classes = [permissions.AllowAny]
-# GET /published
+    # GET /published
     def get(self, request):
         published = ListPublished.objects.filter()
         serializer = ListPublishedSerializer(published, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
-# POST /published
+    # POST /published
     def post(self, request):
         data = {
             'name': request.data.get('name'), 
@@ -170,9 +182,7 @@ class PublishedAll(APIView):
 class PublishedOne(APIView):
     permission_classes = [permissions.AllowAny]
     authentication_classes = [SessionAuthentication, TokenAuthentication]
-
     # permission_classes = [permissions.AllowAny]
-
 
     def get(self, request, list_id):
         published = None
@@ -186,7 +196,7 @@ class PublishedOne(APIView):
         serializer = ListPublishedSerializer(published)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
-# PUT /published/<list_ID>
+        # PUT /published/<list_ID>
     def put(self, request, list_id):
         published = None
         try:
@@ -213,7 +223,7 @@ class PublishedOne(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-# DELETE /published/<list_ID>
+    # DELETE /published/<list_ID>
     def delete(self, request, list_id):
         published = None
         try:
@@ -233,8 +243,22 @@ class PublishedOne(APIView):
 class CardsAll(APIView):
     permission_classes = [permissions.IsAuthenticated]
     
-# POST /templates/<list_id>/cards
+    # POST /templates/<list_id>/cards
     def post(self, request, list_id):
+        bulk_cards = []
+        cards = request.data.get('cards')
+        for card in cards:
+            data = {
+                'name': card['name'], 
+                'image_url': card['image_url'], 
+                'list': list_id
+            }
+            serializer = CardSerializer(data=data)
+            if serializer.is_valid():
+                serializer.save()
+                bulk_cards.append(serializer.data)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         data = {
             'name': request.data.get('name'), 
             'image_url': request.data.get('image_url'), 
@@ -247,12 +271,10 @@ class CardsAll(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-
 class CardsOne(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-# DELETE /templates/<list_ID>/cards/<card_ID>
+    # DELETE /templates/<list_ID>/cards/<card_ID>
     def delete(self, request, list_id, card_id):
         card = None
         try:
@@ -268,11 +290,11 @@ class CardsOne(APIView):
             status=status.HTTP_200_OK
         )
 
-# POST /signup
 class UserSignup(APIView):
     permission_classes = [permissions.AllowAny]
     authentication_classes = [SessionAuthentication]
 
+    # POST /signup
     def post(self, request):
         serializer = UserSignupSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
@@ -292,11 +314,11 @@ class UserSignup(APIView):
             'image_url': user.image_url}, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
-# POST /login
 class UserLogin(ObtainAuthToken):
     permission_classes = [permissions.AllowAny]
     authentication_classes = [SessionAuthentication]
 
+    # POST /login
     def post(self, request):
         data = request.data
 
@@ -313,23 +335,43 @@ class UserLogin(ObtainAuthToken):
             'image_url': user.image_url}, status=status.HTTP_200_OK)
         return Response({"email": "Email or password is incorrect"}, status=status.HTTP_400_BAD_REQUEST)
 
-# POST /logout
 class UserLogout(APIView):
     permission_classes = [permissions.AllowAny]
     authentication_classes = [SessionAuthentication, TokenAuthentication]
 
+    # POST /logout
     def post(self, request):
-        print(request.user)
         logout(request)
         return Response(status=status.HTTP_200_OK)
 
-# GET /user
 class UserAuthenticate(APIView):
     permission_classes = [permissions.AllowAny]
     authentication_classes = [SessionAuthentication, TokenAuthentication]
+    
+    # GET /user
     def get(self, request):
-        print(request.user)
         return Response({'token': request.auth.key,
             'user_id': request.user.pk,
             'email': request.user.email,
             'image_url': request.user.image_url}, status=status.HTTP_200_OK)
+    
+
+class ImagesAll(APIView):
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+    parser_classes = [FileUploadParser]
+    
+    # POST /images
+    def put(self, request):
+        image = request.data['file']
+        extension = image.name.split('.')[-1]
+        if extension not in ALLOWED_EXTENSIONS:
+            return Response({"errors": "File type not supported"}, status=status.HTTP_400_BAD_REQUEST)
+        image.filename = get_unique_filename(image.name)
+        upload = upload_file_to_s3(image)
+        if "url" not in upload:
+            return Response({"errors":[upload]}, status=status.HTTP_401_UNAUTHORIZED)
+        url = upload["url"]
+        
+        
+        return Response({'url': url}, status=status.HTTP_201_CREATED)
