@@ -10,7 +10,10 @@ from rest_framework.response import Response
 from rest_framework import status, permissions, serializers
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
+from rest_framework.parsers import MultiPartParser, FileUploadParser
 from django.contrib.auth.hashers import make_password
+from .aws import (upload_file_to_s3, get_unique_filename, remove_file_from_s3, ALLOWED_EXTENSIONS)
+
 
 
 UserModel = get_user_model()
@@ -338,7 +341,6 @@ class UserLogout(APIView):
 
     # POST /logout
     def post(self, request):
-        print(request.user)
         logout(request)
         return Response(status=status.HTTP_200_OK)
 
@@ -348,8 +350,28 @@ class UserAuthenticate(APIView):
     
     # GET /user
     def get(self, request):
-        print(request.user)
         return Response({'token': request.auth.key,
             'user_id': request.user.pk,
             'email': request.user.email,
             'image_url': request.user.image_url}, status=status.HTTP_200_OK)
+    
+
+class ImagesAll(APIView):
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+    parser_classes = [FileUploadParser]
+    
+    # POST /images
+    def put(self, request):
+        image = request.data['file']
+        extension = image.name.split('.')[-1]
+        if extension not in ALLOWED_EXTENSIONS:
+            return Response({"errors": "File type not supported"}, status=status.HTTP_400_BAD_REQUEST)
+        image.filename = get_unique_filename(image.name)
+        upload = upload_file_to_s3(image)
+        if "url" not in upload:
+            return Response({"errors":[upload]}, status=status.HTTP_401_UNAUTHORIZED)
+        url = upload["url"]
+        
+        
+        return Response({'url': url}, status=status.HTTP_201_CREATED)

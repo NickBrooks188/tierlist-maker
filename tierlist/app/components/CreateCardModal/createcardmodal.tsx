@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import { uploadImage } from "@/app/redux/onelist";
 import { useAppDispatch } from "@/app/redux/store";
 
-export default function CreateCardModal(addCard: any) {
+interface ImageData {
+    url: string,
+    errors: string[]
+}
+
+export default function CreateCardModal({ addCard }) {
     const [name, setName] = useState<string>('')
     const [image, setImage] = useState<File | null>(null)
 
@@ -14,11 +19,11 @@ export default function CreateCardModal(addCard: any) {
     }
 
     const handleAddCard = async () => {
+        let imageData: ImageData = { url: '', errors: [] }
         if (image) {
-            const imageData = await dispatch(uploadImage(image))
+            imageData = await dispatch(uploadImage(image))
         }
-
-        addCard(name, (image ? ImageData.url : null))
+        addCard(name, (image ? imageData.url : null))
     }
 
     return (

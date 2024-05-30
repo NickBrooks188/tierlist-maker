@@ -15,6 +15,7 @@ export default function Page() {
 
     function addCard(name: string, url: string) {
         setCards([...cards, { name, url }])
+        console.log(cards)
     }
 
     useEffect(() => {
