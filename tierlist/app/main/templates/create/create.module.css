@@ -10,3 +10,11 @@
     justify-content: center;
     z-index: 40;
 }
+
+.cards_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+}
