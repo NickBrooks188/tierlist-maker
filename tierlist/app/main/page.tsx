@@ -40,16 +40,16 @@ export default function Page() {
     }
 
     const templateScrollRight = () => {
-        const publishedList = document.getElementById('templates')
-        if (publishedList) {
-            publishedList.scrollBy({ left: 448, top: 0, behavior: 'smooth' })
+        const templatesList = document.getElementById('templates')
+        if (templatesList) {
+            templatesList.scrollBy({ left: 448, top: 0, behavior: 'smooth' })
         }
     }
 
     const templateScrollLeft = () => {
-        const publishedList = document.getElementById('templates')
-        if (publishedList) {
-            publishedList.scrollBy({ left: -448, top: 0, behavior: 'smooth' })
+        const templatesList = document.getElementById('templates')
+        if (templatesList) {
+            templatesList.scrollBy({ left: -448, top: 0, behavior: 'smooth' })
         }
     }
 

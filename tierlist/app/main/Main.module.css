@@ -8,6 +8,10 @@
     display: flex;
     width: 100%;
     gap: 20px;
+    overflow: hidden;
+    height: 150px;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .templates_wrapper:hover .next_templates {
