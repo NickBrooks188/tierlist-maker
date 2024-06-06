@@ -33,7 +33,7 @@ class ListTemplateSerializer(serializers.ModelSerializer):
         cards_data = data.pop('cards')
         template = ListTemplate.objects.create(**data)
         for card_data in cards_data:
-            Card.objects.create(template=template, **card_data)
+            Card.objects.create(list=template, **card_data)
         return template
 
 class ListPublishedSerializer(serializers.ModelSerializer):
@@ -89,12 +89,10 @@ class TemplatesAll(APIView):
             'owner': request.user.id,
             'cards': request.data.get('cards')
         }
-        print(data)
         serializer = ListTemplateSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class TemplatesOne(APIView):
