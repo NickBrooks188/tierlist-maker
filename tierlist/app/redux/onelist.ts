@@ -33,6 +33,24 @@ export const thunkCreatePublished = (published: any) => async (dispatch: any) =>
     }
 };
 
+
+export const thunkCreateTemplate = (template: any) => async (dispatch: any) => {
+    const token: string = localStorage.getItem('token') || ''
+    const response = await fetch(`http://localhost:8000/api/templates/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Authorization": `Token ${token}` },
+        body: JSON.stringify(template)
+    })
+    if (response.ok) {
+        const data = await response.json();
+        if (data.errors) {
+            return;
+        }
+        dispatch(listSlice.actions.setTemplate(data));
+        return data
+    }
+};
+
 export const thunkUpdatePublished = (published: any) => async (dispatch: any) => {
     const token: string = localStorage.getItem('token') || ''
     const response = await fetch(`http://localhost:8000/api/published/${published.id}/`, {
@@ -73,8 +91,8 @@ export const listSlice = createSlice({
 
             let cardsTemp: { [key: number]: object } = {}
             for (let card of list.cards) {
-                const cardArr = JSON.parse(card)
-                cardsTemp[Number(cardArr[0])] = cardArr
+                // const cardArr = JSON.parse(card)
+                cardsTemp[Number(card.id)] = card
             }
             list.cards = cardsTemp
             state.templates = list

@@ -15,7 +15,9 @@ export default function TopNav() {
                 />
             </Link>
             <div className={styles.topnavbar_rhs}>
-                <button className="button-dark">Create template</button>
+                <Link href='/main/templates/create'>
+                    <button className="button-dark">Create template</button>
+                </Link>
                 <Link href='/main/published/select'>
                     <button className="button-light">Create list</button>
                 </Link>

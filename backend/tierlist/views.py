@@ -21,7 +21,7 @@ UserModel = get_user_model()
 class CardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Card
-        fields = ["id", "name", "image_url"]
+        fields = ["id", "name", "image_url", "list"]
 
 class ListTemplateSerializer(serializers.ModelSerializer):
     cards = CardSerializer(many=True)
@@ -33,7 +33,7 @@ class ListTemplateSerializer(serializers.ModelSerializer):
         cards_data = data.pop('cards')
         template = ListTemplate.objects.create(**data)
         for card_data in cards_data:
-            Card.objects.create(template=template, **card_data)
+            Card.objects.create(list=template, **card_data)
         return template
 
 class ListPublishedSerializer(serializers.ModelSerializer):
@@ -72,8 +72,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
 class TemplatesAll(APIView):
     # permission_classes = [permissions.IsAuthenticated]
     permission_classes = [permissions.AllowAny]
-    authentication_classes = [SessionAuthentication]
-
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
 
     # GET /templates
     def get(self, request):
@@ -94,13 +93,12 @@ class TemplatesAll(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class TemplatesOne(APIView):
     permission_classes = [permissions.IsAuthenticated]
     # permission_classes = [permissions.AllowAny]
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
 
 
     def get(self, request, list_id):
@@ -170,12 +168,10 @@ class PublishedAll(APIView):
             'template': request.data.get('template_id'),
             'description': request.data.get('description')
         }
-        print(data)
         serializer = ListPublishedSerializer(data=data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

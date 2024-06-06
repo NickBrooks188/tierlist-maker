@@ -147,14 +147,14 @@ export default function Edit() {
                                                 <Draggable
                                                     draggableId={`${card}`}
                                                     index={cardIndex}
-                                                    key={`card ${template?.cards[card][0]}`}
+                                                    key={`card ${template?.cards[card].id}`}
                                                 >
                                                     {(provided, snapshot) => (
                                                         <div  {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}
                                                         >
                                                             <CardTile
-                                                                name={template?.cards[card][1] || ''}
-                                                                image_url={template?.cards[card][2] || ''}
+                                                                name={template?.cards[card].name || ''}
+                                                                image_url={template?.cards[card].image_url || ''}
                                                             />
                                                         </div>
                                                     )}

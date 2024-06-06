@@ -8,7 +8,7 @@ interface ImageData {
     errors: string[]
 }
 
-export default function CreateCardModal({ addCard }) {
+export default function CreateCardModal({ addCard, setOpenModal }) {
     const [name, setName] = useState<string>('')
     const [image, setImage] = useState<File | null>(null)
 
@@ -22,8 +22,9 @@ export default function CreateCardModal({ addCard }) {
         let imageData: ImageData = { url: '', errors: [] }
         if (image) {
             imageData = await dispatch(uploadImage(image))
+            addCard(name, (image ? imageData.url : null))
+            setOpenModal(false)
         }
-        addCard(name, (image ? imageData.url : null))
     }
 
     return (
@@ -37,7 +38,7 @@ export default function CreateCardModal({ addCard }) {
                 accept="image/*"
                 onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)}
             />
-            <button className='button-dark' onClick={handleAddCard}>Add item</button>
+            <button className='button-dark' disabled={!image || !name} onClick={handleAddCard}>Add item</button>
         </div>
     )
 }
