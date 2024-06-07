@@ -87,7 +87,8 @@ class TemplatesAll(APIView):
             'description': request.data.get('description'),
             'public': request.data.get('public'), 
             'owner': request.user.id,
-            'cards': request.data.get('cards')
+            'cards': request.data.get('cards'),
+            'background_image_url': request.data.get('background_image_url')
         }
         serializer = ListTemplateSerializer(data=data)
         if serializer.is_valid():

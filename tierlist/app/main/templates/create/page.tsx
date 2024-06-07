@@ -4,7 +4,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CreateCardModal from "@/app/components/CreateCardModal/createcardmodal";
 import styles from "./create.module.css";
-import { thunkCreateTemplate } from "@/app/redux/onelist";
+import { thunkCreateTemplate, uploadImage } from "@/app/redux/onelist";
 import { useAppDispatch } from '@/app/redux/store';
 import CardTile from '@/app/components/CardTile/cardtile';
 
@@ -31,10 +31,19 @@ export default function Page() {
     }, [name, description, image])
 
     const handleSubmit = async () => {
+
+        const imageData = await dispatch(uploadImage(image))
+
+        if (imageData.errors) {
+            console.log(imageData.errors)
+            return
+        }
+        console.log('~~~~~~~~', imageData)
+
         const template = {
             name,
             description,
-            background_image: image,
+            background_image_url: imageData.url,
             cards,
             public: true
         }
@@ -44,37 +53,39 @@ export default function Page() {
 
     return (
         <>
-            <form>
-                <label>Template name</label>
-                <input type='text' name='name' value={name} onChange={e => setName(e.target.value)}></input>
-                <label>Template description</label>
-                <textarea name='description' value={description} onChange={e => setDescription(e.target.value)}></textarea>
-                <label>Template Background Image</label>
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)}
-                />
-            </form>
-            <div className={styles.cards_wrapper}>
-                {cards.length && cards.map((card: any, cardIndex: number) => (
-
-                    <CardTile
-                        key={cardIndex}
-                        name={card.name || ''}
-                        image_url={card.image_url || ''}
+            <div className={styles.main_wrapper}>
+                <form>
+                    <label>Template name</label>
+                    <input type='text' name='name' value={name} onChange={e => setName(e.target.value)}></input>
+                    <label>Template description</label>
+                    <textarea name='description' value={description} onChange={e => setDescription(e.target.value)}></textarea>
+                    <label>Template Background Image</label>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)}
                     />
-                ))}
+                </form>
+                <div className={styles.cards_wrapper}>
+                    {(cards.length > 0) && cards.map((card: any, cardIndex: number) => (
 
+                        <CardTile
+                            key={cardIndex}
+                            name={card.name || ''}
+                            image_url={card.image_url || ''}
+                        />
+                    ))}
+
+                    <button className='button-light' onClick={() => setOpenModal(true)}><FontAwesomeIcon icon={faPlus} />Add tier list item</button>
+                </div>
+                {(openModal) &&
+                    (
+                        <div className={styles.modal_background} onClick={() => setOpenModal(false)} >
+                            <CreateCardModal addCard={addCard} setOpenModal={setOpenModal} />
+                        </div>
+                    )}
+                <button className='button-dark' disabled={disabled} onClick={handleSubmit}>Create tier list template</button>
             </div>
-            <button className='button-light' onClick={() => setOpenModal(true)}><FontAwesomeIcon icon={faPlus} />Add new card</button>
-            {(openModal) &&
-                (
-                    <div className={styles.modal_background} onClick={() => setOpenModal(false)} >
-                        <CreateCardModal addCard={addCard} setOpenModal={setOpenModal} />
-                    </div>
-                )}
-            <button className='button-dark' disabled={disabled} onClick={handleSubmit}>Create tier list template</button>
 
         </>
     )
