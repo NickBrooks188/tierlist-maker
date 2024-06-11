@@ -2,10 +2,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import styles from "@/app/page.module.css";
 import { thunkLogin, thunkAuthenticate, thunkLogout } from "@/app/redux/session";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { useRouter } from 'next/navigation'
+import styles from './Login.module.css'
 
 
 export default function Page() {
@@ -48,11 +48,6 @@ export default function Page() {
         }
     }
 
-    const logout = async () => {
-        const serverResponse: { [key: string]: string } = await dispatch(thunkAuthenticate(''))
-        console.log('logout: ', serverResponse)
-    }
-
     return (
         <main className='main'>
             <Link href={'/'}>
@@ -63,29 +58,28 @@ export default function Page() {
                     className="logo"
                 />
             </Link>
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form className={styles.login_form} onSubmit={(e) => handleSubmit(e)}>
                 <label>
                     Email
-                    <input
-                        type="text"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
                 </label>
+                <input
+                    type="text"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
                 <label>
                     Password
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
                 </label>
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
                 {(errors) && <p>{errors}</p>}
                 <button type="submit" disabled={disabled} className="button-dark">Log In</button>
             </form>
-            <button onClick={logout}>Logout</button>
         </main>
     )
 }
