@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { thunkSignup, thunkAuthenticate } from "@/app/redux/session";
 import { useAppDispatch } from "@/app/redux/store";
 import { useRouter } from 'next/navigation'
-
+import styles from './Signup.module.css'
 
 export default function Page() {
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -61,48 +61,48 @@ export default function Page() {
                     className="logo"
                 />
             </Link>
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={(e) => handleSubmit(e)} className={styles.signup_form}>
                 <label>
                     Email<span className='asterisk'>*</span>
-                    <input
-                        type="text"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
                 </label>
+                <input
+                    type="text"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
                 <p>{errors.email}</p>
                 <label>
                     Profile picture (optional)
-                    <div className="signup-file-upload-wrapper">
-                        <input
-                            type="file"
-                            accept='image/*'
-                            onChange={(e) => console.log(e.target.files ? e.target.files[0] : '')}
-                        />
-                    </div>
                 </label>
+                <div className="signup-file-upload-wrapper">
+                    <input
+                        type="file"
+                        accept='image/*'
+                        onChange={(e) => console.log(e.target.files ? e.target.files[0] : '')}
+                    />
+                </div>
                 <p>{errors.image_url}</p>
                 <label>
                     Password<span className='asterisk'>*</span>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
                 </label>
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
                 <p>{errors.password}</p>
                 <label>
                     Confirm Password<span className='asterisk'>*</span>
-                    <input
-                        type="password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        required
-                    />
                 </label>
-                <button type="submit" disabled={disabled} >Sign Up</button>
+                <input
+                    type="password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
+                />
+                <button type="submit" disabled={disabled} className="button-dark" >Sign Up</button>
             </form>
         </main>
     )

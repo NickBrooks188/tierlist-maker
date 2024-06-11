@@ -55,11 +55,11 @@ export default function Page() {
         <>
             <div className={styles.main_wrapper}>
                 <form>
-                    <label>Template name</label>
+                    <label>Template name<span className='asterisk'>*</span></label>
                     <input type='text' name='name' value={name} onChange={e => setName(e.target.value)}></input>
-                    <label>Template description</label>
+                    <label>Template description<span className='asterisk'>*</span></label>
                     <textarea name='description' value={description} onChange={e => setDescription(e.target.value)}></textarea>
-                    <label>Template Background Image</label>
+                    <label>Template Background Image<span className='asterisk'>*</span></label>
                     <input
                         type="file"
                         accept="image/*"
