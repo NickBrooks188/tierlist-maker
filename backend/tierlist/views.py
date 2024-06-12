@@ -174,7 +174,15 @@ class PublishedAll(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+    
+class PublishedAllUser(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+    # GET /published/user
+    def get(self, request):
+        published = ListPublished.objects.filter(owner=request.user.id)
+        serializer = ListPublishedSerializer(published, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 class PublishedOne(APIView):
     permission_classes = [permissions.AllowAny]
