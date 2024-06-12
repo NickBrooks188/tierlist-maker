@@ -11,6 +11,9 @@ import { faFloppyDisk } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from 'next/link';
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import html2canvas from "html2canvas";
+import { useRef } from 'react';
+
 
 interface Template {
     id: number,
@@ -41,6 +44,7 @@ export default function Edit() {
     const params = useParams()
     const dispatch = useAppDispatch()
 
+    const captureRef = useRef()
 
     useEffect(() => {
         if (templates && published) {
@@ -132,6 +136,15 @@ export default function Edit() {
         const serverData = await dispatch(thunkUpdatePublished(publishedPut))
     }
 
+    const captureScreenshot = () => {
+        let canvasPromise = html2canvas(captureRef.current, {
+            useCORS: true
+        });
+        canvasPromise.then((canvas) => {
+            document.body.appendChild(canvas);
+        });
+    }
+
     return (
         <>
             <Link href='/main'>
@@ -140,7 +153,7 @@ export default function Edit() {
             <DragDropContext
                 onDragEnd={onDragEnd}
             >
-                <div className={styles.tiers}>
+                <div className={styles.tiers} ref={captureRef}>
                     {tiers.map((tier: any, tierIndex: number) => (
                         <div className={styles.tier_wrapper} key={tier[0]}>
                             <div className={styles.tier_and_letter}>
