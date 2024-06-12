@@ -10,7 +10,7 @@ import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautif
 import { faFloppyDisk } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from 'next/link';
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import html2canvas from "html2canvas";
 import { useRef } from 'react';
 
@@ -138,10 +138,16 @@ export default function Edit() {
 
     const captureScreenshot = () => {
         let canvasPromise = html2canvas(captureRef.current, {
-            useCORS: true
+            useCORS: true,
+            allowTaint: true
         });
         canvasPromise.then((canvas) => {
-            document.body.appendChild(canvas);
+            // document.body.appendChild(canvas);
+            const dataURL = canvas.toDataURL("image/png");
+            const imageElement = document.createElement('a');
+            imageElement.href = dataURL
+            imageElement.download = 'tier-forge.png';
+            imageElement.click();
         });
     }
 
@@ -188,7 +194,10 @@ export default function Edit() {
                     ))}
                 </div>
             </DragDropContext>
-            <button onClick={saveChanges} className="button-dark"><FontAwesomeIcon icon={faFloppyDisk} className='fa-regular fa-floppy-disk' /> Save</button>
+            <div className={styles.button_wrapper}>
+                <button onClick={saveChanges} className="button-dark"><FontAwesomeIcon icon={faFloppyDisk} /> Save</button>
+                <button onClick={captureScreenshot} className="button-light"><FontAwesomeIcon icon={faArrowDown} /> Download tier list</button>
+            </div>
         </>
     )
 }
