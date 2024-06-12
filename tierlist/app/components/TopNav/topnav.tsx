@@ -1,8 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./Topnav.module.css";
+import ProfileDropdown from "../ProfileDropdown/profiledropdown";
+import { useState } from "react";
 
 export default function TopNav() {
+    const [dropdown, setDropdown] = useState(false)
+
+    const toggleDropdown = () => {
+        setDropdown(!dropdown)
+    }
 
     return (
         <div className={styles.topnavbar}>
@@ -21,7 +28,8 @@ export default function TopNav() {
                 <Link href='/main/published/select'>
                     <button className="button-light">Create list</button>
                 </Link>
-                <button className={styles.profile_button}></button>
+                <button className={styles.profile_button} onClick={toggleDropdown}></button>
+                {dropdown && <ProfileDropdown />}
             </div>
         </div>
     )

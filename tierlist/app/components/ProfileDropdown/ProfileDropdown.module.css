@@ -1,0 +1,20 @@
+.dropdown {
+    position: absolute;
+    right: 10px;
+    top: 65px;
+    border: 1px solid var(--gray-med);
+    padding: 0;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown_item {
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.dropdown_item:hover {
+    background-color: var(--gray-light);
+}
