@@ -7,6 +7,8 @@ import styles from "./create.module.css";
 import { thunkCreateTemplate, uploadImage } from "@/app/redux/onelist";
 import { useAppDispatch } from '@/app/redux/store';
 import CardTile from '@/app/components/CardTile/cardtile';
+import Link from 'next/link';
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function Page() {
     const [name, setName] = useState<string>('')
@@ -53,6 +55,9 @@ export default function Page() {
 
     return (
         <>
+            <Link href='/main'>
+                <div className="back_main"><FontAwesomeIcon icon={faChevronLeft} />Back</div>
+            </Link>
             <div className={styles.main_wrapper}>
                 <form>
                     <label>Template name<span className='asterisk'>*</span></label>

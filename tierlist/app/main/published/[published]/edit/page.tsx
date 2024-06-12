@@ -9,6 +9,8 @@ import { thunkGetOnePublished, thunkUpdatePublished } from '@/app/redux/onelist'
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import { faFloppyDisk } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from 'next/link';
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 interface Template {
     id: number,
@@ -132,6 +134,9 @@ export default function Edit() {
 
     return (
         <>
+            <Link href='/main'>
+                <div className="back_main"><FontAwesomeIcon icon={faChevronLeft} />Back</div>
+            </Link>
             <DragDropContext
                 onDragEnd={onDragEnd}
             >

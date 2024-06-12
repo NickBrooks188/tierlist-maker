@@ -6,6 +6,8 @@ import { thunkLogin, thunkAuthenticate, thunkLogout } from "@/app/redux/session"
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { useRouter } from 'next/navigation'
 import styles from './Login.module.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function Page() {
@@ -50,6 +52,9 @@ export default function Page() {
 
     return (
         <main className='main'>
+            <Link href='/'>
+                <div className="back"><FontAwesomeIcon icon={faChevronLeft} />Back</div>
+            </Link>
             <Link href={'/'}>
                 <Image src='https://tierforge.s3.us-west-1.amazonaws.com/TierForgeLogo.svg'
                     width={183}

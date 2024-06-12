@@ -233,3 +233,32 @@
     transform: rotate(0deg);
   }
 }
+
+.footer {
+  height: 30px;
+  background-color: var(--blue);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  gap: 8px;
+  position: absolute;
+  bottom: 0px;
+}
+
+.footer>a {
+  color: #f6f6f6;
+  text-decoration: none;
+  font-size: 10px;
+  width: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer>a:hover {
+  text-decoration: underline;
+  color: white;
+}

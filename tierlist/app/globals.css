@@ -258,3 +258,35 @@ input::file-selector-button:hover {
 input::file-selector-button:active {
   background-color: #ccc;
 }
+
+.back {
+  color: var(--blue);
+  font-size: 14px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.back:hover {
+  text-decoration: underline;
+}
+
+.back_main {
+  color: var(--blue);
+  font-size: 14px;
+  position: absolute;
+  top: 65px;
+  left: 10px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.back_main:hover {
+  text-decoration: underline;
+}
