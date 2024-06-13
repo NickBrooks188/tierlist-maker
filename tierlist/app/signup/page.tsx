@@ -60,8 +60,8 @@ export default function Page() {
             </Link>
             <Link href={'/'}>
                 <Image src='https://tierforge.s3.us-west-1.amazonaws.com/TierForgeLogo.svg'
-                    width={183}
-                    height={100}
+                    width={122}
+                    height={67}
                     alt="Tier Forge logo"
                     className="logo"
                 />

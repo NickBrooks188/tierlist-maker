@@ -4,7 +4,8 @@
     "pk": 1,
     "fields": {
       "password": "pbkdf2_sha256$600000$AndulKWxRCpoxXHL7ZdKCC$CNxAfwn9Y606xcehpDs9Q2XxtbbwYQ4WbzK7Lzt4liA=",
-      "email": "test@test.com"
+      "email": "test@test.com",
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/140004000.png"
     }
   },
   {

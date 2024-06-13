@@ -30,4 +30,9 @@
     cursor: pointer;
     border: none;
     box-sizing: border-box;
+    overflow: hidden;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: inherit;
+    color: white
 }

@@ -3,13 +3,16 @@ import Link from "next/link";
 import styles from "./Topnav.module.css";
 import ProfileDropdown from "../ProfileDropdown/profiledropdown";
 import { useState } from "react";
+import { useAppSelector } from "@/app/redux/store";
 
 export default function TopNav() {
+    const user = useAppSelector(state => state.session.user)
     const [dropdown, setDropdown] = useState(false)
 
     const toggleDropdown = () => {
         setDropdown(!dropdown)
     }
+    console.log(user)
 
     return (
         <div className={styles.topnavbar}>
@@ -28,7 +31,10 @@ export default function TopNav() {
                 <Link href='/main/published/select'>
                     <button className="button-light">Create list</button>
                 </Link>
-                <button className={styles.profile_button} onClick={toggleDropdown}></button>
+                <button className={styles.profile_button} onClick={toggleDropdown}>
+                    {user.image_url && <Image src={user.image_url} width={40} height={40} alt="profile image" />}
+                    {!(user.image_url) && user.email[0].toUpperCase()}
+                </button>
                 {dropdown && <ProfileDropdown />}
             </div>
         </div>
