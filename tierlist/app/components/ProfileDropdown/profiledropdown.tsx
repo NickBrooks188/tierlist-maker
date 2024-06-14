@@ -5,14 +5,6 @@ import { useAppSelector, useAppDispatch } from "@/app/redux/store";
 import { thunkLogout } from "@/app/redux/session";
 import { useRouter } from "next/navigation";
 
-
-interface TemplateTileProps {
-    image_url: string,
-    name: string,
-    description: string,
-    selected: boolean
-}
-
 export default function ProfileDropdown() {
     const user = useAppSelector(state => state.session.user)
     const dispatch = useAppDispatch()

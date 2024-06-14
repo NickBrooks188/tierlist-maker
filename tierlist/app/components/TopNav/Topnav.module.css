@@ -36,3 +36,13 @@
     font-family: inherit;
     color: white
 }
+
+.cover_all {
+    position: absolute;
+    z-index: 0;
+    background-color: none;
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+}

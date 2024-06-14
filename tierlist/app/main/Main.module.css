@@ -12,6 +12,8 @@
     height: 150px;
     align-items: center;
     justify-content: flex-start;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 .templates_wrapper:hover .next_templates {
@@ -30,6 +32,8 @@
     overflow-y: visible;
     padding-bottom: 15px;
     transition: all 0.5s;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 .published_wrapper:hover .next_published {
@@ -47,6 +51,7 @@
     margin-top: 0px;
     font-size: 18px;
     font-weight: 500;
+    padding-left: 4px;
 }
 
 .divider {

@@ -12,7 +12,6 @@ export default function TopNav() {
     const toggleDropdown = () => {
         setDropdown(!dropdown)
     }
-    console.log(user)
 
     return (
         <div className={styles.topnavbar}>
@@ -35,7 +34,13 @@ export default function TopNav() {
                     {user.image_url && <Image src={user.image_url} width={40} height={40} alt="profile image" />}
                     {!(user.image_url) && user.email[0].toUpperCase()}
                 </button>
-                {dropdown && <ProfileDropdown />}
+                {dropdown && (
+                    <>
+                        <div className={styles.cover_all} onClick={toggleDropdown} />
+                        <ProfileDropdown />
+                    </>
+
+                )}
             </div>
         </div>
     )
