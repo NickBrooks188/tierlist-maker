@@ -1,12 +1,21 @@
+.tiers_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    margin-top: 10px;
+    margin: auto;
+    margin-top: 10px;
+}
+
 .tiers {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
-    width: 1000px;
-    margin: auto;
+    width: 800px;
     gap: 0px;
-    margin-top: 10px;
 }
 
 .tier_and_letter {
@@ -33,6 +42,25 @@
     width: 100%;
 }
 
+.untiered_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.untiered_tier {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0px;
+    max-width: 320px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-height: 100%;
+
+}
+
 .tier_divider {
     width: 100%;
     border-bottom: 1px solid var(--gray-med);
@@ -52,45 +80,41 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 12px;
+    border-radius: 5px;
     font-size: 32px;
     font-weight: 500;
+    color: white;
 }
 
 .s_header {
-    background-color: var(--purple-light);
-    border: 2px solid var(--purple);
-    color: var(--purple);
+    background-color: var(--purple);
 }
 
 .a_header {
-    background-color: var(--blue-light);
-    border: 2px solid var(--blue);
-    color: var(--blue);
+    background-color: var(--blue);
 }
 
 .b_header {
-    background-color: var(--green-light);
-    border: 2px solid var(--green);
-    color: var(--green);
+    background-color: var(--green);
 }
 
 .c_header {
-    background-color: var(--yellow-light);
-    border: 2px solid var(--yellow);
-    color: var(--yellow);
+    background-color: var(--yellow);
 }
 
 .d_header {
-    background-color: var(--orange-light);
-    border: 2px solid var(--orange);
-    color: var(--orange);
+    background-color: var(--orange);
 }
 
 .f_header {
-    background-color: var(--red-light);
-    border: 2px solid var(--red);
-    color: var(--red);
+    background-color: var(--red);
+}
+
+.untiered_header {
+    background-color: var(--gray-med);
+    font-size: 12px;
+    color: black;
+    width: 75px;
 }
 
 .untiered {

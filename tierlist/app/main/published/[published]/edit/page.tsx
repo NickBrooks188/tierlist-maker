@@ -39,7 +39,7 @@ export default function Edit() {
     const [dTier, setDTier] = useState<[]>([])
     const [fTier, setFTier] = useState<[]>([])
     const [untiered, setUntiered] = useState<any>([])
-    const tiers: any = [['s', sTier, setSTier], ['a', aTier, setATier], ['b', bTier, setBTier], ['c', cTier, setCTier], ['d', dTier, setDTier], ['f', fTier, setFTier], ['Untiered', untiered, setUntiered]]
+    const tiers: any = [['s', sTier, setSTier], ['a', aTier, setATier], ['b', bTier, setBTier], ['c', cTier, setCTier], ['d', dTier, setDTier], ['f', fTier, setFTier], ['untiered', untiered, setUntiered]]
 
     const params = useParams()
     const dispatch = useAppDispatch()
@@ -107,6 +107,7 @@ export default function Edit() {
             order.splice(destination.index, 0, cardId)
             setOrder(order)
         } else {
+            console.log(result, tiers)
             const sourceTierId = source.droppableId
             const destTierId = destination.droppableId
             const sourceOrder = [...tiers[Number(sourceTierId)][1]]
@@ -159,39 +160,70 @@ export default function Edit() {
             <DragDropContext
                 onDragEnd={onDragEnd}
             >
-                <div className={styles.tiers} ref={captureRef}>
-                    {tiers.map((tier: any, tierIndex: number) => (
-                        <div className={styles.tier_wrapper} key={tier[0]}>
-                            <div className={styles.tier_and_letter}>
-                                <div className={styles[`${tier[0]}_header`]}>{tier[0][0].toUpperCase() + tier[0].slice(1)}</div>
-                                <Droppable droppableId={String(tierIndex)} direction='horizontal'>
-                                    {provided => (
-                                        <div className={styles.tier} {...provided.droppableProps} ref={provided.innerRef}>
-                                            {(tier[1][0] && template?.cards && template.cards[tier[1][0]]) && tier[1].map((card: never, cardIndex: number) => (
-                                                <Draggable
-                                                    draggableId={`${card}`}
-                                                    index={cardIndex}
-                                                    key={`card ${template?.cards[card].id}`}
+                <div className={styles.tiers_wrapper}>
+                    <div className={styles.untiered_wrapper}>
+                        <div className={styles.untiered_header}>Untiered</div>
+                        <Droppable droppableId={'6'} direction='horizontal'>
+                            {provided => (
+                                <div className={styles.untiered_tier} {...provided.droppableProps} ref={provided.innerRef}>
+                                    {(untiered && template?.cards && template.cards[untiered[0]]) && untiered.map((card: never, cardIndex: number) => (
+                                        <Draggable
+                                            draggableId={`${card}`}
+                                            index={cardIndex}
+                                            key={`card ${template?.cards[card].id}`}
+                                        >
+                                            {(provided, snapshot) => (
+                                                <div  {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}
                                                 >
-                                                    {(provided, snapshot) => (
-                                                        <div  {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}
-                                                        >
-                                                            <CardTile
-                                                                name={template?.cards[card].name || ''}
-                                                                image_url={template?.cards[card].image_url || ''}
-                                                            />
-                                                        </div>
-                                                    )}
-                                                </Draggable >
-                                            ))}
-                                            {provided.placeholder}
-                                        </div>
-                                    )}
-                                </Droppable>
+                                                    <CardTile
+                                                        name={template?.cards[card].name || ''}
+                                                        image_url={template?.cards[card].image_url || ''}
+                                                    />
+                                                </div>
+                                            )}
+                                        </Draggable >
+                                    ))}
+                                    {provided.placeholder}
+                                </div>
+                            )}
+                        </Droppable>
+
+                    </div>
+                    <div className={styles.tiers} ref={captureRef}>
+                        {tiers.map((tier: any, tierIndex: number) => (
+                            <div className={styles.tier_wrapper} key={tier[0]}>
+                                <div className={styles.tier_and_letter}>
+                                    <div className={styles[`${tier[0]}_header`]}>{tier[0][0].toUpperCase() + tier[0].slice(1)}</div>
+                                    <Droppable droppableId={String(tierIndex)} direction='horizontal'>
+                                        {provided => (
+                                            <div className={styles.tier} {...provided.droppableProps} ref={provided.innerRef}>
+                                                {(tier[1][0] && template?.cards && template.cards[tier[1][0]]) && tier[0] != 'untiered' && tier[1].map((card: never, cardIndex: number) => (
+                                                    <Draggable
+                                                        draggableId={`${card}`}
+                                                        index={cardIndex}
+                                                        key={`card ${template?.cards[card].id}`}
+                                                    >
+                                                        {(provided, snapshot) => (
+                                                            <div  {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}
+                                                            >
+                                                                <CardTile
+                                                                    name={template?.cards[card].name || ''}
+                                                                    image_url={template?.cards[card].image_url || ''}
+                                                                />
+                                                            </div>
+                                                        )}
+                                                    </Draggable >
+                                                ))}
+                                                {provided.placeholder}
+                                            </div>
+                                        )}
+                                    </Droppable>
+                                </div>
+                                {(tierIndex != 6) && (<div className={styles.tier_divider} />)}
                             </div>
-                            {(tierIndex != 6) && (<div className={styles.tier_divider} />)}
-                        </div>
-                    ))}
+                        ))}
+                    </div>
+
                 </div>
             </DragDropContext>
             <div className={styles.button_wrapper}>
