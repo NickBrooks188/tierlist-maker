@@ -37,6 +37,16 @@
     }
   },
   {
+    "model": "tierlist.listtemplate",
+    "pk": 3,
+    "fields": {
+      "name": "MLB Teams",
+      "description": "All 30 AL and NL teams",
+      "owner_id": 1,
+      "background_image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Major_League_Baseball_logo.svg.png"
+    }
+  },
+  {
     "model": "tierlist.card",
     "pk": 1,
     "fields": {
@@ -365,6 +375,276 @@
     "fields": {
       "name": "Solo",
       "list_id": 2
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 39,
+    "fields": {
+      "name": "Oakland Athletics",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Athletics.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 40,
+    "fields": {
+      "name": "Texas Rangers",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Rangers.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 41,
+    "fields": {
+      "name": "Houston Astros",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Astros.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 42,
+    "fields": {
+      "name": "Seattle Mariners",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Mariners.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 43,
+    "fields": {
+      "name": "Los Angeles Angels",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Angels.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 44,
+    "fields": {
+      "name": "Minnesota Twins",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Twins.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 45,
+    "fields": {
+      "name": "Kansas City Royals",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Royals.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 46,
+    "fields": {
+      "name": "Detroit Tigers",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Tigers.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 47,
+    "fields": {
+      "name": "Chicago White Sox",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/WhiteSox.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 48,
+    "fields": {
+      "name": "Cleveland Guardians",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Guardians.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 49,
+    "fields": {
+      "name": "New York Yankees",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Yankees.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 50,
+    "fields": {
+      "name": "Tampa Bay Rays",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Rays.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 51,
+    "fields": {
+      "name": "Boston Red Sox",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/RedSox.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 52,
+    "fields": {
+      "name": "Toronto Blue Jays",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/BlueJays.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 53,
+    "fields": {
+      "name": "Baltimore Orioles",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Orioles.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 54,
+    "fields": {
+      "name": "Los Angeles Dodgers",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Dodgers.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 55,
+    "fields": {
+      "name": "San Francisco Giants",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Giants.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 56,
+    "fields": {
+      "name": "San Diego Padres",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Padres.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 57,
+    "fields": {
+      "name": "Colorado Rockies",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Rockies.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 58,
+    "fields": {
+      "name": "Arizona Diamondbacks",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Diamondbacks.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 59,
+    "fields": {
+      "name": "St. Louis Cardinals",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Cardinals.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 60,
+    "fields": {
+      "name": "Chicago Cubs",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Cubs.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 61,
+    "fields": {
+      "name": "Pittsburgh Pirates",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Pirates.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 62,
+    "fields": {
+      "name": "Cincinnati Reds",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Reds.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 63,
+    "fields": {
+      "name": "Milwaukee Brewers",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Brewers.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 64,
+    "fields": {
+      "name": "Atlanta Braves",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Braves.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 65,
+    "fields": {
+      "name": "Philadelphia Phillies",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Phillies.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 66,
+    "fields": {
+      "name": "New York Mets",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Mets.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 67,
+    "fields": {
+      "name": "Miami Marlins",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Marlins.svg"
+    }
+  },
+  {
+    "model": "tierlist.card",
+    "pk": 68,
+    "fields": {
+      "name": "Washington Nationals",
+      "list_id": 3,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Nationals.svg"
     }
   },
   {
