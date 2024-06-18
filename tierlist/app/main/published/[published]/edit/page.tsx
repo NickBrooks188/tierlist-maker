@@ -191,36 +191,39 @@ export default function Edit() {
                     </div>
                     <div className={styles.tiers} ref={captureRef}>
                         {tiers.map((tier: any, tierIndex: number) => (
-                            <div className={styles.tier_wrapper} key={tier[0]}>
-                                <div className={styles.tier_and_letter}>
-                                    <div className={styles[`${tier[0]}_header`]}>{tier[0][0].toUpperCase() + tier[0].slice(1)}</div>
-                                    <Droppable droppableId={String(tierIndex)} direction='horizontal'>
-                                        {provided => (
-                                            <div className={styles.tier} {...provided.droppableProps} ref={provided.innerRef}>
-                                                {(tier[1][0] && template?.cards && template.cards[tier[1][0]]) && tier[0] != 'untiered' && tier[1].map((card: never, cardIndex: number) => (
-                                                    <Draggable
-                                                        draggableId={`${card}`}
-                                                        index={cardIndex}
-                                                        key={`card ${template?.cards[card].id}`}
-                                                    >
-                                                        {(provided, snapshot) => (
-                                                            <div  {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}
-                                                            >
-                                                                <CardTile
-                                                                    name={template?.cards[card].name || ''}
-                                                                    image_url={template?.cards[card].image_url || ''}
-                                                                />
-                                                            </div>
-                                                        )}
-                                                    </Draggable >
-                                                ))}
-                                                {provided.placeholder}
-                                            </div>
-                                        )}
-                                    </Droppable>
+                            (tierIndex != 6) && (
+
+                                <div className={styles.tier_wrapper} key={tier[0]}>
+                                    <div className={styles.tier_and_letter}>
+                                        <div className={styles[`${tier[0]}_header`]}>{tier[0][0].toUpperCase() + tier[0].slice(1)}</div>
+                                        <Droppable droppableId={String(tierIndex)} direction='horizontal'>
+                                            {provided => (
+                                                <div className={styles.tier} {...provided.droppableProps} ref={provided.innerRef}>
+                                                    {(tier[1][0] && template?.cards && template.cards[tier[1][0]]) && tier[1].map((card: never, cardIndex: number) => (
+                                                        <Draggable
+                                                            draggableId={`${card}`}
+                                                            index={cardIndex}
+                                                            key={`card ${template?.cards[card].id}`}
+                                                        >
+                                                            {(provided, snapshot) => (
+                                                                <div  {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}
+                                                                >
+                                                                    <CardTile
+                                                                        name={template?.cards[card].name || ''}
+                                                                        image_url={template?.cards[card].image_url || ''}
+                                                                    />
+                                                                </div>
+                                                            )}
+                                                        </Draggable >
+                                                    ))}
+                                                    {provided.placeholder}
+                                                </div>
+                                            )}
+                                        </Droppable>
+                                    </div>
+                                    {(tierIndex != 6) && (<div className={styles.tier_divider} />)}
                                 </div>
-                                {(tierIndex != 6) && (<div className={styles.tier_divider} />)}
-                            </div>
+                            )
                         ))}
                     </div>
 
