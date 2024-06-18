@@ -56,32 +56,32 @@
 }
 
 .s_preview {
-    background-color: var(--purple-light);
+    background-color: var(--purple);
     border: 2px solid var(--purple)
 }
 
 .a_preview {
-    background-color: var(--blue-light);
+    background-color: var(--blue);
     border: 2px solid var(--blue)
 }
 
 .b_preview {
-    background-color: var(--green-light);
+    background-color: var(--green);
     border: 2px solid var(--green)
 }
 
 .c_preview {
-    background-color: var(--yellow-light);
+    background-color: var(--yellow);
     border: 2px solid var(--yellow)
 }
 
 .d_preview {
-    background-color: var(--orange-light);
+    background-color: var(--orange);
     border: 2px solid var(--orange)
 }
 
 .f_preview {
-    background-color: var(--red-light);
+    background-color: var(--red);
     border: 2px solid var(--red)
 }
 

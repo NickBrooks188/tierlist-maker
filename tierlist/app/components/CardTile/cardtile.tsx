@@ -20,7 +20,9 @@ export default function CardTile({ name, image_url }: CardTileProps) {
             <div className={styles.card_image}
                 style={{
                     "backgroundImage": `url(${image_url})`,
-                    'backgroundSize': `cover`
+                    'backgroundSize': `auto 100%`,
+                    "backgroundRepeat": "no-repeat",
+                    "backgroundPosition": "center",
                 }}
             >
             </div>

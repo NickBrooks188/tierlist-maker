@@ -8,6 +8,8 @@ import { thunkCreatePublished } from '@/app/redux/onelist';
 import { useRouter } from 'next/navigation';
 import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from 'next/link';
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function Select() {
 
@@ -72,7 +74,9 @@ export default function Select() {
 
     return (
         <div className={styles.template_selection}>
-
+            <Link href='/main'>
+                <div className="back_main"><FontAwesomeIcon icon={faChevronLeft} />Back</div>
+            </Link>
             <form className={styles.form_wrapper}>
                 <label>List Name</label>
                 <input type="text" placeholder="Name" onChange={e => updateName(e.target.value)} value={templateName} />

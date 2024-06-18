@@ -87,7 +87,8 @@ class TemplatesAll(APIView):
             'description': request.data.get('description'),
             'public': request.data.get('public'), 
             'owner': request.user.id,
-            'cards': request.data.get('cards')
+            'cards': request.data.get('cards'),
+            'background_image_url': request.data.get('background_image_url')
         }
         serializer = ListTemplateSerializer(data=data)
         if serializer.is_valid():
@@ -173,7 +174,15 @@ class PublishedAll(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+    
+class PublishedAllUser(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+    # GET /published/user
+    def get(self, request):
+        published = ListPublished.objects.filter(owner=request.user.id)
+        serializer = ListPublishedSerializer(published, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 class PublishedOne(APIView):
     permission_classes = [permissions.AllowAny]

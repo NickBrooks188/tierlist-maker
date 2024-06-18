@@ -60,7 +60,7 @@ export default function Page() {
                 <Link href='/main/templates/create'>
                     <TemplateTile
                         image_url={'create'}
-                        name={"Create your own"}
+                        name={"+ Create your own"}
                         description={"Build your own tier list template"}
                         selected={false}
                     />

@@ -3,7 +3,6 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface Credentials { [key: string]: string; }
 
-// TODO: replace any
 const initialState: any = {};
 
 export const thunkAuthenticate = (token: string) => async (dispatch: any) => {
@@ -60,16 +59,13 @@ export const thunkSignup = (user: object) => async (dispatch: any) => {
 };
 
 export const thunkLogout = () => async (dispatch: any) => {
+    const token: string = localStorage.getItem('token') || ''
     const response = await fetch("http://localhost:8000/api/logout/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Authorization": `Token ${token}` },
     });
     if (response.ok) {
-        const data = await response.json();
-        if (data.errors) {
-            return;
-        }
-        return data
+        return { success: "Logged out" }
     }
 }
 
