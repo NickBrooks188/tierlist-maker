@@ -51,14 +51,14 @@
 
 .untiered_tier {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: flex-start;
     gap: 0px;
     max-width: 320px;
     flex-wrap: wrap;
     width: 100%;
     max-height: 100%;
-    min-height: 500px;
+    min-height: 200px;
 
 }
 
