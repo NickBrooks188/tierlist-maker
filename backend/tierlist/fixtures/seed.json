@@ -294,7 +294,8 @@
     "pk": 28,
     "fields": {
       "name": "I: The Phantom Menace",
-      "list_id": 2
+      "list_id": 2,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/EpisodeI.jpg"
     }
   },
   {
@@ -302,7 +303,8 @@
     "pk": 29,
     "fields": {
       "name": "II: Attack of the Clones",
-      "list_id": 2
+      "list_id": 2,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/EpisodeII.jpg"
     }
   },
   {
@@ -310,7 +312,8 @@
     "pk": 30,
     "fields": {
       "name": "III: Revenge of the Sith",
-      "list_id": 2
+      "list_id": 2,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/EpisodeIII.jpg"
     }
   },
   {
@@ -318,7 +321,8 @@
     "pk": 31,
     "fields": {
       "name": "IV: A New Hope",
-      "list_id": 2
+      "list_id": 2,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/EpisodeIV.jpg"
     }
   },
   {
@@ -326,7 +330,8 @@
     "pk": 32,
     "fields": {
       "name": "V: The Empire Strikes Back",
-      "list_id": 2
+      "list_id": 2,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/EpisodeV.jpg"
     }
   },
   {
@@ -334,7 +339,8 @@
     "pk": 33,
     "fields": {
       "name": "VI: Return of the Jedi",
-      "list_id": 2
+      "list_id": 2,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/EpisodeVI.jpg"
     }
   },
   {
@@ -342,7 +348,8 @@
     "pk": 34,
     "fields": {
       "name": "VII: The Force Awakens",
-      "list_id": 2
+      "list_id": 2,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/EpisodeVII.jpg"
     }
   },
   {
@@ -350,7 +357,8 @@
     "pk": 35,
     "fields": {
       "name": "VIII: The Last Jedi",
-      "list_id": 2
+      "list_id": 2,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/EpisodeVIII.jpg"
     }
   },
   {
@@ -358,7 +366,8 @@
     "pk": 36,
     "fields": {
       "name": "IX: The Rise of Skywalker",
-      "list_id": 2
+      "list_id": 2,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/EpisodeIX.jpg"
     }
   },
   {
@@ -366,7 +375,8 @@
     "pk": 37,
     "fields": {
       "name": "Rogue One",
-      "list_id": 2
+      "list_id": 2,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/RogueOne.jpg"
     }
   },
   {
@@ -374,7 +384,8 @@
     "pk": 38,
     "fields": {
       "name": "Solo",
-      "list_id": 2
+      "list_id": 2,
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Solo.jpg"
     }
   },
   {
