@@ -16,6 +16,7 @@
     flex-direction: column;
     width: 800px;
     gap: 0px;
+    padding-left: 5px;
 }
 
 .tier_and_letter {
@@ -47,11 +48,12 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 5px;
 }
 
 .untiered_tier {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: flex-start;
     gap: 0px;
     max-width: 320px;

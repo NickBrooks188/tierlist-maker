@@ -221,7 +221,7 @@ export default function Edit() {
                                             )}
                                         </Droppable>
                                     </div>
-                                    {(tierIndex != 6) && (<div className={styles.tier_divider} />)}
+                                    {(tierIndex != 5) && (<div className={styles.tier_divider} />)}
                                 </div>
                             )
                         ))}
