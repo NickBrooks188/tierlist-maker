@@ -13,7 +13,6 @@ export default function Page() {
     const templates = useAppSelector(state => state.allLists.templates)
     const published = useAppSelector(state => state.allLists.published)
     const state = useAppSelector(state => state)
-    console.log('~~~~', state)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
