@@ -17,6 +17,14 @@
     }
   },
   {
+    "model": "tierlist.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$AndulKWxRCpoxXHL7ZdKCC$CNxAfwn9Y606xcehpDs9Q2XxtbbwYQ4WbzK7Lzt4liA=",
+      "email": "guest@guest.com"
+    }
+  },
+  {
     "model": "tierlist.listtemplate",
     "pk": 1,
     "fields": {

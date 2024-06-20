@@ -13,16 +13,19 @@ export default function Page() {
     const templates = useAppSelector(state => state.allLists.templates)
     const published = useAppSelector(state => state.allLists.published)
     const dispatch = useAppDispatch()
+    console.log("here")
 
     useEffect(() => {
-
         const fetchAsync = async () => {
             const templateData: any = await dispatch(thunkGetAllTemplates())
             const publishedData: any = await dispatch(thunkGetAllPublished())
             console.log(templateData, publishedData)
         }
-
         fetchAsync()
+    }, [])
+
+    useEffect(() => {
+        document.title = 'Tier Forge: Main'
     }, [])
 
     const publishedScrollRight = () => {
