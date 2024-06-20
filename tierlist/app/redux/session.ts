@@ -5,16 +5,14 @@ interface Credentials { [key: string]: string; }
 
 const initialState: any = {};
 
-export const thunkAuthenticate = (token: string) => async (dispatch: any) => {
+export const thunkAuthenticate = () => async (dispatch: any) => {
+    const token: string = localStorage.getItem('token') || ''
     const response = await fetch("http://localhost:8000/api/authenticate/", {
         method: "GET",
         headers: { "Authorization": `Token ${token}` }
     });
     if (response.ok) {
         const data = await response.json();
-        if (data.errors) {
-            return;
-        }
         dispatch(sessionSlice.actions.setUser(data));
         return data
     }

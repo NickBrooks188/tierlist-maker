@@ -41,7 +41,6 @@ export default function Page() {
         }
 
         const serverResponse: { [key: string]: string } = await dispatch(thunkLogin(credentials))
-        console.log(serverResponse)
         if (serverResponse.token) {
             localStorage.setItem('token', serverResponse.token)
             router.push('/main')
