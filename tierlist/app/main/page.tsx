@@ -68,13 +68,15 @@ export default function Page() {
                     />
                 </Link>
                 {templates && Object.values(templates).map((template: any) => (
-                    <TemplateTile
-                        key={`template-${template.id}`}
-                        image_url={template.background_image_url}
-                        name={template.name}
-                        description={template.description}
-                        selected={false}
-                    />
+                    <Link href={`/main/published/select?selection_id=${template.id}`}>
+                        <TemplateTile
+                            key={`template-${template.id}`}
+                            image_url={template.background_image_url}
+                            name={template.name}
+                            description={template.description}
+                            selected={false}
+                        />
+                    </Link>
                 ))}
                 <div className={styles.next_templates} onClick={templateScrollRight}><FontAwesomeIcon icon={faAngleRight} /></div>
                 <div className={styles.prev_templates} onClick={templateScrollLeft}><FontAwesomeIcon icon={faAngleLeft} /></div>

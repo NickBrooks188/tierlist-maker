@@ -10,16 +10,19 @@ import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from 'next/link';
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { useSearchParams } from 'next/navigation';
 
 export default function Select() {
-
+    const selection_id = Number(useSearchParams().get('selection_id'))
     const templates = useAppSelector(state => state.allLists.templates)
     const sessionUser = useAppSelector(state => state.session.user)
-    const [selection, setSelection] = useState(-1)
+    const [selection, setSelection] = useState(selection_id || -1)
     const [disabled, setDisabled] = useState(true)
     const [templateName, setTemplateName] = useState('')
     const [templateDescription, setTemplateDescription] = useState('')
     const router = useRouter()
+
+    console.log(selection_id)
 
 
     const dispatch = useAppDispatch()
