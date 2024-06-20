@@ -12,13 +12,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function Page() {
     const templates = useAppSelector(state => state.allLists.templates)
     const published = useAppSelector(state => state.allLists.published)
+    const state = useAppSelector(state => state)
+    console.log('~~~~', state)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         const fetchAsync = async () => {
             const templateData: any = await dispatch(thunkGetAllTemplates())
             const publishedData: any = await dispatch(thunkGetAllPublished())
-            console.log(templateData, publishedData)
         }
         fetchAsync()
     }, [])
@@ -100,7 +101,7 @@ export default function Page() {
                     <Link href={`/main/published/${published_list.id}/edit`} key={`published-${published_list.id}`}>
                         <PublishedTile
                             name={published_list.name}
-                            description={published_list.description}
+                            description={templates ? templates[published_list.template]?.name : ''}
                             s_tier={published_list.s_tier}
                             a_tier={published_list.a_tier}
                             b_tier={published_list.b_tier}
