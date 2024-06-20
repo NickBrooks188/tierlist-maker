@@ -37,6 +37,14 @@
     color: white
 }
 
+.profile_button:hover {
+    background-color: #0058C6;
+}
+
+.profile_button:active {
+    background-color: #014eab;
+}
+
 .cover_all {
     position: absolute;
     z-index: 0;

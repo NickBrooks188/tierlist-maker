@@ -18,7 +18,7 @@ export default function Home() {
   const guestLogin = async () => {
     const credentials = {
       email: 'guest@guest.com',
-      password: 'guestpass'
+      password: 'password'
     }
     const serverData = await dispatch(thunkLogin(credentials))
     if (serverData.token) {
