@@ -29,7 +29,7 @@ export default function Edit() {
 
     const templates = useAppSelector(state => state.allLists.templates)
     const published = useAppSelector(state => state.list.published)
-    const state = useAppSelector(state => state)
+    const sessionUser = useAppSelector(state => state.session.user)
     const [template, setTemplate] = useState<Template>()
     const [disabled, setDisabled] = useState(true)
     const [sTier, setSTier] = useState<[]>([])
@@ -49,7 +49,6 @@ export default function Edit() {
     useEffect(() => {
         if (templates && published) {
             setTemplate(templates[published.template])
-            console.log(state)
         }
     }, [params, templates, published])
 
@@ -143,7 +142,6 @@ export default function Edit() {
             allowTaint: true
         });
         canvasPromise.then((canvas) => {
-            // document.body.appendChild(canvas);
             const dataURL = canvas.toDataURL("image/png");
             const imageElement = document.createElement('a');
             imageElement.href = dataURL
@@ -230,7 +228,7 @@ export default function Edit() {
                 </div>
             </DragDropContext>
             <div className={styles.button_wrapper}>
-                <button onClick={saveChanges} className="button-dark"><FontAwesomeIcon icon={faFloppyDisk} /> Save</button>
+                {(sessionUser?.user_id == published?.owner) && (<button onClick={saveChanges} className="button-dark"><FontAwesomeIcon icon={faFloppyDisk} /> Save</button>)}
                 <button onClick={captureScreenshot} className="button-light"><FontAwesomeIcon icon={faArrowDown} /> Download tier list</button>
             </div>
         </>

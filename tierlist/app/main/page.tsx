@@ -57,7 +57,7 @@ export default function Page() {
 
     return (
         <div className={styles.main_wrapper}>
-            <div className={styles.main_header}>Templates</div>
+            <div className={styles.main_header}>Select a template to create a new tier list</div>
             <div className={styles.templates_wrapper} id='templates'>
                 <Link href='/main/templates/create'>
                     <TemplateTile
@@ -82,7 +82,7 @@ export default function Page() {
                 <div className={styles.prev_templates} onClick={templateScrollLeft}><FontAwesomeIcon icon={faAngleLeft} /></div>
             </div>
             <div className={styles.divider} />
-            <div className={styles.main_header}>Published Lists</div>
+            <div className={styles.main_header}>Published tier lists</div>
             <div className={styles.published_wrapper} id='published'>
                 <Link href='/main/published/select'>
                     <PublishedTile

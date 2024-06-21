@@ -46,7 +46,7 @@ export default function Home() {
         <div className="button-blue" onClick={guestLogin}>Continue as guest</div>
       </div>
       <div className={styles.footer}>
-        Created by Nick Brooks • <Link href='https://github.com/NickBrooks188'><FontAwesomeIcon icon={faGithub} /> </Link> <Link href='https://www.linkedin.com/in/nick-brooks-531661153/'><FontAwesomeIcon icon={faLinkedin} /></Link>
+        Created by Nick Brooks | <Link href='https://github.com/NickBrooks188'><FontAwesomeIcon icon={faGithub} /> </Link> <Link href='https://www.linkedin.com/in/nick-brooks-531661153/'><FontAwesomeIcon icon={faLinkedin} /></Link>
       </div>
     </main>
   );
