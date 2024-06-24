@@ -89,7 +89,6 @@ export default function Edit() {
     }, [])
 
     const onDragEnd = (result: DropResult) => {
-        console.log(result)
         const { destination, source } = result
 
         if (!destination) {
@@ -106,7 +105,6 @@ export default function Edit() {
             order.splice(destination.index, 0, cardId)
             setOrder(order)
         } else {
-            console.log(result, tiers)
             const sourceTierId = source.droppableId
             const destTierId = destination.droppableId
             const sourceOrder = [...tiers[Number(sourceTierId)][1]]
