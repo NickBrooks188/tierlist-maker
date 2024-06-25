@@ -21,9 +21,11 @@ export default function ProfileDropdown() {
     return (
         <div className={styles.dropdown}>
             <div className={styles.dropdown_item}>{user.email}</div>
-            <Link href='/main/published/self'>
-                <div className={styles.dropdown_item}>My lists</div>
-            </Link>
+            {(user.email !== 'guest@guest.com') && (
+                <Link href='/main/published/self'>
+                    <div className={styles.dropdown_item}>My lists</div>
+                </Link>
+            )}
             <div className={styles.dropdown_item} onClick={handleLogout}>Logout</div>
 
         </div >
