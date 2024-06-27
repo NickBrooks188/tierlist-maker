@@ -22,7 +22,22 @@ interface Template {
     name: string,
     owner: number,
     public: boolean,
-    cards: []
+    cards: [{ id: number, name: string, image_url: string, list: number }]
+}
+
+interface Published {
+    id: number,
+    name: string,
+    description: string,
+    owner: number,
+    template: number,
+    s_tier: [],
+    a_tier: [],
+    b_tier: [],
+    c_tier: [],
+    d_tier: [],
+    f_tier: [],
+    public: boolean
 }
 
 export default function Edit() {
@@ -44,7 +59,7 @@ export default function Edit() {
     const params = useParams()
     const dispatch = useAppDispatch()
 
-    const captureRef = useRef()
+    const captureRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         if (templates && published) {
@@ -80,8 +95,8 @@ export default function Edit() {
     useEffect(() => {
 
         const fetchAsync = async () => {
-            const publishedData: any = await dispatch(thunkGetOnePublished(Number(params.published)))
-            const templatesData: any = await dispatch(thunkGetAllTemplates())
+            const publishedData: Published = await dispatch(thunkGetOnePublished(Number(params.published)))
+            const templatesData: [Template] = await dispatch(thunkGetAllTemplates())
         }
 
         fetchAsync()
@@ -131,10 +146,11 @@ export default function Edit() {
             d_tier: dTier,
             f_tier: fTier
         }
-        const serverData = await dispatch(thunkUpdatePublished(publishedPut))
+        const serverData: Published = await dispatch(thunkUpdatePublished(publishedPut))
     }
 
     const captureScreenshot = () => {
+        if (!captureRef.current) return
         let canvasPromise = html2canvas(captureRef.current, {
             useCORS: true,
             allowTaint: true

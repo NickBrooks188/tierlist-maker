@@ -9,6 +9,31 @@ import Link from "next/link";
 import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+interface Template {
+    id: number,
+    background_image_url: string,
+    description: string,
+    name: string,
+    owner: number,
+    public: boolean,
+    cards: [{ id: number, name: string, image_url: string, list: number }]
+}
+
+interface Published {
+    id: number,
+    name: string,
+    description: string,
+    owner: number,
+    template: number,
+    s_tier: [],
+    a_tier: [],
+    b_tier: [],
+    c_tier: [],
+    d_tier: [],
+    f_tier: [],
+    public: boolean
+}
+
 export default function Page() {
     const templates = useAppSelector(state => state.allLists.templates)
     const published = useAppSelector(state => state.allLists.published)
@@ -17,8 +42,8 @@ export default function Page() {
 
     useEffect(() => {
         const fetchAsync = async () => {
-            const templateData: any = await dispatch(thunkGetAllTemplates())
-            const publishedData: any = await dispatch(thunkGetAllPublished())
+            const templateData: [Template] = await dispatch(thunkGetAllTemplates())
+            const publishedData: [Published] = await dispatch(thunkGetAllPublished())
         }
         fetchAsync()
     }, [])
