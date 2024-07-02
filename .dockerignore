@@ -1,0 +1,7 @@
+Dockerfile
+.dockerignore
+tierlist/node_modules
+tierlist/npm-debug.log
+README.md
+tierlist/.next
+.git

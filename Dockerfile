@@ -19,8 +19,8 @@ RUN pip install psycopg2
 
 COPY . .
 
-RUN python manage.py make migrations
-RUN python manage.py migrate
-RUN python manage.py loaddata seed
-RUN python manage.py collectstatic
-CMD gunicorn app:app
+RUN python backend/manage.py makemigrations
+RUN python backend/manage.py migrate
+RUN python backend/manage.py loaddata seed
+# RUN python backend/manage.py collectstatic
+CMD gunicorn app:backend
