@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "password": "pbkdf2_sha256$600000$AndulKWxRCpoxXHL7ZdKCC$CNxAfwn9Y606xcehpDs9Q2XxtbbwYQ4WbzK7Lzt4liA=",
-      "email": "test@test.com",
+      "email": "nick@brooks.com",
       "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/140004000.png"
     }
   },
@@ -13,7 +13,7 @@
     "pk": 2,
     "fields": {
       "password": "pbkdf2_sha256$600000$AndulKWxRCpoxXHL7ZdKCC$CNxAfwn9Y606xcehpDs9Q2XxtbbwYQ4WbzK7Lzt4liA=",
-      "email": "test2@test.com"
+      "email": "test@test.com"
     }
   },
   {
@@ -51,7 +51,7 @@
       "name": "MLB Teams",
       "description": "All 30 AL and NL teams",
       "owner_id": 1,
-      "background_image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Major_League_Baseball_logo.svg.png"
+      "background_image_url": "https://tierforge.s3.us-west-1.amazonaws.com/MLB_Logo.webp"
     }
   },
   {

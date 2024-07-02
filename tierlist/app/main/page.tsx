@@ -9,16 +9,41 @@ import Link from "next/link";
 import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+interface Template {
+    id: number,
+    background_image_url: string,
+    description: string,
+    name: string,
+    owner: number,
+    public: boolean,
+    cards: [{ id: number, name: string, image_url: string, list: number }]
+}
+
+interface Published {
+    id: number,
+    name: string,
+    description: string,
+    owner: number,
+    template: number,
+    s_tier: [],
+    a_tier: [],
+    b_tier: [],
+    c_tier: [],
+    d_tier: [],
+    f_tier: [],
+    public: boolean
+}
+
 export default function Page() {
     const templates = useAppSelector(state => state.allLists.templates)
     const published = useAppSelector(state => state.allLists.published)
+    const state = useAppSelector(state => state)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         const fetchAsync = async () => {
-            const templateData: any = await dispatch(thunkGetAllTemplates())
-            const publishedData: any = await dispatch(thunkGetAllPublished())
-            console.log(templateData, publishedData)
+            const templateData: [Template] = await dispatch(thunkGetAllTemplates())
+            const publishedData: [Published] = await dispatch(thunkGetAllPublished())
         }
         fetchAsync()
     }, [])
@@ -57,7 +82,7 @@ export default function Page() {
 
     return (
         <div className={styles.main_wrapper}>
-            <div className={styles.main_header}>Templates</div>
+            <div className={styles.main_header}>Select a template to create a new tier list</div>
             <div className={styles.templates_wrapper} id='templates'>
                 <Link href='/main/templates/create'>
                     <TemplateTile
@@ -68,19 +93,21 @@ export default function Page() {
                     />
                 </Link>
                 {templates && Object.values(templates).map((template: any) => (
-                    <TemplateTile
-                        key={`template-${template.id}`}
-                        image_url={template.background_image_url}
-                        name={template.name}
-                        description={template.description}
-                        selected={false}
-                    />
+                    <Link href={`/main/published/select?selection_id=${template.id}`}>
+                        <TemplateTile
+                            key={`template-${template.id}`}
+                            image_url={template.background_image_url}
+                            name={template.name}
+                            description={template.description}
+                            selected={false}
+                        />
+                    </Link>
                 ))}
                 <div className={styles.next_templates} onClick={templateScrollRight}><FontAwesomeIcon icon={faAngleRight} /></div>
                 <div className={styles.prev_templates} onClick={templateScrollLeft}><FontAwesomeIcon icon={faAngleLeft} /></div>
             </div>
             <div className={styles.divider} />
-            <div className={styles.main_header}>Published Lists</div>
+            <div className={styles.main_header}>Published tier lists</div>
             <div className={styles.published_wrapper} id='published'>
                 <Link href='/main/published/select'>
                     <PublishedTile
@@ -98,7 +125,7 @@ export default function Page() {
                     <Link href={`/main/published/${published_list.id}/edit`} key={`published-${published_list.id}`}>
                         <PublishedTile
                             name={published_list.name}
-                            description={published_list.description}
+                            description={templates ? templates[published_list.template]?.name : ''}
                             s_tier={published_list.s_tier}
                             a_tier={published_list.a_tier}
                             b_tier={published_list.b_tier}

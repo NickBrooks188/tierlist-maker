@@ -50,7 +50,7 @@ export default function Page() {
         const imageData = await dispatch(uploadImage(image))
 
         if (imageData.errors) {
-            console.log(imageData.errors)
+            console.error(imageData.errors)
             return
         }
 
@@ -62,9 +62,8 @@ export default function Page() {
             public: true
         }
         const serverData = await dispatch(thunkCreateTemplate(template))
-        console.log(serverData)
         if (serverData.errors) {
-            console.log(serverData.errors)
+            console.error(serverData.errors)
         } else {
             router.push(`/main`)
         }

@@ -28,7 +28,7 @@ export default function TopNav() {
                     <button className="button-dark">Create template</button>
                 </Link>
                 <Link href='/main/published/select'>
-                    <button className="button-light">Create list</button>
+                    <button className="button-light">Create new tier list</button>
                 </Link>
                 <button className={styles.profile_button} onClick={toggleDropdown}>
                     {user.image_url && <Image src={user.image_url} width={40} height={40} alt="profile image" />}

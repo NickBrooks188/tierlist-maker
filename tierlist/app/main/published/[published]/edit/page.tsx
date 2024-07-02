@@ -22,14 +22,29 @@ interface Template {
     name: string,
     owner: number,
     public: boolean,
-    cards: []
+    cards: [{ id: number, name: string, image_url: string, list: number }]
+}
+
+interface Published {
+    id: number,
+    name: string,
+    description: string,
+    owner: number,
+    template: number,
+    s_tier: [],
+    a_tier: [],
+    b_tier: [],
+    c_tier: [],
+    d_tier: [],
+    f_tier: [],
+    public: boolean
 }
 
 export default function Edit() {
 
     const templates = useAppSelector(state => state.allLists.templates)
     const published = useAppSelector(state => state.list.published)
-    const state = useAppSelector(state => state)
+    const sessionUser = useAppSelector(state => state.session.user)
     const [template, setTemplate] = useState<Template>()
     const [disabled, setDisabled] = useState(true)
     const [sTier, setSTier] = useState<[]>([])
@@ -44,12 +59,11 @@ export default function Edit() {
     const params = useParams()
     const dispatch = useAppDispatch()
 
-    const captureRef = useRef()
+    const captureRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         if (templates && published) {
             setTemplate(templates[published.template])
-            console.log(state)
         }
     }, [params, templates, published])
 
@@ -81,8 +95,8 @@ export default function Edit() {
     useEffect(() => {
 
         const fetchAsync = async () => {
-            const publishedData: any = await dispatch(thunkGetOnePublished(Number(params.published)))
-            const templatesData: any = await dispatch(thunkGetAllTemplates())
+            const publishedData: Published = await dispatch(thunkGetOnePublished(Number(params.published)))
+            const templatesData: [Template] = await dispatch(thunkGetAllTemplates())
         }
 
         fetchAsync()
@@ -90,7 +104,6 @@ export default function Edit() {
     }, [])
 
     const onDragEnd = (result: DropResult) => {
-        console.log(result)
         const { destination, source } = result
 
         if (!destination) {
@@ -107,7 +120,6 @@ export default function Edit() {
             order.splice(destination.index, 0, cardId)
             setOrder(order)
         } else {
-            console.log(result, tiers)
             const sourceTierId = source.droppableId
             const destTierId = destination.droppableId
             const sourceOrder = [...tiers[Number(sourceTierId)][1]]
@@ -134,16 +146,16 @@ export default function Edit() {
             d_tier: dTier,
             f_tier: fTier
         }
-        const serverData = await dispatch(thunkUpdatePublished(publishedPut))
+        const serverData: Published = await dispatch(thunkUpdatePublished(publishedPut))
     }
 
     const captureScreenshot = () => {
+        if (!captureRef.current) return
         let canvasPromise = html2canvas(captureRef.current, {
             useCORS: true,
             allowTaint: true
         });
         canvasPromise.then((canvas) => {
-            // document.body.appendChild(canvas);
             const dataURL = canvas.toDataURL("image/png");
             const imageElement = document.createElement('a');
             imageElement.href = dataURL
@@ -230,7 +242,7 @@ export default function Edit() {
                 </div>
             </DragDropContext>
             <div className={styles.button_wrapper}>
-                <button onClick={saveChanges} className="button-dark"><FontAwesomeIcon icon={faFloppyDisk} /> Save</button>
+                {(sessionUser?.user_id == published?.owner) && (<button onClick={saveChanges} className="button-dark"><FontAwesomeIcon icon={faFloppyDisk} /> Save</button>)}
                 <button onClick={captureScreenshot} className="button-light"><FontAwesomeIcon icon={faArrowDown} /> Download tier list</button>
             </div>
         </>
