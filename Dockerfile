@@ -30,7 +30,7 @@ RUN python backend/manage.py runserver
 FROM node:14  
 
 # Copy package.json and package-lock.json to the container  
-COPY package*.json ./  
+# COPY package*.json ./  
 
 # Set the working directory inside the container  
 WORKDIR /tierlist  
