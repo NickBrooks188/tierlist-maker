@@ -29,11 +29,12 @@ RUN python backend/manage.py runserver
 # Use the official Node.js image as the base  
 FROM node:14  
 
-# Copy package.json and package-lock.json to the container  
-# COPY package*.json ./  
-
 # Set the working directory inside the container  
 WORKDIR /tierlist  
+
+# Copy package.json and package-lock.json to the container  
+COPY package*.json ./  
+
 
 # Install dependencies  
 RUN npm i  
