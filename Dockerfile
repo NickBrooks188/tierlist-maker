@@ -22,5 +22,6 @@ COPY . .
 RUN python backend/manage.py makemigrations
 RUN python backend/manage.py migrate
 RUN python backend/manage.py loaddata seed
+RUN python backend/manage.py runserver
 # RUN python backend/manage.py collectstatic
-CMD gunicorn app:backend
+# CMD gunicorn app:backend
