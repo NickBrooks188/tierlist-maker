@@ -101,7 +101,7 @@ export default function Edit() {
 
         fetchAsync()
 
-    }, [])
+    }, [dispatch, params])
 
     const onDragEnd = (result: DropResult) => {
         const { destination, source } = result

@@ -46,7 +46,7 @@ export default function Page() {
             const publishedData: [Published] = await dispatch(thunkGetAllPublished())
         }
         fetchAsync()
-    }, [])
+    }, [dispatch])
 
     useEffect(() => {
         document.title = 'Tier Forge: Main'
@@ -93,9 +93,8 @@ export default function Page() {
                     />
                 </Link>
                 {templates && Object.values(templates).map((template: any) => (
-                    <Link href={`/main/published/select?selection_id=${template.id}`}>
+                    <Link href={`/main/published/select?selection_id=${template.id}`} key={`template-${template.id}`}>
                         <TemplateTile
-                            key={`template-${template.id}`}
                             image_url={template.background_image_url}
                             name={template.name}
                             description={template.description}
