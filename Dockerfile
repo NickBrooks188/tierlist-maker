@@ -27,14 +27,13 @@ RUN python backend/manage.py runserver
 # CMD gunicorn app:backend
 
 # Use the official Node.js image as the base  
-FROM node:14  
+FROM node:alpine
 
 # Set the working directory inside the container  
-WORKDIR /tierlist  
+WORKDIR /tierlist
 
 # Copy package.json and package-lock.json to the container  
-COPY package*.json ./  
-
+COPY package*.json ./
 
 # Install dependencies  
 RUN npm i  
@@ -50,3 +49,9 @@ EXPOSE 3000
 
 # Start the app  
 CMD ["npm", "start"]  
+
+RUN mkdir /client
+COPY . /client
+COPY package.json /client/package.json
+WORKDIR /client
+RUN npm install
