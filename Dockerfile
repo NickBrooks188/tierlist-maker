@@ -36,7 +36,7 @@ COPY package*.json ./
 WORKDIR /tierlist  
 
 # Install dependencies  
-RUN npm ci  
+RUN npm i  
 
 # Copy the app source code to the container  
 COPY . .  
