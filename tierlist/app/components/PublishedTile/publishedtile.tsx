@@ -22,7 +22,7 @@ export default function PublishedTile({ name, description, s_tier, a_tier, b_tie
         if (s_tier[0] === -1) {
             setCreate(true)
         }
-    })
+    }, [s_tier])
 
     const maxLength: number = Math.max(s_tier.length, a_tier.length, b_tier.length, c_tier.length, d_tier.length, f_tier.length, 1)
     const sLength = (s_tier.length / maxLength) * 136 + 20

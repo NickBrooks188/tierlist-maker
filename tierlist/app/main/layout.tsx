@@ -13,7 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         if (!token) {
             // TODO: render not logged in page
         } else {
-            dispatch(thunkAuthenticate(token)).then(() => setIsLoaded(true));
+            dispatch(thunkAuthenticate()).then(() => setIsLoaded(true));
         }
     }, [dispatch]);
 

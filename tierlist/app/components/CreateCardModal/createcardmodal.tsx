@@ -8,7 +8,12 @@ interface ImageData {
     errors: string[]
 }
 
-export default function CreateCardModal({ addCard, setOpenModal }) {
+interface CreateCardModalProps {
+    addCard: (name: string, image_url: string) => void,
+    setOpenModal: (open: boolean) => void
+}
+
+export default function CreateCardModal({ addCard, setOpenModal }: CreateCardModalProps) {
     const [name, setName] = useState<string>('')
     const [image, setImage] = useState<File | null>(null)
 
@@ -22,7 +27,7 @@ export default function CreateCardModal({ addCard, setOpenModal }) {
         let imageData: ImageData = { url: '', errors: [] }
         if (image) {
             imageData = await dispatch(uploadImage(image))
-            addCard(name, (image ? imageData.url : null))
+            addCard(name, (imageData.url))
             setOpenModal(false)
         }
     }

@@ -34,7 +34,7 @@ export default function Select() {
 
         fetchAsync()
 
-    }, [])
+    }, [dispatch])
 
     const handleSelect = (templateId: number) => {
         setSelection(templateId)

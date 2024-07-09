@@ -19,7 +19,7 @@ export default function Self() {
         }
         fetchAsync()
 
-    }, [])
+    }, [dispatch])
 
     return (
         <>
