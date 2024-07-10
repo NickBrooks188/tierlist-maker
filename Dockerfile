@@ -27,31 +27,31 @@ RUN python backend/manage.py runserver
 # CMD gunicorn app:backend
 
 # Use the official Node.js image as the base  
-FROM node:alpine
+# FROM node:alpine
 
-# Set the working directory inside the container  
-WORKDIR /tierlist
+# # Set the working directory inside the container  
+# WORKDIR /tierlist
 
-# Copy package.json and package-lock.json to the container  
-COPY package*.json ./
+# # Copy package.json and package-lock.json to the container  
+# COPY package*.json ./
 
-# Install dependencies  
-RUN npm i  
+# # Install dependencies  
+# RUN npm i  
 
-# Copy the app source code to the container  
-COPY . .  
+# # Copy the app source code to the container  
+# COPY . .  
 
-# # Build the Next.js app  
-# RUN npm run build  
+# # # Build the Next.js app  
+# # RUN npm run build  
 
-# Expose the port the app will run on  
-EXPOSE 3000  
+# # Expose the port the app will run on  
+# EXPOSE 3000  
 
-# Start the app  
-CMD ["npm", "start"]  
+# # Start the app  
+# CMD ["npm", "start"]  
 
-RUN mkdir /client
-COPY . /client
-COPY package.json /client/package.json
-WORKDIR /client
-RUN npm install
+# RUN mkdir /client
+# COPY . /client
+# COPY package.json /client/package.json
+# WORKDIR /client
+# RUN npm install
