@@ -1,4 +1,4 @@
-Use the official Node.js image as the base  
+# Use the official Node.js image as the base  
 FROM node:alpine
 
 # Set the working directory inside the container  
