@@ -1,26 +1,30 @@
 # Use the official Node.js image as the base  
-FROM node:alpine
+FROM node:14-alpine
 
 # Set the working directory inside the container  
 WORKDIR /tierlist
 
 # Copy package.json and package-lock.json to the container  
-COPY package.json ./
+COPY package*.json ./
 
 # Install dependencies  
-RUN npm i  
+RUN npm install
 
 # Copy the app source code to the container  
-COPY . .  
+COPY . .
 
 # # Build the Next.js app  
-RUN npm run build  
+RUN npm run build
 
 # Expose the port the app will run on  
-# EXPOSE 3000  
+EXPOSE 3000
 
 # Start the app  
-CMD ["npm", "start"]  
+CMD ["npm", "start"]
+
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
 # RUN mkdir /client
 # COPY . /client
