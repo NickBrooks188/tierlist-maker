@@ -1,7 +1,10 @@
-FROM node:14-alpine
+FROM node:18-alpine
 WORKDIR /tierlist
-COPY package*.json ./
+RUN ls
+COPY tierlist/package.json tierlist/package-lock.json ./
 RUN npm install
+RUN ls
+CMD ['ls']
 COPY . .
 # RUN npm run build
 EXPOSE 3000
