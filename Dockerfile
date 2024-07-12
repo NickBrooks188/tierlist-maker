@@ -4,7 +4,7 @@ COPY tierlist/package.json tierlist/package-lock.json ./
 COPY tierlist/app ./app
 RUN npm install
 COPY /tierlist .
-RUN npm run build
+# RUN npm run build
 EXPOSE 3000
 CMD ["npm", "start"]
 
