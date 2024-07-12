@@ -2,7 +2,7 @@
 FROM node:14-alpine
 
 # Set the working directory inside the container  
-WORKDIR /tierlist
+WORKDIR /tierlist/app
 
 # Copy package.json and package-lock.json to the container  
 COPY package*.json ./
@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # # Build the Next.js app  
-# RUN npm run build
+RUN npm run build
 
 # Expose the port the app will run on  
 EXPOSE 3000
