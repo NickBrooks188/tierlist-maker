@@ -1,12 +1,10 @@
 FROM node:18-alpine
 WORKDIR /tierlist
-RUN ls
 COPY tierlist/package.json tierlist/package-lock.json ./
+COPY tierlist/app ./app
 RUN npm install
-RUN ls
-CMD ['ls']
-COPY . .
-# RUN npm run build
+COPY /tierlist .
+RUN npm run build
 EXPOSE 3000
 CMD ["npm", "start"]
 
