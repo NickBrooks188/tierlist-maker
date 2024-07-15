@@ -1,5 +1,5 @@
 // import styles from "./cardTile.module.css";
-import styles from "./cardtile.module.css";
+import styles from "./cardTile.module.css";
 
 
 interface CardTileProps {
