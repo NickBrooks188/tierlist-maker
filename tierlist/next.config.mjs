@@ -6,9 +6,7 @@ const nextConfig = {
     },
     reactStrictMode: false,
     output: "standalone",
-    future: {
-        webpack5: false,
-    },
+    webpack5: false,
 };
 
 export default nextConfig;
