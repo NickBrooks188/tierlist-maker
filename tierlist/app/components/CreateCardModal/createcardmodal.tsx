@@ -1,5 +1,5 @@
 import styles from "./createcardmodal.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { uploadImage } from "@/app/redux/onelist";
 import { useAppDispatch } from "@/app/redux/store";
 
