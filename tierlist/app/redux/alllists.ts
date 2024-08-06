@@ -4,8 +4,10 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 // TODO: replace any
 const initialState: any = {};
 
+const environment = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000/'
+
 export const thunkGetAllTemplates = () => async (dispatch: any) => {
-    const response = await fetch("http://localhost:8000/api/templates/");
+    const response = await fetch(`${environment}/api/templates/`);
     if (response.ok) {
         const data = await response.json();
         if (data.errors) {
@@ -17,7 +19,7 @@ export const thunkGetAllTemplates = () => async (dispatch: any) => {
 };
 
 export const thunkGetAllPublished = () => async (dispatch: any) => {
-    const response = await fetch("http://localhost:8000/api/published/");
+    const response = await fetch(`${environment}/api/published/`);
     if (response.ok) {
         const data = await response.json();
         if (data.errors) {
@@ -30,7 +32,7 @@ export const thunkGetAllPublished = () => async (dispatch: any) => {
 
 export const thunkGetSelfPublished = () => async (dispatch: any) => {
     const token: string = localStorage.getItem('token') || ''
-    const response = await fetch("http://localhost:8000/api/published/user/", {
+    const response = await fetch(`${environment}/api/published/user/`, {
         headers: { "Authorization": `Token ${token}` }
     });
     if (response.ok) {

@@ -5,9 +5,12 @@ interface Credentials { [key: string]: string; }
 
 const initialState: any = {};
 
+const environment = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000/'
+
+
 export const thunkAuthenticate = () => async (dispatch: any) => {
     const token: string = localStorage.getItem('token') || ''
-    const response = await fetch("http://localhost:8000/api/authenticate/", {
+    const response = await fetch(`${environment}/api/authenticate/`, {
         method: "GET",
         headers: { "Authorization": `Token ${token}` }
     });
@@ -19,7 +22,7 @@ export const thunkAuthenticate = () => async (dispatch: any) => {
 };
 
 export const thunkLogin = (credentials: object) => async (dispatch: any) => {
-    const response = await fetch("http://localhost:8000/api/login/", {
+    const response = await fetch(`${environment}/api/login/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(credentials)
@@ -38,7 +41,7 @@ export const thunkLogin = (credentials: object) => async (dispatch: any) => {
 };
 
 export const thunkSignup = (user: object) => async (dispatch: any) => {
-    const response = await fetch("http://localhost:8000/api/signup/", {
+    const response = await fetch(`${environment}/api/signup/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user)
@@ -58,7 +61,7 @@ export const thunkSignup = (user: object) => async (dispatch: any) => {
 
 export const thunkLogout = () => async (dispatch: any) => {
     const token: string = localStorage.getItem('token') || ''
-    const response = await fetch("http://localhost:8000/api/logout/", {
+    const response = await fetch(`${environment}/api/logout/`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": `Token ${token}` },
     });
