@@ -6,7 +6,6 @@
 # ARG DATABASE_URL
 # ARG SCHEMA
 # ARG SECRET_KEY
-ARG NEXT_PUBLIC_BACKEND_URL
 # WORKDIR /api
 # COPY requirements.txt .
 # RUN pip install -r requirements.txt
@@ -16,6 +15,7 @@ ARG NEXT_PUBLIC_BACKEND_URL
 # CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 FROM node:18-alpine
+ARG NEXT_PUBLIC_BACKEND_URL
 WORKDIR /tierlist
 COPY tierlist/package.json tierlist/package-lock.json ./
 COPY tierlist/app ./app
