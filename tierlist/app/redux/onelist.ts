@@ -4,8 +4,11 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 // TODO: replace any
 const initialState: any = {};
 
+const environment = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000/'
+
+
 export const thunkGetOnePublished = (listId: number) => async (dispatch: any) => {
-    const response = await fetch(`http://localhost:8000/api/published/${listId}/`);
+    const response = await fetch(`${environment}/api/published/${listId}/`);
     if (response.ok) {
         const data = await response.json();
         if (data.errors) {
@@ -18,7 +21,7 @@ export const thunkGetOnePublished = (listId: number) => async (dispatch: any) =>
 
 export const thunkCreatePublished = (published: any) => async (dispatch: any) => {
     const token: string = localStorage.getItem('token') || ''
-    const response = await fetch(`http://localhost:8000/api/published/`, {
+    const response = await fetch(`${environment}/api/published/`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": `Token ${token}` },
         body: JSON.stringify(published)
@@ -36,7 +39,7 @@ export const thunkCreatePublished = (published: any) => async (dispatch: any) =>
 
 export const thunkCreateTemplate = (template: any) => async (dispatch: any) => {
     const token: string = localStorage.getItem('token') || ''
-    const response = await fetch(`http://localhost:8000/api/templates/`, {
+    const response = await fetch(`${environment}/api/templates/`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": `Token ${token}` },
         body: JSON.stringify(template)
@@ -53,7 +56,7 @@ export const thunkCreateTemplate = (template: any) => async (dispatch: any) => {
 
 export const thunkUpdatePublished = (published: any) => async (dispatch: any) => {
     const token: string = localStorage.getItem('token') || ''
-    const response = await fetch(`http://localhost:8000/api/published/${published.id}/`, {
+    const response = await fetch(`${environment}/api/published/${published.id}/`, {
         method: "PUT",
         headers: { "Content-Type": "application/json", "Authorization": `Token ${token}` },
         body: JSON.stringify(published)
@@ -70,7 +73,7 @@ export const thunkUpdatePublished = (published: any) => async (dispatch: any) =>
 
 export const uploadImage = (image: any) => async () => {
     const token: string = localStorage.getItem('token') || ''
-    const res = await fetch(`http://localhost:8000/api/images/`, {
+    const res = await fetch(`${environment}/api/images/`, {
         method: "PUT",
         body: image,
         headers: { "Content-Disposition": `attachment; filename=${image.name}`, "Authorization": `Token ${token}` },
