@@ -5,7 +5,7 @@ interface Credentials { [key: string]: string; }
 
 const initialState: any = {};
 
-const environment = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000/'
+const environment = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000'
 
 
 export const thunkAuthenticate = () => async (dispatch: any) => {
@@ -22,6 +22,7 @@ export const thunkAuthenticate = () => async (dispatch: any) => {
 };
 
 export const thunkLogin = (credentials: object) => async (dispatch: any) => {
+    console.log(process.env.NEXT_PUBLIC_BACKEND_URL)
     const response = await fetch(`${environment}/api/login/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
