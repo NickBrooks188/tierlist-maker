@@ -22,8 +22,6 @@ export const thunkAuthenticate = () => async (dispatch: any) => {
 };
 
 export const thunkLogin = (credentials: object) => async (dispatch: any) => {
-    console.log(process.env.NEXT_PUBLIC_BACKEND_URL)
-    console.log(process.env.DEBUG)
     const response = await fetch(`${environment}/api/login/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
