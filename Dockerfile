@@ -6,6 +6,7 @@
 # ARG DATABASE_URL
 # ARG SCHEMA
 # ARG SECRET_KEY
+ARG NEXT_PUBLIC_BACKEND_URL
 # WORKDIR /api
 # COPY requirements.txt .
 # RUN pip install -r requirements.txt
