@@ -14,7 +14,6 @@ class AppUserManager(BaseUserManager):
         user.save()
         return user
 
-# Create your models here.
 class User(AbstractBaseUser, PermissionsMixin):
     # id created automatically
     email = models.EmailField(max_length=40, null=False, unique=True)
