@@ -10,4 +10,4 @@ python manage.py collectstatic --no-input
 
 # Apply any outstanding database migrations
 python manage.py migrate
-python backend/manage.py loaddata seed
+python manage.py loaddata seed
