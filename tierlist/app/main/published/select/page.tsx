@@ -88,12 +88,14 @@ export default function Select() {
 
             </form>
             <div className={styles.templates_wrapper}>
-                <TemplateTile
-                    image_url={'create'}
-                    name={"Create your own"}
-                    description={"Build your own tier list template"}
-                    selected={false}
-                />
+                <Link href='/main/templates/create'>
+                    <TemplateTile
+                        image_url={'create'}
+                        name={"Create your own"}
+                        description={"Build your own tier list template"}
+                        selected={false}
+                    />
+                </Link>
                 {templates && Object.values(templates).map((template: any) => (
                     <div onClick={e => handleSelect(template.id)} key={`template-${template.id}`}>
                         <TemplateTile

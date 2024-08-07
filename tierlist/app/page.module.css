@@ -202,9 +202,24 @@
 
 .title_divider {
   width: 100%;
-  border: 1px dashed var(--gray-med);
   margin-top: 30px;
   margin-bottom: 30px;
+  background: linear-gradient(90deg, var(--gray-med) 50%, transparent 50%);
+  background-repeat: repeat-x;
+  background-size: 15px 2px, 15px 2px, 2px 15px, 2px 15px;
+  background-position: 0px 0px, 200px 100px, 0px 100px, 200px 0px;
+  padding: 1px;
+  animation: border-move 60s infinite linear;
+}
+
+@keyframes border-move {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 100% 0;
+  }
 }
 
 /* Tablet and Smaller Desktop */
