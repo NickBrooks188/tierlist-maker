@@ -153,7 +153,7 @@ export default function Edit() {
         if (!captureRef.current) return
         let canvasPromise = html2canvas(captureRef.current, {
             useCORS: true,
-            allowTaint: true
+            allowTaint: false
         });
         canvasPromise.then((canvas) => {
             const dataURL = canvas.toDataURL("image/png");
