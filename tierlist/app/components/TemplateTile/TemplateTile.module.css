@@ -23,11 +23,11 @@
 
 .template_tile:hover {
     box-shadow: 2px 4px 12px #00000024;
-    width: 278px;
-    min-width: 278px;
-    height: 152px;
-    margin: -4px;
-    padding: 24px;
+    width: 276px;
+    min-width: 276px;
+    height: 150px;
+    margin: -3px;
+    padding: 23px;
 }
 
 .template_tile_description {
