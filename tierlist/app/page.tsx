@@ -9,13 +9,17 @@ import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { thunkLogin } from "@/app/redux/session";
 import { useAppDispatch } from "@/app/redux/store";
 import { useRouter } from "next/navigation"
+import Loading from "./components/Loading/loading";
+import { useState } from "react";
 
 export default function Home() {
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
 
   const guestLogin = async () => {
+    setLoading(true)
     const credentials = {
       email: 'guest@guest.com',
       password: 'password'
@@ -26,6 +30,7 @@ export default function Home() {
       router.push('/main')
     } else {
       console.error(serverData.email)
+      setLoading(false)
     }
   }
 
@@ -40,6 +45,7 @@ export default function Home() {
         />
       </Link>
       <div className={styles.title_divider} />
+      {loading && <Loading />}
       <div className={styles.button_wrapper}>
         <Link href='/login'><div className="button-dark"><FontAwesomeIcon icon={faRightToBracket} /> Log in</div></Link>
         <Link href='/signup'><div className="button-light"><FontAwesomeIcon icon={faSquarePlus} />Sign up</div></Link>

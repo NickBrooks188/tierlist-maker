@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import styles from './Login.module.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import Loading from "../components/Loading/loading";
 
 
 export default function Page() {
@@ -15,6 +16,7 @@ export default function Page() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [disabled, setDisabled] = useState(true)
+    const [loading, setLoading] = useState(false)
     const router = useRouter();
 
     const dispatch = useAppDispatch()
@@ -34,6 +36,7 @@ export default function Page() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        setLoading(true)
 
         const credentials = {
             email,
@@ -46,6 +49,7 @@ export default function Page() {
             router.push('/main')
         } else {
             setErrors(serverResponse.email)
+            setLoading(false)
         }
     }
 
@@ -62,6 +66,7 @@ export default function Page() {
                     className="logo"
                 />
             </Link>
+            {loading && <Loading />}
             <form className={styles.login_form} onSubmit={(e) => handleSubmit(e)}>
                 <label>
                     Email

@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import styles from './Signup.module.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import Loading from "../components/Loading/loading";
 
 export default function Page() {
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -16,6 +17,7 @@ export default function Page() {
     const [confirmPassword, setConfirmPassword] = useState<string>("");
     const [disabled, setDisabled] = useState<boolean>(true)
     const [image, setImage] = useState<string>("")
+    const [loading, setLoading] = useState<boolean>(false)
 
     const dispatch = useAppDispatch()
     const router = useRouter();
@@ -36,6 +38,8 @@ export default function Page() {
             setErrors({ password: 'Passwords must match' })
             return
         }
+        setLoading(true)
+
 
         const user = {
             email,
@@ -50,6 +54,7 @@ export default function Page() {
             router.push('/main')
         } else {
             setErrors(serverResponse)
+            setLoading(false)
         }
     }
 
@@ -66,6 +71,7 @@ export default function Page() {
                     className="logo"
                 />
             </Link>
+            {loading && <Loading />}
             <form onSubmit={(e) => handleSubmit(e)} className={styles.signup_form}>
                 <label>
                     Email<span className='asterisk'>*</span>

@@ -1,0 +1,16 @@
+.loading_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    background-color: none;
+    z-index: 40;
+    border-radius: 5px;
+    font-weight: bold;
+    color: var(--blue);
+    font-size: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
