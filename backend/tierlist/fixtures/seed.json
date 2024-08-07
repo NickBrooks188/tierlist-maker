@@ -733,5 +733,58 @@
       ],
       "public": true
     }
+  },
+  {
+    "model": "tierlist.listpublished",
+    "pk": 3,
+    "fields": {
+      "owner_id": 1,
+      "name": "2023 final standings",
+      "description": "2023 MLB season",
+      "template_id": 3,
+      "s_tier": [
+        50,
+        53,
+        54,
+        64
+      ],
+      "a_tier": [
+        63,
+        65,
+        41,
+        40
+      ],
+      "b_tier": [
+        42,
+        44,
+        49,
+        52,
+        56,
+        58,
+        60,
+        62,
+        67
+      ],
+      "c_tier": [
+        66,
+        61,
+        55,
+        51,
+        48,
+        46,
+        43
+      ],
+      "d_tier": [
+        59,
+        68
+      ],
+      "f_tier": [
+        57,
+        47,
+        45,
+        39
+      ],
+      "public": true
+    }
   }
 ]
