@@ -46,12 +46,13 @@ export default function Page() {
     }, [cards])
 
     const handleSubmit = async () => {
-
-        const imageData = await dispatch(uploadImage(image))
-
-        if (imageData.errors) {
-            console.error(imageData.errors)
-            return
+        let imageData = null
+        if (image) {
+            imageData = await dispatch(uploadImage(image))
+            if (imageData.errors) {
+                console.error(imageData.errors)
+                return
+            }
         }
 
         const template = {

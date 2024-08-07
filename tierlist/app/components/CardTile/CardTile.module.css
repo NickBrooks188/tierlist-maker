@@ -18,6 +18,10 @@
     background-position-y: center;
 }
 
+.card_tile:hover>.card_image {
+    background-color: #EAEAEA;
+}
+
 .card_name {
     background-color: #e9e9eb;
     font-weight: 500;
