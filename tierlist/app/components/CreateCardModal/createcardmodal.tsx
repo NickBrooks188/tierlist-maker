@@ -43,7 +43,7 @@ export default function CreateCardModal({ addCard, setOpenModal }: CreateCardMod
                 accept="image/*"
                 onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)}
             />
-            <button className='button-dark' disabled={!image || !name} onClick={handleAddCard}>Add item</button>
+            <button className='button-dark' disabled={!name} onClick={handleAddCard}>Add item</button>
         </div>
     )
 }
