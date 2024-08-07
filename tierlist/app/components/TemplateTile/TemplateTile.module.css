@@ -18,7 +18,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     gap: 8px;
-    transition: all 0.2s
+    transition: all 0.4s
 }
 
 .template_tile:hover {
