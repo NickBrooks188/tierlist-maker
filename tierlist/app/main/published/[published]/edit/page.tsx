@@ -37,7 +37,8 @@ interface Published {
     c_tier: [],
     d_tier: [],
     f_tier: [],
-    public: boolean
+    public: boolean,
+    errors: []
 }
 
 export default function Edit() {
@@ -60,6 +61,7 @@ export default function Edit() {
     const dispatch = useAppDispatch()
 
     const captureRef = useRef<HTMLDivElement>(null)
+
 
     useEffect(() => {
         if (templates && published) {
@@ -147,16 +149,18 @@ export default function Edit() {
             f_tier: fTier
         }
         const serverData: Published = await dispatch(thunkUpdatePublished(publishedPut))
+        if (serverData.errors) {
+            console.error(serverData.errors)
+        }
     }
     const captureScreenshot = useCallback(() => {
         if (captureRef.current === null) {
             return
         }
-
-        toPng(captureRef.current, { cacheBust: true, })
+        toPng(captureRef.current, { cacheBust: true })
             .then((dataUrl) => {
                 const link = document.createElement('a')
-                link.download = 'my-image-name.png'
+                link.download = 'tierforge.png'
                 link.href = dataUrl
                 link.click()
             })

@@ -12,7 +12,7 @@ export default function CardTile({ name, image_url }: CardTileProps) {
 
         <div className={styles.card_tile}>
             <div className={styles.card_image}>
-                <Image src={image_url} alt={name} fill className={styles.card_image_url} crossOrigin="anonymous" />
+                <Image src={image_url} alt={name} fill sizes="100vh" className={styles.card_image_url} crossOrigin="anonymous" />
             </div>
             <div className={styles.card_name}>{name}</div>
         </div>
