@@ -402,7 +402,7 @@
     "fields": {
       "name": "Oakland Athletics",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Athletics.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Athletics.png"
     }
   },
   {
@@ -411,7 +411,7 @@
     "fields": {
       "name": "Texas Rangers",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Rangers.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Rangers.png"
     }
   },
   {
@@ -420,7 +420,7 @@
     "fields": {
       "name": "Houston Astros",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Astros.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Astros.png"
     }
   },
   {
@@ -429,7 +429,7 @@
     "fields": {
       "name": "Seattle Mariners",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Mariners.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Mariners.png"
     }
   },
   {
@@ -438,7 +438,7 @@
     "fields": {
       "name": "Los Angeles Angels",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Angels.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Angels.png"
     }
   },
   {
@@ -447,7 +447,7 @@
     "fields": {
       "name": "Minnesota Twins",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Twins.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Twins.png"
     }
   },
   {
@@ -456,7 +456,7 @@
     "fields": {
       "name": "Kansas City Royals",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Royals.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Royals.png"
     }
   },
   {
@@ -465,7 +465,7 @@
     "fields": {
       "name": "Detroit Tigers",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Tigers.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Tigers.png"
     }
   },
   {
@@ -474,7 +474,7 @@
     "fields": {
       "name": "Chicago White Sox",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/WhiteSox.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/WhiteSox.png"
     }
   },
   {
@@ -483,7 +483,7 @@
     "fields": {
       "name": "Cleveland Guardians",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Guardians.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Guardians.png"
     }
   },
   {
@@ -492,7 +492,7 @@
     "fields": {
       "name": "New York Yankees",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Yankees.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Yankees.png"
     }
   },
   {
@@ -501,7 +501,7 @@
     "fields": {
       "name": "Tampa Bay Rays",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Rays.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Rays.png"
     }
   },
   {
@@ -510,7 +510,7 @@
     "fields": {
       "name": "Boston Red Sox",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/RedSox.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/RedSox.png"
     }
   },
   {
@@ -519,7 +519,7 @@
     "fields": {
       "name": "Toronto Blue Jays",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/BlueJays.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/BlueJays.png"
     }
   },
   {
@@ -528,7 +528,7 @@
     "fields": {
       "name": "Baltimore Orioles",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Orioles.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Orioles.png"
     }
   },
   {
@@ -537,7 +537,7 @@
     "fields": {
       "name": "Los Angeles Dodgers",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Dodgers.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Dodgers.png"
     }
   },
   {
@@ -546,7 +546,7 @@
     "fields": {
       "name": "San Francisco Giants",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Giants.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Giants.png"
     }
   },
   {
@@ -555,7 +555,7 @@
     "fields": {
       "name": "San Diego Padres",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Padres.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Padres.png"
     }
   },
   {
@@ -564,7 +564,7 @@
     "fields": {
       "name": "Colorado Rockies",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Rockies.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Rockies.png"
     }
   },
   {
@@ -573,7 +573,7 @@
     "fields": {
       "name": "Arizona Diamondbacks",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Diamondbacks.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Diamondbacks.png"
     }
   },
   {
@@ -582,7 +582,7 @@
     "fields": {
       "name": "St. Louis Cardinals",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Cardinals.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Cardinals.png"
     }
   },
   {
@@ -591,7 +591,7 @@
     "fields": {
       "name": "Chicago Cubs",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Cubs.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Cubs.png"
     }
   },
   {
@@ -600,7 +600,7 @@
     "fields": {
       "name": "Pittsburgh Pirates",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Pirates.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Pirates.png"
     }
   },
   {
@@ -609,7 +609,7 @@
     "fields": {
       "name": "Cincinnati Reds",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Reds.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Reds.png"
     }
   },
   {
@@ -618,7 +618,7 @@
     "fields": {
       "name": "Milwaukee Brewers",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Brewers.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Brewers.png"
     }
   },
   {
@@ -627,7 +627,7 @@
     "fields": {
       "name": "Atlanta Braves",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Braves.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Braves.png"
     }
   },
   {
@@ -636,7 +636,7 @@
     "fields": {
       "name": "Philadelphia Phillies",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Phillies.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Phillies.png"
     }
   },
   {
@@ -645,7 +645,7 @@
     "fields": {
       "name": "New York Mets",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Mets.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Mets.png"
     }
   },
   {
@@ -654,7 +654,7 @@
     "fields": {
       "name": "Miami Marlins",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Marlins.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Marlins.png"
     }
   },
   {
@@ -663,7 +663,7 @@
     "fields": {
       "name": "Washington Nationals",
       "list_id": 3,
-      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Nationals.svg"
+      "image_url": "https://tierforge.s3.us-west-1.amazonaws.com/Nationals.png"
     }
   },
   {

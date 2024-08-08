@@ -1,5 +1,5 @@
 import styles from "./CardTile.module.css";
-
+import Image from "next/image";
 
 interface CardTileProps {
     name: string,
@@ -11,14 +11,8 @@ export default function CardTile({ name, image_url }: CardTileProps) {
     return (
 
         <div className={styles.card_tile}>
-            <div className={styles.card_image}
-                style={{
-                    "backgroundImage": `url(${image_url})`,
-                    'backgroundSize': `auto 100%`,
-                    "backgroundRepeat": "no-repeat",
-                    "backgroundPosition": "center",
-                }}
-            >
+            <div className={styles.card_image}>
+                <Image src={image_url} alt={name} fill className={styles.card_image_url} crossOrigin="anonymous" />
             </div>
             <div className={styles.card_name}>{name}</div>
         </div>

@@ -8,14 +8,18 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
+    position: relative;
 }
 
 .card_image {
-    height: 100%;
+    flex: 1;
     width: 100%;
     background-color: #f4f4f4;
-    background-position-y: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .card_tile:hover>.card_image {
@@ -30,4 +34,10 @@
     box-sizing: border-box;
     padding: 5px;
     color: #242424;
+}
+
+.card_image_url {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
 }
