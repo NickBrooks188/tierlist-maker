@@ -11,8 +11,8 @@ import { faFloppyDisk } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from 'next/link';
 import { faChevronLeft, faArrowDown } from "@fortawesome/free-solid-svg-icons";
-import html2canvas from "html2canvas";
-import { useRef } from 'react';
+import { toPng } from 'html-to-image';
+import { useRef, useCallback } from 'react';
 
 
 interface Template {
@@ -148,21 +148,22 @@ export default function Edit() {
         }
         const serverData: Published = await dispatch(thunkUpdatePublished(publishedPut))
     }
+    const captureScreenshot = useCallback(() => {
+        if (captureRef.current === null) {
+            return
+        }
 
-    const captureScreenshot = () => {
-        if (!captureRef.current) return
-        let canvasPromise = html2canvas(captureRef.current, {
-            useCORS: true,
-            allowTaint: true
-        });
-        canvasPromise.then((canvas) => {
-            const dataURL = canvas.toDataURL("image/png");
-            const imageElement = document.createElement('a');
-            imageElement.href = dataURL
-            imageElement.download = 'tier-forge.png';
-            imageElement.click();
-        });
-    }
+        toPng(captureRef.current, { cacheBust: true, })
+            .then((dataUrl) => {
+                const link = document.createElement('a')
+                link.download = 'my-image-name.png'
+                link.href = dataUrl
+                link.click()
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }, [captureRef])
 
     return (
         <>
