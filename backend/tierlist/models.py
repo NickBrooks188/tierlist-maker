@@ -51,7 +51,7 @@ class ListPublished(models.Model):
 
 class Card(models.Model):
     name = models.TextField(null=False)
-    image_url = models.TextField()
+    image_url = models.TextField(null=True, blank=True)
     list = models.ForeignKey(ListTemplate, related_name='cards', on_delete=models.CASCADE, default=1)
 
     def __str__(self):

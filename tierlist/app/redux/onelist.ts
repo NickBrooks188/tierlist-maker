@@ -52,6 +52,8 @@ export const thunkCreateTemplate = (template: any) => async (dispatch: any) => {
         dispatch(listSlice.actions.setTemplate(data));
         return data
     }
+    const data = await response.json();
+    return data
 };
 
 export const thunkUpdatePublished = (published: any) => async (dispatch: any) => {

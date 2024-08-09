@@ -63,6 +63,7 @@ export default function Page() {
             public: true
         }
         const serverData = await dispatch(thunkCreateTemplate(template))
+        console.log(serverData)
         if (serverData.errors) {
             console.error(serverData.errors)
         } else {
