@@ -8,7 +8,7 @@ import { thunkCreateTemplate, uploadImage } from "@/app/redux/onelist";
 import { useAppDispatch } from '@/app/redux/store';
 import CardTile from '@/app/components/CardTile/cardtile';
 import Link from 'next/link';
-import { faChevronLeft, faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faAngleRight, faAngleLeft, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from 'next/navigation';
 
 
@@ -70,6 +70,12 @@ export default function Page() {
         }
     }
 
+    const handleDeleteCard = (index: number) => {
+        // Remove the card from the list
+        const cardCopy = [...cards]
+        setCards(cardCopy.filter((_, i) => i !== index))
+    }
+
     const scrollRight = (e: any) => {
         e.preventDefault()
         const mainWrapper = document.getElementById('main-wrapper')
@@ -110,12 +116,13 @@ export default function Page() {
                     <div className={styles.divider} />
                     <div className={styles.cards_wrapper}>
                         {(cards.length > 0) && cards.map((card: any, cardIndex: number) => (
-
-                            <CardTile
-                                key={cardIndex}
-                                name={card.name || ''}
-                                image_url={card.image_url || ''}
-                            />
+                            <div className={styles.card_wrapper} key={cardIndex}>
+                                <CardTile
+                                    name={card.name || ''}
+                                    image_url={card.image_url || ''}
+                                />
+                                <FontAwesomeIcon icon={faTrash} onClick={e => handleDeleteCard(cardIndex)} />
+                            </div>
                         ))}
                         {cards.length === 0 && <div>Please add tier list items</div>}
                     </div>

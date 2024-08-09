@@ -27,9 +27,9 @@ export default function CreateCardModal({ addCard, setOpenModal }: CreateCardMod
         let imageData: ImageData = { url: '', errors: [] }
         if (image) {
             imageData = await dispatch(uploadImage(image))
-            addCard(name, (imageData.url))
-            setOpenModal(false)
         }
+        addCard(name, (imageData.url || ''))
+        setOpenModal(false)
     }
 
     return (
