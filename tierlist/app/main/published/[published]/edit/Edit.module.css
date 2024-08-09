@@ -34,6 +34,7 @@
     gap: 0px;
 }
 
+
 .tier {
     display: flex;
     justify-content: flex-start;
@@ -42,6 +43,10 @@
     min-height: 80px;
     flex-wrap: wrap;
     width: 100%;
+}
+
+.tier:hover {
+    background-color: var(--gray-light);
 }
 
 .untiered_wrapper {

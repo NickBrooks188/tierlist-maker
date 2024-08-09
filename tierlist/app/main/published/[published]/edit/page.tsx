@@ -13,7 +13,7 @@ import Link from 'next/link';
 import { faChevronLeft, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { toPng } from 'html-to-image';
 import { useRef, useCallback } from 'react';
-
+import MainLoading from '@/app/components/MainLoading/mainloading';
 
 interface Template {
     id: number,
@@ -56,6 +56,7 @@ export default function Edit() {
     const [fTier, setFTier] = useState<[]>([])
     const [untiered, setUntiered] = useState<any>([])
     const tiers: any = [['s', sTier, setSTier], ['a', aTier, setATier], ['b', bTier, setBTier], ['c', cTier, setCTier], ['d', dTier, setDTier], ['f', fTier, setFTier], ['untiered', untiered, setUntiered]]
+    const [loading, setLoading] = useState(true)
 
     const params = useParams()
     const dispatch = useAppDispatch()
@@ -137,6 +138,7 @@ export default function Edit() {
     }
 
     const saveChanges = async () => {
+        setLoading(true)
         const publishedPut = {
             id: published.id,
             name: published.name,
@@ -152,9 +154,12 @@ export default function Edit() {
         if (serverData.errors) {
             console.error(serverData.errors)
         }
+        setLoading(false)
     }
     const captureScreenshot = useCallback(() => {
+        setLoading(true)
         if (captureRef.current === null) {
+            setLoading(false)
             return
         }
         toPng(captureRef.current, { cacheBust: true })
@@ -163,9 +168,11 @@ export default function Edit() {
                 link.download = 'tierforge.png'
                 link.href = dataUrl
                 link.click()
+                setLoading(false)
             })
             .catch((err) => {
                 console.log(err)
+                setLoading(false)
             })
     }, [captureRef])
 
@@ -174,6 +181,7 @@ export default function Edit() {
             <Link href='/main'>
                 <div className="back_main"><FontAwesomeIcon icon={faChevronLeft} />Back</div>
             </Link>
+            {loading && <MainLoading />}
             <DragDropContext
                 onDragEnd={onDragEnd}
             >
