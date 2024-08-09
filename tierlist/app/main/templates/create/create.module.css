@@ -57,3 +57,36 @@
 .cards_header {
     margin-top: 25px;
 }
+
+.card_wrapper {
+    width: 80px;
+    height: 70px;
+    padding: none;
+    color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.card_wrapper>svg {
+    position: relative;
+    cursor: pointer;
+    padding: -10px;
+    margin: -10px;
+    right: 35px;
+    z-index: 20;
+}
+
+.card_wrapper:hover {
+    color: #44546F;
+    background-image: linear-gradient(rgb(255 255 255 / 20%) 0 0);
+}
+
+.card_wrapper>svg:hover {
+    color: #172B4E;
+}
+
+.card_wrapper>svg:active {
+    color: #000;
+}
