@@ -96,7 +96,6 @@ export const listSlice = createSlice({
 
             let cardsTemp: { [key: number]: object } = {}
             for (let card of list.cards) {
-                // const cardArr = JSON.parse(card)
                 cardsTemp[Number(card.id)] = card
             }
             list.cards = cardsTemp
