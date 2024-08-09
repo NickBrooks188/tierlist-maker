@@ -10,6 +10,7 @@ import CardTile from '@/app/components/CardTile/cardtile';
 import Link from 'next/link';
 import { faChevronLeft, faAngleRight, faAngleLeft, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from 'next/navigation';
+import MainLoading from '@/app/components/MainLoading/mainloading';
 
 
 export default function Page() {
@@ -20,6 +21,7 @@ export default function Page() {
     const [cards, setCards] = useState<any[]>([])
     const [nextDisabled, setNextDisabled] = useState<boolean>(true)
     const [publishDisabled, setPublishDisabled] = useState<boolean>(true)
+    const [loading, setLoading] = useState<boolean>(false)
     const router = useRouter()
 
     const dispatch = useAppDispatch()
@@ -46,11 +48,13 @@ export default function Page() {
     }, [cards])
 
     const handleSubmit = async () => {
+        setLoading(true)
         let imageData = null
         if (image) {
             imageData = await dispatch(uploadImage(image))
             if (imageData.errors) {
                 console.error(imageData.errors)
+                setLoading(false)
                 return
             }
         }
@@ -65,6 +69,7 @@ export default function Page() {
         const serverData = await dispatch(thunkCreateTemplate(template))
         console.log(serverData)
         if (serverData.errors) {
+            setLoading(false)
             console.error(serverData.errors)
         } else {
             router.push(`/main`)
@@ -97,6 +102,7 @@ export default function Page() {
             <Link href='/main'>
                 <div className="back_main"><FontAwesomeIcon icon={faChevronLeft} />Back</div>
             </Link>
+            {loading && <MainLoading />}
             <div className={styles.main_wrapper} id='main-wrapper'>
                 <form className={styles.section_wrapper}>
                     <label>Template name<span className='asterisk'>*</span></label>
