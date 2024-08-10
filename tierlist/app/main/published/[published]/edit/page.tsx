@@ -252,11 +252,10 @@ export default function Edit() {
                             )
                         ))}
                     </div>
-
                 </div>
             </DragDropContext>
             <div className={styles.button_wrapper}>
-                <OwnerTile id={published?.owner.id} email={published?.owner.email} image_url={published?.owner.image_url} />
+                {published && <OwnerTile id={published?.owner.id} email={published?.owner.email} image_url={published?.owner.image_url} />}
                 {(sessionUser?.user_id == published?.owner.id) && (<button onClick={saveChanges} className="button-dark"><FontAwesomeIcon icon={faFloppyDisk} /> Save</button>)}
                 <button onClick={captureScreenshot} className="button-light"><FontAwesomeIcon icon={faArrowDown} /> Download tier list</button>
             </div>

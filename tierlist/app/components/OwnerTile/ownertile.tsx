@@ -3,7 +3,6 @@ import styles from "./OwnerTile.module.css";
 import Image from "next/image";
 
 export default function OwnerTile({ id, email, image_url }: { id: number, email: string, image_url: string }) {
-
     return (
         <div className={styles.owner_wrapper} >
             {image_url &&
