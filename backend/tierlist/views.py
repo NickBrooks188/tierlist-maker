@@ -18,6 +18,11 @@ from .aws import (upload_file_to_s3, get_unique_filename, remove_file_from_s3, A
 
 UserModel = get_user_model()
 
+class UserSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = UserModel
+		fields = ["id", "email", "image_url"]
+
 class CardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Card
@@ -37,14 +42,11 @@ class ListTemplateSerializer(serializers.ModelSerializer):
         return template
 
 class ListPublishedSerializer(serializers.ModelSerializer):
+    owner = UserSerializer()
     class Meta:
         model = ListPublished
         fields = ["id", "name", "description", "public", "s_tier", "a_tier", "b_tier", "c_tier", "d_tier", "f_tier", "owner", "template"]
 
-class UserSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = UserModel
-		fields = ["id", "email", "image_url"]
 
 class UserSignupSerializer(serializers.ModelSerializer):
     class Meta:

@@ -9,6 +9,12 @@ import Link from "next/link";
 import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+interface Owner {
+    id: number,
+    email: string,
+    image_url: string,
+}
+
 interface Template {
     id: number,
     background_image_url: string,
@@ -23,7 +29,7 @@ interface Published {
     id: number,
     name: string,
     description: string,
-    owner: number,
+    owner: Owner,
     template: number,
     s_tier: [],
     a_tier: [],
