@@ -14,6 +14,7 @@ import { faChevronLeft, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { toPng } from 'html-to-image';
 import { useRef, useCallback } from 'react';
 import MainLoading from '@/app/components/MainLoading/mainloading';
+import OwnerTile from '@/app/components/OwnerTile/ownertile';
 
 interface Template {
     id: number,
@@ -56,7 +57,7 @@ export default function Edit() {
     const [fTier, setFTier] = useState<[]>([])
     const [untiered, setUntiered] = useState<any>([])
     const tiers: any = [['s', sTier, setSTier], ['a', aTier, setATier], ['b', bTier, setBTier], ['c', cTier, setCTier], ['d', dTier, setDTier], ['f', fTier, setFTier], ['untiered', untiered, setUntiered]]
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
 
     const params = useParams()
     const dispatch = useAppDispatch()
@@ -255,6 +256,7 @@ export default function Edit() {
                 </div>
             </DragDropContext>
             <div className={styles.button_wrapper}>
+                <OwnerTile id={published?.owner.id} email={published?.owner.email} image_url={published?.owner.image_url} />
                 {(sessionUser?.user_id == published?.owner.id) && (<button onClick={saveChanges} className="button-dark"><FontAwesomeIcon icon={faFloppyDisk} /> Save</button>)}
                 <button onClick={captureScreenshot} className="button-light"><FontAwesomeIcon icon={faArrowDown} /> Download tier list</button>
             </div>
