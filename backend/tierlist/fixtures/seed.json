@@ -721,24 +721,6 @@
     "pk": 2,
     "fields": {
       "owner_id": 1,
-      "name": "My starter list",
-      "description": "Only ranked gen 1",
-      "template_id": 1,
-      "s_tier": [
-        1,
-        2
-      ],
-      "a_tier": [
-        3
-      ],
-      "public": true
-    }
-  },
-  {
-    "model": "tierlist.listpublished",
-    "pk": 3,
-    "fields": {
-      "owner_id": 1,
       "name": "2023 final standings",
       "description": "2023 MLB season",
       "template_id": 3,
