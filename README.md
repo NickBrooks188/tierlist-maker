@@ -76,7 +76,7 @@ Tierforge is a tierlist building app where users can organize and share their ow
 
    ### Select Template
    <img src='./images/SelectTemplate.png'>
-   Here, the user can select a template to use from a list of all available templates. Creating a tierlist will take a user to that new tierlist, with no items yet tiered.
+   Here, the user can select a template to use from a list of all available templates. Creating a tierlist will take a user to that new tierlist, with no items yet tiered and the tierlist will be visible to all users from the dashboard.
 
 
     ### Tierlist Page
