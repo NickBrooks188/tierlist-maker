@@ -43,7 +43,6 @@ interface Published {
 export default function Page() {
     const templates = useAppSelector(state => state.allLists.templates)
     const published = useAppSelector(state => state.allLists.published)
-    const state = useAppSelector(state => state)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -92,7 +91,7 @@ export default function Page() {
             <div className={styles.templates_wrapper} id='templates'>
                 <Link href='/main/templates/create'>
                     <TemplateTile
-                        image_url={'create'}
+                        image_url={''}
                         name={"+ Create your own"}
                         description={"Build your own tier list template"}
                         selected={false}

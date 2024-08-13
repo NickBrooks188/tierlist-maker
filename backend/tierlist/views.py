@@ -54,7 +54,7 @@ class UserSignupSerializer(serializers.ModelSerializer):
         fields = ["id", "email", "image_url", "password"]
     def create(self, data):
         user_obj = None
-        user_obj = UserModel.objects.create_user(email=data['email'], password=data['password'])
+        user_obj = UserModel.objects.create_user(email=data['email'], password=data['password'], image_url=data['image_url'])
         user_obj.save()
         return user_obj
 
@@ -96,8 +96,6 @@ class TemplatesAll(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-        print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class TemplatesOne(APIView):
@@ -225,7 +223,6 @@ class PublishedOne(APIView):
             'd_tier': json.dumps(request.data.get('d_tier')),
             'f_tier': json.dumps(request.data.get('f_tier'))
         }
-        print(type(data['s_tier']))
         serializer = ListPublishedSerializer(instance = published, data=data, partial = True)
         if serializer.is_valid():
             serializer.save()
@@ -330,7 +327,6 @@ class UserLogin(ObtainAuthToken):
     # POST /login
     def post(self, request):
         data = request.data
-
         serializer = UserLoginSerializer(data=data)
         if serializer.is_valid(raise_exception=True):
             try:
@@ -371,7 +367,7 @@ class ImagesAll(APIView):
     parser_classes = [FileUploadParser]
     
     # POST /images
-    def put(self, request):
+    def post(self, request):
         image = request.data['file']
         extension = image.name.split('.')[-1]
         if extension not in ALLOWED_EXTENSIONS:
