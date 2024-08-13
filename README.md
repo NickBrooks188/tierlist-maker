@@ -57,7 +57,7 @@ Tierforge is a tierlist building app where users can organize and share their ow
 
    The backend will run on port 8000 by default.
 
-6. To run the Next.js frontend in development, open a new terminal instance and `cd` into the ```tierlist```
+6. To run the Next.js frontend in development, open a new terminal instance and `cd` into the ```frontend```
    directory and run `npm i` to install dependencies. Finally, run `npm run dev` to launch the frontend in your local browser (default port 3000).
 
    ## 🖼️ Application screenshots

@@ -16,11 +16,11 @@
 
 FROM node:18-alpine
 ARG NEXT_PUBLIC_BACKEND_URL
-WORKDIR /tierlist
-COPY tierlist/package.json tierlist/package-lock.json ./
-COPY tierlist/app ./app
+WORKDIR /frontend
+COPY frontend/package.json frontend/package-lock.json ./
+COPY frontend/app ./app
 RUN npm install
-COPY /tierlist .
+COPY /frontend .
 RUN npm run build
 EXPOSE 3000
 CMD ["npm", "start"]
