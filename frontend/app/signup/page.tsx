@@ -9,6 +9,12 @@ import styles from './Signup.module.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import Loading from "../components/Loading/loading";
+import { uploadImage } from "../redux/onelist";
+
+interface ImageData {
+    url: string,
+    errors: string[]
+}
 
 export default function Page() {
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -16,7 +22,7 @@ export default function Page() {
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
     const [disabled, setDisabled] = useState<boolean>(true)
-    const [image, setImage] = useState<string>("")
+    const [image, setImage] = useState<File | null>(null)
     const [loading, setLoading] = useState<boolean>(false)
 
     const dispatch = useAppDispatch()
@@ -40,15 +46,19 @@ export default function Page() {
         }
         setLoading(true)
 
+        let imageData: ImageData = { url: '', errors: [] }
+        if (image) {
+            imageData = await dispatch(uploadImage(image))
+        }
+
 
         const user = {
             email,
             password,
-            image_url: ''
+            image_url: imageData.url || ''
         }
 
         const serverResponse: { [key: string]: string } = await dispatch(thunkSignup(user))
-        console.log(serverResponse)
         if (serverResponse.token) {
             localStorage.setItem('token', serverResponse.token)
             router.push('/main')
@@ -90,7 +100,7 @@ export default function Page() {
                     <input
                         type="file"
                         accept='image/*'
-                        onChange={(e) => console.log(e.target.files ? e.target.files[0] : '')}
+                        onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)}
                     />
                 </div>
                 <p>{errors.image_url}</p>

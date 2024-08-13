@@ -12,7 +12,6 @@ export default function ProfileDropdown() {
 
     const handleLogout = async () => {
         const data = await dispatch(thunkLogout())
-        console.log(data)
         router.push('/')
 
     }

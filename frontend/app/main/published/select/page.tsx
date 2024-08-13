@@ -22,9 +22,6 @@ export default function Select() {
     const [templateDescription, setTemplateDescription] = useState('')
     const router = useRouter()
 
-    console.log(selection_id)
-
-
     const dispatch = useAppDispatch()
     useEffect(() => {
 
@@ -85,12 +82,11 @@ export default function Select() {
                 <input type="text" placeholder="Name" onChange={e => updateName(e.target.value)} value={templateName} />
                 <label>List Description</label>
                 <input type="text" placeholder="Description" onChange={e => updateDescription(e.target.value)} value={templateDescription} />
-
             </form>
             <div className={styles.templates_wrapper}>
                 <Link href='/main/templates/create'>
                     <TemplateTile
-                        image_url={'create'}
+                        image_url={''}
                         name={"Create your own"}
                         description={"Build your own tier list template"}
                         selected={false}
