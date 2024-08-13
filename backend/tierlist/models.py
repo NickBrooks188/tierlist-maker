@@ -5,12 +5,13 @@ import json
 
 
 class AppUserManager(BaseUserManager):
-    def create_user(self, email, password=None):
+    def create_user(self, email, password=None, image_url=''):
         if not email or not password:
             raise ValueError('An email and password are required')
         email_normalized = self.normalize_email(email)
         user = self.model(email=email_normalized)
         user.set_password(password)
+        user.image_url = image_url
         user.save()
         return user
 

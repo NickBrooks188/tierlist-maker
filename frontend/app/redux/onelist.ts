@@ -76,7 +76,7 @@ export const thunkUpdatePublished = (published: any) => async (dispatch: any) =>
 export const uploadImage = (image: any) => async () => {
     const token: string = localStorage.getItem('token') || ''
     const res = await fetch(`${environment}/api/images/`, {
-        method: "PUT",
+        method: "POST",
         body: image,
         headers: { "Content-Disposition": `attachment; filename=${image.name}`, "Authorization": `Token ${token}` },
 

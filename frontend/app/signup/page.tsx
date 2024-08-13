@@ -51,13 +51,11 @@ export default function Page() {
             imageData = await dispatch(uploadImage(image))
         }
 
-
         const user = {
             email,
             password,
             image_url: imageData.url || ''
         }
-
         const serverResponse: { [key: string]: string } = await dispatch(thunkSignup(user))
         if (serverResponse.token) {
             localStorage.setItem('token', serverResponse.token)
