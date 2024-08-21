@@ -57,6 +57,7 @@ export default function Edit() {
     const [untiered, setUntiered] = useState<any>([])
     const tiers: any = [['s', sTier, setSTier], ['a', aTier, setATier], ['b', bTier, setBTier], ['c', cTier, setCTier], ['d', dTier, setDTier], ['f', fTier, setFTier], ['untiered', untiered, setUntiered]]
     const [loading, setLoading] = useState(false)
+    const [hasScreenshot, setHasScreenshot] = useState(false)
 
     const params = useParams()
     const dispatch = useAppDispatch()
@@ -170,6 +171,7 @@ export default function Edit() {
                 link.href = dataUrl
                 link.click()
                 setLoading(false)
+                setHasScreenshot(true)
             })
             .catch((err) => {
                 console.log(err)
