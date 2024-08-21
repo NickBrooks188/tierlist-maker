@@ -48,7 +48,6 @@ export default function Edit() {
     const published = useAppSelector(state => state.list.published)
     const sessionUser = useAppSelector(state => state.session.user)
     const [template, setTemplate] = useState<Template>()
-    const [disabled, setDisabled] = useState(true)
     const [sTier, setSTier] = useState<[]>([])
     const [aTier, setATier] = useState<[]>([])
     const [bTier, setBTier] = useState<[]>([])
@@ -154,6 +153,7 @@ export default function Edit() {
         const serverData: Published = await dispatch(thunkUpdatePublished(publishedPut))
         if (serverData.errors) {
             console.error(serverData.errors)
+            setLoading(false)
         }
         setLoading(false)
     }
