@@ -48,7 +48,6 @@ export default function Edit() {
     const published = useAppSelector(state => state.list.published)
     const sessionUser = useAppSelector(state => state.session.user)
     const [template, setTemplate] = useState<Template>()
-    const [disabled, setDisabled] = useState(true)
     const [sTier, setSTier] = useState<[]>([])
     const [aTier, setATier] = useState<[]>([])
     const [bTier, setBTier] = useState<[]>([])
@@ -58,6 +57,7 @@ export default function Edit() {
     const [untiered, setUntiered] = useState<any>([])
     const tiers: any = [['s', sTier, setSTier], ['a', aTier, setATier], ['b', bTier, setBTier], ['c', cTier, setCTier], ['d', dTier, setDTier], ['f', fTier, setFTier], ['untiered', untiered, setUntiered]]
     const [loading, setLoading] = useState(false)
+    const [hasScreenshot, setHasScreenshot] = useState(false)
 
     const params = useParams()
     const dispatch = useAppDispatch()
@@ -154,6 +154,7 @@ export default function Edit() {
         const serverData: Published = await dispatch(thunkUpdatePublished(publishedPut))
         if (serverData.errors) {
             console.error(serverData.errors)
+            setLoading(false)
         }
         setLoading(false)
     }
@@ -170,6 +171,7 @@ export default function Edit() {
                 link.href = dataUrl
                 link.click()
                 setLoading(false)
+                setHasScreenshot(true)
             })
             .catch((err) => {
                 console.log(err)
