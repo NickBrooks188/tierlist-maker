@@ -1,7 +1,7 @@
 # <img src="https://tierforge.s3.us-west-1.amazonaws.com/TierForgeLogo.svg" title="React" alt="React" height="60"/>
 Tierforge is a tierlist building app where users can organize and share their own tierlists from existing templates or create their own templates. 
 
-[Live demo link](https://tierforge.onrender.com/)
+[Live demo link](https://tierforge.vercel.app/)
 
 ## 💻 Technologies used
 <div>
