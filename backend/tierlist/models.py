@@ -26,8 +26,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
     
-    class Meta:
-        db_table = "tierforge.user"
+    # class Meta:
+    #     db_table = "tierforge.user"
 
 class ListTemplate(models.Model):
     name = models.TextField(null=False)
@@ -38,8 +38,9 @@ class ListTemplate(models.Model):
 
     def __str__(self):
         return self.name
-    class Meta:
-        db_table = "tierforge.listtemplate"
+    
+    # class Meta:
+    #     db_table = "tierforge.listtemplate"
     
 class ListPublished(models.Model):
     name = models.TextField(null=False)
@@ -54,8 +55,8 @@ class ListPublished(models.Model):
     d_tier = models.TextField(default='[]')
     f_tier = models.TextField(default='[]')
 
-    class Meta:
-        db_table = "tierforge.listpublished"
+    # class Meta:
+    #     db_table = "tierforge.listpublished"
 
 
 class Card(models.Model):
@@ -66,5 +67,5 @@ class Card(models.Model):
     def __str__(self):
         return json.dumps([self.id, self.name, self.image_url])
     
-    class Meta:
-        db_table = "tierforge.card"
+    # class Meta:
+    #     db_table = "tierforge.card"
