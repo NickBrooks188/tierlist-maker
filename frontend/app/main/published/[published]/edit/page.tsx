@@ -1,7 +1,7 @@
 'use client';
 import styles from './Edit.module.css'
 import { useAppSelector, useAppDispatch } from '@/app/redux/store'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { thunkGetAllTemplates } from '@/app/redux/alllists'
 import { useParams } from 'next/navigation';
 import CardTile from '@/app/components/CardTile/cardtile';
@@ -55,7 +55,7 @@ export default function Edit() {
     const [dTier, setDTier] = useState<[]>([])
     const [fTier, setFTier] = useState<[]>([])
     const [untiered, setUntiered] = useState<any>([])
-    const tiers: any = [['s', sTier, setSTier], ['a', aTier, setATier], ['b', bTier, setBTier], ['c', cTier, setCTier], ['d', dTier, setDTier], ['f', fTier, setFTier], ['untiered', untiered, setUntiered]]
+    // const tiers: any = [['s', sTier, setSTier], ['a', aTier, setATier], ['b', bTier, setBTier], ['c', cTier, setCTier], ['d', dTier, setDTier], ['f', fTier, setFTier], ['untiered', untiered, setUntiered]]
     const [loading, setLoading] = useState(false)
     const [hasScreenshot, setHasScreenshot] = useState(false)
 
@@ -64,6 +64,7 @@ export default function Edit() {
 
     const captureRef = useRef<HTMLDivElement>(null)
 
+    const tiers = useMemo(() => [['s', sTier, setSTier], ['a', aTier, setATier], ['b', bTier, setBTier], ['c', cTier, setCTier], ['d', dTier, setDTier], ['f', fTier, setFTier], ['untiered', untiered, setUntiered]], [sTier, aTier, bTier, cTier, dTier, fTier, untiered])
 
     useEffect(() => {
         if (templates && published) {
@@ -97,7 +98,6 @@ export default function Edit() {
 
 
     useEffect(() => {
-
         const fetchAsync = async () => {
             const publishedData: Published = await dispatch(thunkGetOnePublished(Number(params.published)))
             const templatesData: [Template] = await dispatch(thunkGetAllTemplates())
@@ -107,7 +107,7 @@ export default function Edit() {
 
     }, [dispatch, params])
 
-    const onDragEnd = (result: DropResult) => {
+    const onDragEnd = useCallback((result: DropResult) => {
         const { destination, source } = result
 
         if (!destination) {
@@ -136,9 +136,9 @@ export default function Edit() {
             setSourceOrder(sourceOrder)
             setDestOrder(destOrder)
         }
-    }
+    }, [tiers])
 
-    const saveChanges = async () => {
+    const saveChanges = useCallback(async () => {
         setLoading(true)
         const publishedPut = {
             id: published.id,
@@ -157,7 +157,8 @@ export default function Edit() {
             setLoading(false)
         }
         setLoading(false)
-    }
+    }, [published, sTier, aTier, bTier, cTier, dTier, fTier])
+
     const captureScreenshot = useCallback(() => {
         setLoading(true)
         if (captureRef.current === null) {
