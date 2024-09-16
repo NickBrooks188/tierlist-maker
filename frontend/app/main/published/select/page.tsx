@@ -2,7 +2,7 @@
 import styles from './Select.module.css'
 import TemplateTile from '@/app/components/TemplateTile/templatetile'
 import { useAppSelector, useAppDispatch } from '@/app/redux/store'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { thunkGetAllTemplates } from '@/app/redux/alllists'
 import { thunkCreatePublished } from '@/app/redux/onelist';
 import { useRouter } from 'next/navigation';
@@ -23,6 +23,7 @@ export default function Select() {
     const router = useRouter()
 
     const dispatch = useAppDispatch()
+
     useEffect(() => {
 
         const fetchAsync = async () => {
@@ -33,21 +34,21 @@ export default function Select() {
 
     }, [dispatch])
 
-    const handleSelect = (templateId: number) => {
+    const handleSelect = useCallback((templateId: number) => {
         setSelection(templateId)
-    }
+    }, [])
 
-    const updateName = (name: string) => {
+    const updateName = useCallback((name: string) => {
         if (name.length < 25) {
             setTemplateName(name)
         }
-    }
+    }, [])
 
-    const updateDescription = (description: string) => {
+    const updateDescription = useCallback((description: string) => {
         if (description.length < 45) {
             setTemplateDescription(description)
         }
-    }
+    }, [])
 
     useEffect(() => {
         if (selection !== -1 && templateName.length) {
@@ -55,7 +56,7 @@ export default function Select() {
         }
     }, [selection, templateName])
 
-    const create = async () => {
+    const create = useCallback(async () => {
         const templateData = {
             name: templateName,
             description: templateDescription,
@@ -70,7 +71,7 @@ export default function Select() {
         } else {
             console.error(serverData)
         }
-    }
+    }, [selection, templateName, templateDescription, sessionUser])
 
     return (
         <div className={styles.template_selection}>

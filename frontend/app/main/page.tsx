@@ -1,6 +1,6 @@
 'use client';
 import { useAppSelector, useAppDispatch } from "../redux/store"
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { thunkGetAllTemplates, thunkGetAllPublished } from "@/app/redux/alllists";
 import TemplateTile from "@/app/components/TemplateTile/templatetile";
 import PublishedTile from "@/app/components/PublishedTile/publishedtile";
@@ -57,33 +57,33 @@ export default function Page() {
         document.title = 'Tier Forge: Main'
     }, [])
 
-    const publishedScrollRight = () => {
+    const publishedScrollRight = useCallback(() => {
         const publishedList = document.getElementById('published')
         if (publishedList) {
             publishedList.scrollBy({ left: 448, top: 0, behavior: 'smooth' })
         }
-    }
+    }, [])
 
-    const publishedScrollLeft = () => {
+    const publishedScrollLeft = useCallback(() => {
         const publishedList = document.getElementById('published')
         if (publishedList) {
             publishedList.scrollBy({ left: -448, top: 0, behavior: 'smooth' })
         }
-    }
+    }, [])
 
-    const templateScrollRight = () => {
+    const templateScrollRight = useCallback(() => {
         const templatesList = document.getElementById('templates')
         if (templatesList) {
             templatesList.scrollBy({ left: 448, top: 0, behavior: 'smooth' })
         }
-    }
+    }, [])
 
-    const templateScrollLeft = () => {
+    const templateScrollLeft = useCallback(() => {
         const templatesList = document.getElementById('templates')
         if (templatesList) {
             templatesList.scrollBy({ left: -448, top: 0, behavior: 'smooth' })
         }
-    }
+    }, [])
 
     return (
         <div className={styles.main_wrapper}>
