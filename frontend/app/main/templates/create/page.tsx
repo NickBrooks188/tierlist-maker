@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CreateCardModal from "@/app/components/CreateCardModal/createcardmodal";
@@ -47,7 +47,7 @@ export default function Page() {
         }
     }, [cards])
 
-    const handleSubmit = async () => {
+    const handleSubmit = useCallback(async () => {
         setLoading(true)
         let imageData = null
         if (image) {
@@ -74,28 +74,28 @@ export default function Page() {
         } else {
             router.push(`/main`)
         }
-    }
+    }, [name, description, image, cards])
 
-    const handleDeleteCard = (index: number) => {
+    const handleDeleteCard = useCallback((index: number) => {
         // Remove the card from the list
         const cardCopy = [...cards]
         setCards(cardCopy.filter((_, i) => i !== index))
-    }
+    }, [cards])
 
-    const scrollRight = (e: any) => {
+    const scrollRight = useCallback((e: any) => {
         e.preventDefault()
         const mainWrapper = document.getElementById('main-wrapper')
         if (mainWrapper) {
             mainWrapper.scrollBy({ left: 500, top: 0, behavior: 'smooth' })
         }
-    }
+    }, [])
 
-    const scrollLeft = () => {
+    const scrollLeft = useCallback(() => {
         const mainWrapper = document.getElementById('main-wrapper')
         if (mainWrapper) {
             mainWrapper.scrollBy({ left: -500, top: 0, behavior: 'smooth' })
         }
-    }
+    }, [])
 
     return (
         <>
